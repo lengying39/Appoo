@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.Pages.ListPage"
+             BackgroundColor="#F2F2F2"
+             Title="Attractions List">
+    <VerticalStackLayout Padding="20" Spacing="14">
+
+        <Frame CornerRadius="14" BackgroundColor="White" Padding="16">
+            <VerticalStackLayout>
+                <Label Text="Terracotta Army" FontSize="18" FontAttributes="Bold"/>
+                <Label Text="500m | Paid Attraction"/>
+                <Button Text="View Details"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Clicked="GoToTerracottaArmy"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Frame CornerRadius="14" BackgroundColor="White" Padding="16">
+            <VerticalStackLayout>
+                <Label Text="Giant Wild Goose Pagoda" FontSize="18" FontAttributes="Bold"/>
+                <Label Text="800m | Paid Attraction"/>
+                <Button Text="View Details"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Clicked="GoToGiantWildGoosePagoda"/>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Frame CornerRadius="14" BackgroundColor="White" Padding="16">
+            <VerticalStackLayout>
+                <Label Text="Xi'an City Wall" FontSize="18" FontAttributes="Bold"/>
+                <Label Text="2km | Paid Attraction"/>
+                <Button Text="View Details"
+                        BackgroundColor="#2196F3"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Clicked="GoToXianCityWall"/>
+            </VerticalStackLayout>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>
