@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App00.Views.RecommendPage"
+             Title="推荐景点">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="20">
+            <Label Text="热门景点推荐" FontSize="24" HorizontalOptions="Center"/>
+            <Button Text="大雁塔" Clicked="OnSpotClicked" ClassId="大雁塔" />
+            <Button Text="钟楼" Clicked="OnSpotClicked" ClassId="钟楼" />
+            <Button Text="兵马俑" Clicked="OnSpotClicked" ClassId="兵马俑" />
+            <Button Text="华清宫" Clicked="OnSpotClicked" ClassId="华清宫" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

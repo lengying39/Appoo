@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App00.Views.HomePage"
+             Title="首页">
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+            <Label Text="欢迎使用旅游指南" FontSize="24" HorizontalOptions="Center"/>
+            <Button Text="获取我的位置" Clicked="OnGetLocationClicked" />
+            <Label x:Name="LocationLabel" Text="未知位置" FontSize="18" />
+            <Label x:Name="NearbyLabel" FontSize="16" TextColor="Gray" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

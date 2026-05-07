@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Appoo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Appoo.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent
+            Title="首页"
+            Icon="home.png"
+            ContentTemplate="{DataTemplate views:HomePage}" />
+
+        <ShellContent
+            Title="地图"
+            Icon="map.png"
+            ContentTemplate="{DataTemplate views:MapPage}" />
+
+        <ShellContent
+            Title="拍照"
+            Icon="camera.png"
+            ContentTemplate="{DataTemplate views:CameraPage}" />
+
+        <ShellContent
+            Title="推荐"
+            Icon="star.png"
+            ContentTemplate="{DataTemplate views:RecommendPage}" />
+
+        <ShellContent
+            Title="设置"
+            Icon="settings.png"
+            ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </TabBar>
+
+</Shell>

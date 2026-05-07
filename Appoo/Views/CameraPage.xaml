@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Appoo.Views.CameraPage"
+             Title="拍照识景">
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+            <Button Text="拍摄景点" Clicked="OnTakePhotoClicked" />
+            <Image x:Name="CapturedImage" HeightRequest="300" />
+            <Label x:Name="ResultLabel" FontSize="20" HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
