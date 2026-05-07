@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.Pages.DetailPage"
+             BackgroundColor="#F2F2F2"
+             Title="景点详情">
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="16">
+            <!-- 和你截图里的写法一样，直接写图片名 -->
+            <Image x:Name="AttractionImage" HeightRequest="220" Aspect="AspectFill"/>
+
+            <Label x:Name="AttractionNameLabel" FontSize="30" FontAttributes="Bold"/>
+            <Label x:Name="AddressLabel"/>
+            <Label x:Name="TimeLabel"/>
+            <Label x:Name="TicketLabel"/>
+            <Label x:Name="DescLabel"/>
+
+            <Button Text="⭐ 加入收藏"
+                    BackgroundColor="#FF9800"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="60"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.MainPage"
+             BackgroundColor="#F2F2F2">
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="16">
+            <Label Text="GPS 旅游指南"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            <Label Text="快速查找附近景点"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
+
+            <Frame CornerRadius="14" BackgroundColor="#E3F2FD" Padding="16">
+                <Label Text="📍 当前位置：GPS 已连接（西安）" FontSize="18"/>
+            </Frame>
+
+            <Button Text="🗺️ 附近景点"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="65"
+                    Clicked="GoToListPage"/>
+
+            <Button Text="⭐ 我的收藏"
+                    BackgroundColor="#FF9800"
+                    TextColor="White"
+                    CornerRadius="12"
+                    HeightRequest="65"
+                    Clicked="GoToFavoritePage"/>
+
+            <Label Text="🔥 推荐景点" FontAttributes="Bold" FontSize="20"/>
+
+            <Frame CornerRadius="14" BackgroundColor="White" Padding="14">
+                <VerticalStackLayout>
+                    <Label Text="兵马俑" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="距离：500米 | 正常开放"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="14" BackgroundColor="White" Padding="14">
+                <VerticalStackLayout>
+                    <Label Text="大雁塔" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="距离：800米 | 正常开放"/>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
