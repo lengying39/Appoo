@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Assignment.Pages.FavoritePage"
              Title="My Favorites">
+
     <ScrollView Padding="20">
-        <VerticalStackLayout x:Name="FavoriteContainer" Spacing="15"/>
+        <VerticalStackLayout x:Name="FavoriteContainer" Spacing="15">
+
+        </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

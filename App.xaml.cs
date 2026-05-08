@@ -1,4 +1,7 @@
-﻿using Assignment;
+﻿using Microsoft.Maui.Controls;
+using Assignment.Pages;
+using Microsoft.Maui.Controls;
+using Assignment;
 
 namespace Assignment
 {
@@ -8,7 +11,6 @@ namespace Assignment
         {
             InitializeComponent();
 
-           
             MainPage = new NavigationPage(new MainPage());
         }
     }

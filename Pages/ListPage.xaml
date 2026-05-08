@@ -3,33 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Assignment.Pages.ListPage"
              Title="Attractions">
+
     <ScrollView Padding="20">
         <VerticalStackLayout Spacing="16">
 
-            <Frame BackgroundColor="White" Padding="18" CornerRadius="15">
+            <Frame BackgroundColor="White" 
+                   Padding="18" 
+                   CornerRadius="15">
                 <VerticalStackLayout>
-                    <Label Text="Emperor Qinshihuang's Mausoleum Site Museum" FontSize="18" FontAttributes="Bold"/>
-                    <Label Text="Famous Terracotta Army · Open 8:00-18:00" FontSize="14"/>
-                    <Button Text="View Details" Clicked="GoToDetail1" BackgroundColor="#3949AB" TextColor="White" CornerRadius="12"/>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame BackgroundColor="White" Padding="18" CornerRadius="15">
-                <VerticalStackLayout>
-                    <Label Text="Dayan Pagoda" FontSize="18" FontAttributes="Bold"/>
-                    <Label Text="Ancient Buddhist Pagoda · Open 9:00-17:30" FontSize="14"/>
-                    <Button Text="View Details" Clicked="GoToDetail2" BackgroundColor="#3949AB" TextColor="White" CornerRadius="12"/>
-                </VerticalStackLayout>
-            </Frame>
-
-            <Frame BackgroundColor="White" Padding="18" CornerRadius="15">
-                <VerticalStackLayout>
-                    <Label Text="The Xi'an Circumvallation" FontSize="18" FontAttributes="Bold"/>
-                    <Label Text="Ancient City Wall · Open 8:00-22:00" FontSize="14"/>
-                    <Button Text="View Details" Clicked="GoToDetail3" BackgroundColor="#3949AB" TextColor="White" CornerRadius="12"/>
                 </VerticalStackLayout>
             </Frame>
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

@@ -7,7 +7,6 @@
     <ScrollView Padding="25">
         <VerticalStackLayout Spacing="18">
 
-           
             <Frame 
                 WidthRequest="280"
                 HeightRequest="180"
@@ -21,13 +20,11 @@
                     Aspect="AspectFill" />
             </Frame>
 
-        
             <Label x:Name="AttractionName" 
                    FontSize="28" 
                    FontAttributes="Bold"
                    TextColor="#1A237E"/>
 
-          
             <Frame BackgroundColor="White" 
                    Padding="22" 
                    CornerRadius="20">
@@ -46,13 +43,11 @@
                 </VerticalStackLayout>
             </Frame>
 
-            
-            <Button Text="⭐ Add to Favorites" 
-                    Clicked="AddToFavorite" 
-                    BackgroundColor="#FF6F00" 
-                    TextColor="White" 
-                    CornerRadius="20" 
-                    HeightRequest="55"/>
+            <Label x:Name="AttractionNameLabel" FontSize="30" FontAttributes="Bold"/>
+            <Label x:Name="AddressLabel"/>
+            <Label x:Name="TimeLabel"/>
+            <Label x:Name="TicketLabel"/>
+            <Label x:Name="DescLabel"/>
 
         </VerticalStackLayout>
     </ScrollView>
