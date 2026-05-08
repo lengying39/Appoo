@@ -13,7 +13,7 @@
 			<!-- 大雁塔 -->
 			<Frame CornerRadius="15" BackgroundColor="White" Padding="15" HasShadow="True">
 				<VerticalStackLayout Spacing="8">
-					<Image Source="spot_dayanta.jpg" Aspect="AspectFill" HeightRequest="180" />
+					<Image Source="bmy.png" Aspect="AspectFill" HeightRequest="180" />
 					<Label Text="大雁塔" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource DarkText}"/>
 					<Label Text="唐代古塔，大慈恩寺内，西安标志性建筑之一。" FontSize="14" TextColor="Gray"/>
 				</VerticalStackLayout>
@@ -22,7 +22,7 @@
 			<!-- 钟楼 -->
 			<Frame CornerRadius="15" BackgroundColor="White" Padding="15" HasShadow="True">
 				<VerticalStackLayout Spacing="8">
-					<Image Source="spot_zhonglou.jpg" Aspect="AspectFill" HeightRequest="180" />
+					<Image Source="dyt.png" Aspect="AspectFill" HeightRequest="180" />
 					<Label Text="钟楼" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource DarkText}"/>
 					<Label Text="西安市中心地标，建于明代，宏伟壮观。" FontSize="14" TextColor="Gray"/>
 				</VerticalStackLayout>

@@ -13,6 +13,11 @@ public partial class CameraPage : ContentPage
         _recognitionService = recognitionService;
     }
 
+    private async void OnOpenMapClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(GaodeMapPage));
+    }
+
     private async void OnTakePhotoClicked(object sender, EventArgs e)
     {
         try

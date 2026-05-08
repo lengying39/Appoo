@@ -13,10 +13,10 @@
             Title="首页"
             Icon="tab_home.png"
             ContentTemplate="{DataTemplate views:HomePage}" />
-        <ShellContent
+		<ShellContent
             Title="地图"
             Icon="tab_map.png"
-            ContentTemplate="{DataTemplate views:MapPage}" />
+            ContentTemplate="{DataTemplate views:GaodeMapPage}" />
         <ShellContent
             Title="拍照"
             Icon="tab_camera.png"

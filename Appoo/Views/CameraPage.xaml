@@ -19,6 +19,15 @@
                     Clicked="OnTakePhotoClicked"
                     Shadow="{OnPlatform Default=Shadow}" />
 
+            <Button Text="🌐 打开地图"
+        BackgroundColor="{StaticResource Secondary}"
+        TextColor="White"
+        CornerRadius="12"
+        FontSize="16"
+        HeightRequest="50"
+        Clicked="OnOpenMapClicked"
+        Margin="0,10,0,0" />
+
             <!-- 拍摄后预览 -->
             <Frame CornerRadius="12" BackgroundColor="White" Padding="10" HasShadow="True" IsVisible="False" x:Name="PreviewFrame">
                 <Image x:Name="CapturedImage" Aspect="AspectFill" HeightRequest="250" />

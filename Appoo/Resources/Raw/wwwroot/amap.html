@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>高德地图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body, #container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="error" style="color:red; padding:20px; display:none;"></div>
+
+    <!-- <script src="loader.js"></script> -->
+    <script src="https://webapi.amap.com/loader.js"></script>
+    <script>
+        window.onerror = function (message, source, lineno, colno, error) {
+            document.getElementById("error").style.display = "block";
+            document.getElementById("error").innerText = "JS错误：" + message + "\n在：" + source + ":" + lineno;
+            return true;
+        };
+
+        try {
+            window._AMapSecurityConfig = {
+                securityJsCode: '477b316fb33311856706463b416e3371'   // 替换为真实的安全密钥
+            };
+
+            AMap.loader.load({
+                key: '4434777ab901edae0e1a903f99f537bc',             // 替换为真实的 Key
+                version: '2.0',
+                plugins: ['AMap.Geolocation', 'AMap.Scale']
+            }).then(function (AMap) {
+                // ... 原有地图初始化代码 ...
+            }).catch(function (e) {
+                document.getElementById("error").style.display = "block";
+                document.getElementById("error").innerText = "高德加载失败：" + e;
+            });
+        } catch (e) {
+            document.getElementById("error").style.display = "block";
+            document.getElementById("error").innerText = "初始化异常：" + e;
+        }
+    </script>
+</body>
+</html>
