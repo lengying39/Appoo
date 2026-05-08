@@ -2,27 +2,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Assignment.Pages.DetailPage"
-             BackgroundColor="#F2F2F2"
              Title="Attraction Details">
-    <ScrollView>
-        <VerticalStackLayout Padding="22" Spacing="16">
 
-            <Image x:Name="AttractionImage" 
-                   HeightRequest="220" 
-                   Aspect="AspectFit"/>
+    <ScrollView Padding="25">
+        <VerticalStackLayout Spacing="18">
 
-            <Label x:Name="AttractionNameLabel" FontSize="30" FontAttributes="Bold"/>
-            <Label x:Name="AddressLabel"/>
-            <Label x:Name="TimeLabel"/>
-            <Label x:Name="TicketLabel"/>
-            <Label x:Name="DescLabel"/>
+           
+            <Frame 
+                WidthRequest="280"
+                HeightRequest="180"
+                CornerRadius="18"
+                Padding="0"
+                IsClippedToBounds="True"
+                HorizontalOptions="Center">
 
-            <Button Text="⭐ Add to Favorites"
-                    BackgroundColor="#FF9800"
-                    TextColor="White"
-                    CornerRadius="12"
-                    HeightRequest="60"/>
+                <Image 
+                    x:Name="AttractionImage"
+                    Aspect="AspectFill" />
+            </Frame>
+
+        
+            <Label x:Name="AttractionName" 
+                   FontSize="28" 
+                   FontAttributes="Bold"
+                   TextColor="#1A237E"/>
+
+          
+            <Frame BackgroundColor="White" 
+                   Padding="22" 
+                   CornerRadius="20">
+                <VerticalStackLayout Spacing="12">
+                    <Label x:Name="AttractionInfo" 
+                           FontSize="16" 
+                           TextColor="#333"/>
+
+                    <Label x:Name="OpeningHours" 
+                           FontSize="14" 
+                           TextColor="#555"/>
+
+                    <Label x:Name="Location" 
+                           FontSize="14" 
+                           TextColor="#555"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            
+            <Button Text="⭐ Add to Favorites" 
+                    Clicked="AddToFavorite" 
+                    BackgroundColor="#FF6F00" 
+                    TextColor="White" 
+                    CornerRadius="20" 
+                    HeightRequest="55"/>
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

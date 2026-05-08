@@ -1,26 +1,28 @@
+using Assignment.Pages;
 using Microsoft.Maui.Controls;
 
-namespace Assignment.Pages;
-
-public partial class ListPage : ContentPage
+namespace Assignment.Pages
 {
-    public ListPage()
+    public partial class ListPage : ContentPage
     {
-        InitializeComponent();
-    }
+        public ListPage()
+        {
+            InitializeComponent();
+        }
 
-    private async void GoToTerracottaArmy(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new DetailPage("Terracotta Army"));
-    }
+        private async void GoToDetail1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DetailPage("Emperor Qinshihuang's Mausoleum Site Museum"));
+        }
 
-    private async void GoToGiantWildGoosePagoda(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new DetailPage("Giant Wild Goose Pagoda"));
-    }
+        private async void GoToDetail2(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DetailPage("Dayan Pagoda"));
+        }
 
-    private async void GoToXianCityWall(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new DetailPage("Xi'an City Wall"));
+        private async void GoToDetail3(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DetailPage("The Xi'an Circumvallation"));
+        }
     }
 }

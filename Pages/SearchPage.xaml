@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.Pages.SearchPage"
+             Title="Search">
+    <VerticalStackLayout Padding="20" Spacing="16">
+        <Label Text="Search Page" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+        <!-- 用 Frame 包裹 Entry 实现圆角，兼容你的 MAUI 版本 -->
+        <Frame BackgroundColor="White" CornerRadius="10" Padding="0">
+            <Entry Placeholder="Search attractions, food, facilities..."
+                   BackgroundColor="White"
+                   HeightRequest="50"/>
+        </Frame>
+
+        <Button Text="Search"
+                BackgroundColor="#3949AB"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"/>
+
+        <Label Text="Results will appear here..."
+               FontSize="16"
+               HorizontalOptions="Center"
+               Margin="0,30,0,0"/>
+    </VerticalStackLayout>
+</ContentPage>

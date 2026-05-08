@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.Pages.FacilitiesPage"
+             Title="Public Facilities">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <Label Text="🏛️ Public Facilities" FontSize="24" FontAttributes="Bold"/>
+
+            <Frame BackgroundColor="White" Padding="16" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="🚻 Public Toilet" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="50m away · Open"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="16" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="🔌 Charging Station" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="200m away · Available"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="16" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="♿ Accessible Passage" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="100m away · Open"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="16" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="🪧 Ticket Vending Machine" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="300m away · Working"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="16" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="💧 Water Fountain" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="150m away · Open"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

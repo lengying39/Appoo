@@ -1,47 +1,44 @@
-using Microsoft.Maui.Controls;
-
 namespace Assignment.Pages;
 
 public partial class DetailPage : ContentPage
 {
-    public DetailPage()
+    string currentTitle = "";
+
+    public DetailPage(string title)
     {
         InitializeComponent();
-    }
+        currentTitle = title;
+        AttractionName.Text = title;
 
-    public DetailPage(string name)
-    {
-        InitializeComponent();
-
-        if (name == "Terracotta Army")
+        if (title == "Emperor Qinshihuang's Mausoleum Site Museum")
         {
-            Title = "Terracotta Army";
-            AttractionNameLabel.Text = "Terracotta Army";
-            AddressLabel.Text = "Address: Lintong District, Xi'an";
-            TimeLabel.Text = "Open Time: 8:00 - 18:00";
-            TicketLabel.Text = "Ticket: 120 RMB";
-            DescLabel.Text = "One of the Eight Wonders of the World.";
+            AttractionInfo.Text = "The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang.";
+            OpeningHours.Text = "Open: 8:00 - 18:00";
+            Location.Text = "Location: Lintong District, Xi'an";
             AttractionImage.Source = "icon1.jpg";
         }
-        else if (name == "Giant Wild Goose Pagoda")
+        else if (title == "Dayan Pagoda")
         {
-            Title = "Giant Wild Goose Pagoda";
-            AttractionNameLabel.Text = "Giant Wild Goose Pagoda";
-            AddressLabel.Text = "Address: Yanta District, Xi'an";
-            TimeLabel.Text = "Open Time: 8:00 - 18:30";
-            TicketLabel.Text = "Ticket: 40 RMB";
-            DescLabel.Text = "A famous Buddhist pagoda in Tang Dynasty.";
+            AttractionInfo.Text = "Dayan Pagoda is a Buddhist pagoda built in the Tang Dynasty.";
+            OpeningHours.Text = "Open: 9:00 - 17:30";
+            Location.Text = "Location: Yanta District, Xi'an";
             AttractionImage.Source = "icon2.jpg";
         }
-        else if (name == "Xi'an City Wall")
+        else if (title == "The Xi'an Circumvallation")
         {
-            Title = "Xi'an City Wall";
-            AttractionNameLabel.Text = "Xi'an City Wall";
-            AddressLabel.Text = "Address: Downtown Xi'an";
-            TimeLabel.Text = "Open Time: 8:00 - 22:00";
-            TicketLabel.Text = "Ticket: 54 RMB";
-            DescLabel.Text = "The most complete ancient city wall in China.";
+            AttractionInfo.Text = "The Xi'an Circumvallation is the most complete ancient city wall in China.";
+            OpeningHours.Text = "Open: 8:00 - 22:00";
+            Location.Text = "Location: Downtown Xi'an";
             AttractionImage.Source = "icon3.jpg";
+        }
+    }
+
+    private void AddToFavorite(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(currentTitle))
+        {
+            FavoriteManager.AddFavorite(currentTitle);
+            DisplayAlert("Success", "Added to favorites!", "OK");
         }
     }
 }

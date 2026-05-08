@@ -2,9 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Assignment.Pages.FavoritePage"
-             BackgroundColor="#F2F2F2"
              Title="My Favorites">
-    <VerticalStackLayout Padding="20" VerticalOptions="Center">
-        <Label Text="No favorites yet" FontSize="18" HorizontalOptions="Center"/>
-    </VerticalStackLayout>
+    <ScrollView Padding="20">
+        <VerticalStackLayout x:Name="FavoriteContainer" Spacing="15"/>
+    </ScrollView>
 </ContentPage>

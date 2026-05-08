@@ -4,7 +4,7 @@
              x:Class="Assignment.MainPage"
              BackgroundColor="#F8F9FC">
     <ScrollView>
-        <VerticalStackLayout Padding="28" Spacing="24">
+        <VerticalStackLayout Margin="28" Spacing="24">
 
             <HorizontalStackLayout HorizontalOptions="Fill" Margin="0,0,0,10">
                 <Label Text="Tourist Navigator"
@@ -16,14 +16,15 @@
                         BackgroundColor="#3949AB"
                         TextColor="White"
                         CornerRadius="18"
-                        WidthRequest="50"
-                        HeightRequest="50"/>
+                        WidthRequest="44"
+                        HeightRequest="44"
+                        Clicked="GoToSearchPage"/>
                 <Button Text="📷"
                         BackgroundColor="#FF6F00"
                         TextColor="White"
                         CornerRadius="18"
-                        WidthRequest="50"
-                        HeightRequest="50"
+                        WidthRequest="44"
+                        HeightRequest="44"
                         Margin="8,0,0,0"/>
             </HorizontalStackLayout>
 
@@ -32,9 +33,7 @@
                    TextColor="#5F6368"
                    HorizontalOptions="Start"/>
 
-            <Frame CornerRadius="20" 
-                   BackgroundColor="#FFFFFF" 
-                   Padding="20">
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
                 <VerticalStackLayout Spacing="4">
                     <Label Text="📍 Current Location" 
                            FontSize="14" 
@@ -59,6 +58,24 @@
                         FontAttributes="Bold"
                         Clicked="GoToListPage"/>
 
+                <Button Text="🍜 Nearby Food"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        CornerRadius="22"
+                        HeightRequest="72"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        Clicked="GoToFoodPage"/>
+
+                <Button Text="🏛️ Public Facilities"
+                        BackgroundColor="#9C27B0"
+                        TextColor="White"
+                        CornerRadius="22"
+                        HeightRequest="72"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        Clicked="GoToFacilitiesPage"/>
+
                 <Button Text="⭐ My Favorites"
                         BackgroundColor="#FF6F00"
                         TextColor="White"
@@ -75,11 +92,9 @@
                    TextColor="#1A237E"
                    Margin="0,10,0,0"/>
 
-            <Frame CornerRadius="20" 
-                   BackgroundColor="#FFFFFF" 
-                   Padding="20">
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
                 <VerticalStackLayout Spacing="6">
-                    <Label Text="Terracotta Army" 
+                    <Label Text="Emperor Qinshihuang's Mausoleum Site Museum" 
                            FontSize="20" 
                            FontAttributes="Bold" 
                            TextColor="#1A237E"/>
@@ -89,11 +104,9 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Frame CornerRadius="20" 
-                   BackgroundColor="#FFFFFF" 
-                   Padding="20">
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
                 <VerticalStackLayout Spacing="6">
-                    <Label Text="Giant Wild Goose Pagoda" 
+                    <Label Text="Dayan Pagoda" 
                            FontSize="20" 
                            FontAttributes="Bold" 
                            TextColor="#1A237E"/>

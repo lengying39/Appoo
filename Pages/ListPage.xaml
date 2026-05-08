@@ -2,48 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Assignment.Pages.ListPage"
-             BackgroundColor="#F2F2F2"
-             Title="Attractions List">
-    <VerticalStackLayout Padding="20" Spacing="14">
+             Title="Attractions">
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="16">
 
-        <Frame CornerRadius="14" BackgroundColor="White" Padding="16">
-            <VerticalStackLayout>
-                <Label Text="Terracotta Army" FontSize="18" FontAttributes="Bold"/>
-                <Label Text="500m | Paid Attraction"/>
-                <Button Text="View Details"
-                        BackgroundColor="#2196F3"
-                        TextColor="White"
-                        CornerRadius="10"
-                        HeightRequest="50"
-                        Clicked="GoToTerracottaArmy"/>
-            </VerticalStackLayout>
-        </Frame>
+            <Frame BackgroundColor="White" Padding="18" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="Emperor Qinshihuang's Mausoleum Site Museum" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="Famous Terracotta Army · Open 8:00-18:00" FontSize="14"/>
+                    <Button Text="View Details" Clicked="GoToDetail1" BackgroundColor="#3949AB" TextColor="White" CornerRadius="12"/>
+                </VerticalStackLayout>
+            </Frame>
 
-        <Frame CornerRadius="14" BackgroundColor="White" Padding="16">
-            <VerticalStackLayout>
-                <Label Text="Giant Wild Goose Pagoda" FontSize="18" FontAttributes="Bold"/>
-                <Label Text="800m | Paid Attraction"/>
-                <Button Text="View Details"
-                        BackgroundColor="#2196F3"
-                        TextColor="White"
-                        CornerRadius="10"
-                        HeightRequest="50"
-                        Clicked="GoToGiantWildGoosePagoda"/>
-            </VerticalStackLayout>
-        </Frame>
+            <Frame BackgroundColor="White" Padding="18" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="Dayan Pagoda" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="Ancient Buddhist Pagoda · Open 9:00-17:30" FontSize="14"/>
+                    <Button Text="View Details" Clicked="GoToDetail2" BackgroundColor="#3949AB" TextColor="White" CornerRadius="12"/>
+                </VerticalStackLayout>
+            </Frame>
 
-        <Frame CornerRadius="14" BackgroundColor="White" Padding="16">
-            <VerticalStackLayout>
-                <Label Text="Xi'an City Wall" FontSize="18" FontAttributes="Bold"/>
-                <Label Text="2km | Paid Attraction"/>
-                <Button Text="View Details"
-                        BackgroundColor="#2196F3"
-                        TextColor="White"
-                        CornerRadius="10"
-                        HeightRequest="50"
-                        Clicked="GoToXianCityWall"/>
-            </VerticalStackLayout>
-        </Frame>
+            <Frame BackgroundColor="White" Padding="18" CornerRadius="15">
+                <VerticalStackLayout>
+                    <Label Text="The Xi'an Circumvallation" FontSize="18" FontAttributes="Bold"/>
+                    <Label Text="Ancient City Wall · Open 8:00-22:00" FontSize="14"/>
+                    <Button Text="View Details" Clicked="GoToDetail3" BackgroundColor="#3949AB" TextColor="White" CornerRadius="12"/>
+                </VerticalStackLayout>
+            </Frame>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
