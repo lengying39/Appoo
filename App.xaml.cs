@@ -1,17 +1,14 @@
-﻿using Microsoft.Maui.Controls;
-using Assignment.Pages;
-using Microsoft.Maui.Controls;
-using Assignment;
+﻿namespace Assignment;
 
-namespace Assignment
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
+        InitializeComponent();
+    }
 
-            MainPage = new NavigationPage(new MainPage());
-        }
+    protected override Window CreateWindow(IActivationState activationState)
+    {
+        return new Window(new NavigationPage(new MainPage()));
     }
 }

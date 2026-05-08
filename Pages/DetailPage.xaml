@@ -7,6 +7,7 @@
     <ScrollView Padding="25">
         <VerticalStackLayout Spacing="18">
 
+            <!-- 缩小 + 居中图片 -->
             <Frame 
                 WidthRequest="280"
                 HeightRequest="180"
@@ -20,11 +21,13 @@
                     Aspect="AspectFill" />
             </Frame>
 
+            <!-- 景点名称 -->
             <Label x:Name="AttractionName" 
                    FontSize="28" 
                    FontAttributes="Bold"
                    TextColor="#1A237E"/>
 
+            <!-- 信息卡片 -->
             <Frame BackgroundColor="White" 
                    Padding="22" 
                    CornerRadius="20">
@@ -43,11 +46,13 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <Label x:Name="AttractionNameLabel" FontSize="30" FontAttributes="Bold"/>
-            <Label x:Name="AddressLabel"/>
-            <Label x:Name="TimeLabel"/>
-            <Label x:Name="TicketLabel"/>
-            <Label x:Name="DescLabel"/>
+            <!-- 收藏按钮 -->
+            <Button Text="⭐ Add to Favorites" 
+                    Clicked="AddToFavorite" 
+                    BackgroundColor="#FF6F00" 
+                    TextColor="White" 
+                    CornerRadius="20" 
+                    HeightRequest="55"/>
 
         </VerticalStackLayout>
     </ScrollView>

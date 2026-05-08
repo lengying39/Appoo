@@ -4,15 +4,29 @@
              x:Class="Assignment.Pages.ListPage"
              Title="Attractions">
 
-    <ScrollView Padding="20">
-        <VerticalStackLayout Spacing="16">
+    <ScrollView Padding="15">
+        <VerticalStackLayout Spacing="15">
 
-            <Frame BackgroundColor="White" 
-                   Padding="18" 
-                   CornerRadius="15">
-                <VerticalStackLayout>
-                </VerticalStackLayout>
-            </Frame>
+            <SearchBar Placeholder="Search attractions..."
+                       HorizontalOptions="FillAndExpand"/>
+
+            <Button Text="Emperor Qinshihuang's Mausoleum Site Museum"
+                    BackgroundColor="#FF6F00"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Clicked="GoToDetail1"/>
+
+            <Button Text="Dayan Pagoda"
+                    BackgroundColor="#FF6F00"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Clicked="GoToDetail2"/>
+
+            <Button Text="The Xi'an Circumvallation"
+                    BackgroundColor="#FF6F00"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Clicked="GoToDetail3"/>
 
         </VerticalStackLayout>
     </ScrollView>

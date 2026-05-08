@@ -14,6 +14,11 @@ public partial class ListPage : ContentPage
 
     private async void GoToDetail2(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new DetailPage("Giant Wild Goose Pagoda"));
+        await Navigation.PushAsync(new DetailPage("Dayan Pagoda"));
+    }
+
+    private async void GoToDetail3(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new DetailPage("The Xi'an Circumvallation"));
     }
 }
