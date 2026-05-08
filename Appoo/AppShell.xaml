@@ -4,33 +4,30 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Appoo.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource Primary}"
+    Shell.ForegroundColor="{StaticResource Accent}">
 
     <TabBar>
         <ShellContent
             Title="首页"
-            Icon="home.png"
+            Icon="tab_home.png"
             ContentTemplate="{DataTemplate views:HomePage}" />
-
         <ShellContent
             Title="地图"
-            Icon="map.png"
+            Icon="tab_map.png"
             ContentTemplate="{DataTemplate views:MapPage}" />
-
         <ShellContent
             Title="拍照"
-            Icon="camera.png"
+            Icon="tab_camera.png"
             ContentTemplate="{DataTemplate views:CameraPage}" />
-
         <ShellContent
             Title="推荐"
-            Icon="star.png"
+            Icon="tab_star.png"
             ContentTemplate="{DataTemplate views:RecommendPage}" />
-
         <ShellContent
             Title="设置"
-            Icon="settings.png"
+            Icon="tab_settings.png"
             ContentTemplate="{DataTemplate views:SettingsPage}" />
     </TabBar>
-
 </Shell>

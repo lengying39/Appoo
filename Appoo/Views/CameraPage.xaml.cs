@@ -1,6 +1,5 @@
 ﻿using Appoo.Services;
 using Microsoft.Maui.Media;
-using Microsoft.Maui.Storage;
 
 namespace Appoo.Views;
 
@@ -20,20 +19,20 @@ public partial class CameraPage : ContentPage
         {
             if (!MediaPicker.Default.IsCaptureSupported)
             {
-                await DisplayAlert("提示", "拍照功能不可用", "OK");
+                await DisplayAlert("错误", "此设备不支持拍照", "OK");
                 return;
             }
 
             var photo = await MediaPicker.Default.CapturePhotoAsync();
             if (photo == null) return;
 
-            // 显示图片预览
+            PreviewFrame.IsVisible = true;
             CapturedImage.Source = ImageSource.FromFile(photo.FullPath);
 
-            // 调用识别服务（当前注册的是 UnrecognizableImageService）
-            ResultLabel.Text = "识别中...";
+            ResultFrame.IsVisible = true;
+            ResultLabel.Text = "⏳ 识别中...";
             string result = await _recognitionService.RecognizeAsync(photo.FullPath);
-            ResultLabel.Text = $"识别结果: {result}";
+            ResultLabel.Text = $"🏷️ {result}";
         }
         catch (PermissionException)
         {

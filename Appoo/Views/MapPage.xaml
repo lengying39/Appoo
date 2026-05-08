@@ -2,12 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
-             x:Class="App00.Views.MapPage"
-             Title="地图">
-    <Grid>
-        <maps:Map x:Name="MyMap" />
-        <Button Text="定位到我" 
-                HorizontalOptions="End" VerticalOptions="End" 
-                Margin="10" Clicked="OnLocateClicked" />
-    </Grid>
+             x:Class="Appoo.Views.MapPage"
+             Title="地图"
+             BackgroundColor="{StaticResource LightBg}">
+	<Grid>
+		<maps:Map x:Name="MyMap" />
+		<!-- 定位按钮浮动于右下角 -->
+		<Button Text="📍 定位到我"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"
+                CornerRadius="20"
+                Padding="15,10"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="10,10,15,20"
+                Clicked="OnLocateClicked"
+                Shadow="{OnPlatform Default=Shadow}" />
+	</Grid>
 </ContentPage>

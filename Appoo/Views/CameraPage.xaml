@@ -2,12 +2,38 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.CameraPage"
-             Title="拍照识景">
+             Title="拍照识景"
+             BackgroundColor="{StaticResource LightBg}">
     <ScrollView>
-        <VerticalStackLayout Spacing="15" Padding="20">
-            <Button Text="拍摄景点" Clicked="OnTakePhotoClicked" />
-            <Image x:Name="CapturedImage" HeightRequest="300" />
-            <Label x:Name="ResultLabel" FontSize="20" HorizontalOptions="Center" />
+        <VerticalStackLayout Spacing="20" Padding="25">
+            <Frame CornerRadius="15" BackgroundColor="{StaticResource Primary}" Padding="15" HasShadow="True">
+                <Label Text="📷 拍摄景点" FontSize="22" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+            </Frame>
+
+            <Button Text="打开相机拍摄"
+                    BackgroundColor="{StaticResource Secondary}"
+                    TextColor="White"
+                    CornerRadius="12"
+                    FontSize="18"
+                    HeightRequest="55"
+                    Clicked="OnTakePhotoClicked"
+                    Shadow="{OnPlatform Default=Shadow}" />
+
+            <!-- 拍摄后预览 -->
+            <Frame CornerRadius="12" BackgroundColor="White" Padding="10" HasShadow="True" IsVisible="False" x:Name="PreviewFrame">
+                <Image x:Name="CapturedImage" Aspect="AspectFill" HeightRequest="250" />
+            </Frame>
+
+            <!-- 识别结果卡片 -->
+            <Frame CornerRadius="12" BackgroundColor="White" Padding="15" HasShadow="True" x:Name="ResultFrame" IsVisible="False">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="🔍 识别结果" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
+                    <Label x:Name="ResultLabel" FontSize="16" TextColor="{StaticResource DarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Text="提示：拍摄著名景点后，系统将自动识别"
+                   FontSize="13" TextColor="Gray" HorizontalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
