@@ -3,118 +3,147 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Assignment.MainPage"
              BackgroundColor="#F8F9FC">
-    <ScrollView>
-        <VerticalStackLayout Margin="28" Spacing="24">
+   
+    <Grid RowDefinitions="*, Auto">
+       
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Margin="28" Spacing="24">
 
-            <HorizontalStackLayout HorizontalOptions="Fill" Margin="0,0,0,10">
-                <Label Text="Tourist Navigator"
-                       FontSize="34"
-                       FontAttributes="Bold"
+               
+                <HorizontalStackLayout HorizontalOptions="Fill" Margin="0,0,0,10">
+                    <Label Text="Tourist Navigator"
+                           FontSize="34"
+                           FontAttributes="Bold"
+                           TextColor="#1A237E"
+                           HorizontalOptions="StartAndExpand"/>
+                    <Button Text="🔍"
+                            BackgroundColor="#3949AB"
+                            TextColor="White"
+                            CornerRadius="18"
+                            WidthRequest="44"
+                            HeightRequest="44"
+                            Clicked="GoToSearchPage"/>
+                    <Button Text="📷"
+                            BackgroundColor="#FF6F00"
+                            TextColor="White"
+                            CornerRadius="18"
+                            WidthRequest="44"
+                            HeightRequest="44"
+                            Margin="8,0,0,0"/>
+                </HorizontalStackLayout>
+
+                <Label Text="Explore the world with smart navigation"
+                       FontSize="16"
+                       TextColor="#5F6368"
+                       HorizontalOptions="Start"/>
+
+               
+                <Frame BackgroundColor="White" Padding="40" CornerRadius="40">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="📍 Current Location" 
+                               FontSize="14" 
+                               TextColor="#78909C"/>
+                        <Label Text="Xi'an, China" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               TextColor="#1A237E"/>
+                        <Label Text="GPS connected · Service Hotline: 84586666" 
+                               FontSize="12" 
+                               TextColor="#5F6368"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+              
+                <Label Text="🔥 Recommended Places" 
+                       FontAttributes="Bold" 
+                       FontSize="22"
                        TextColor="#1A237E"
-                       HorizontalOptions="StartAndExpand"/>
-                <Button Text="🔍"
-                        BackgroundColor="#3949AB"
-                        TextColor="White"
-                        CornerRadius="18"
-                        WidthRequest="44"
-                        HeightRequest="44"
-                        Clicked="GoToSearchPage"/>
-                <Button Text="📷"
-                        BackgroundColor="#FF6F00"
-                        TextColor="White"
-                        CornerRadius="18"
-                        WidthRequest="44"
-                        HeightRequest="44"
-                        Margin="8,0,0,0"/>
-            </HorizontalStackLayout>
+                       Margin="0,10,0,0"/>
 
-            <Label Text="Explore the world with smart navigation"
-                   FontSize="16"
-                   TextColor="#5F6368"
-                   HorizontalOptions="Start"/>
+               
+                <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Emperor Qinshihuang's Mausoleum Site Museum" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               TextColor="#1A237E"/>
+                        <Label Text="500m away · Open now" 
+                               FontSize="14" 
+                               TextColor="#5F6368"/>
+                    </VerticalStackLayout>
+                </Frame>
 
-            <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
-                <VerticalStackLayout Spacing="4">
-                    <Label Text="📍 Current Location" 
-                           FontSize="14" 
-                           TextColor="#78909C"/>
-                    <Label Text="Xi'an, China" 
-                           FontSize="20" 
-                           FontAttributes="Bold" 
-                           TextColor="#1A237E"/>
-                    <Label Text="GPS connected · Service Hotline: 84586666" 
-                           FontSize="12" 
-                           TextColor="#5F6368"/>
-                </VerticalStackLayout>
-            </Frame>
+                <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Dayan Pagoda" 
+                               FontSize="20" 
+                               FontAttributes="Bold" 
+                               TextColor="#1A237E"/>
+                        <Label Text="800m away · Open now" 
+                               FontSize="14" 
+                               TextColor="#5F6368"/>
+                    </VerticalStackLayout>
+                </Frame>
 
-            <VerticalStackLayout Spacing="16">
-                <Button Text="🗺️ Nearby Attractions"
-                        BackgroundColor="#3949AB"
-                        TextColor="White"
-                        CornerRadius="22"
-                        HeightRequest="72"
-                        FontSize="18"
-                        FontAttributes="Bold"
+            </VerticalStackLayout>
+        </ScrollView>
+
+       
+        <Grid Grid.Row="1" BackgroundColor="Transparent" Padding="5,10" HeightRequest="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+           
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center" Spacing="2">
+                <Button Text="🗺️"
+                        BackgroundColor="Transparent"
+                        TextColor="#3949AB"
+                        FontSize="20"
+                        WidthRequest="50"
+                        HeightRequest="36"
                         Clicked="GoToListPage"/>
-
-                <Button Text="🍜 Nearby Food"
-                        BackgroundColor="#4CAF50"
-                        TextColor="White"
-                        CornerRadius="22"
-                        HeightRequest="72"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        Clicked="GoToFoodPage"/>
-
-                <Button Text="🏛️ Public Facilities"
-                        BackgroundColor="#9C27B0"
-                        TextColor="White"
-                        CornerRadius="22"
-                        HeightRequest="72"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        Clicked="GoToFacilitiesPage"/>
-
-                <Button Text="⭐ My Favorites"
-                        BackgroundColor="#FF6F00"
-                        TextColor="White"
-                        CornerRadius="22"
-                        HeightRequest="72"
-                        FontSize="18"
-                        FontAttributes="Bold"
-                        Clicked="GoToFavoritePage"/>
+                <Label Text="Attractions" FontSize="10" TextColor="#3949AB" HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
-            <Label Text="🔥 Recommended Places" 
-                   FontAttributes="Bold" 
-                   FontSize="22"
-                   TextColor="#1A237E"
-                   Margin="0,10,0,0"/>
+           
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" Spacing="2">
+                <Button Text="🍜"
+                        BackgroundColor="Transparent"
+                        TextColor="#4CAF50"
+                        FontSize="20"
+                        WidthRequest="50"
+                        HeightRequest="36"
+                        Clicked="GoToFoodPage"/>
+                <Label Text="Food" FontSize="10" TextColor="#4CAF50" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
 
-            <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
-                <VerticalStackLayout Spacing="6">
-                    <Label Text="Emperor Qinshihuang's Mausoleum Site Museum" 
-                           FontSize="20" 
-                           FontAttributes="Bold" 
-                           TextColor="#1A237E"/>
-                    <Label Text="500m away · Open now" 
-                           FontSize="14" 
-                           TextColor="#5F6368"/>
-                </VerticalStackLayout>
-            </Frame>
+            
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center" Spacing="2">
+                <Button Text="🏛️"
+                        BackgroundColor="Transparent"
+                        TextColor="#9C27B0"
+                        FontSize="20"
+                        WidthRequest="50"
+                        HeightRequest="36"
+                        Clicked="GoToFacilitiesPage"/>
+                <Label Text="Facilities" FontSize="10" TextColor="#9C27B0" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
 
-            <Frame BackgroundColor="White" Padding="20" CornerRadius="20">
-                <VerticalStackLayout Spacing="6">
-                    <Label Text="Dayan Pagoda" 
-                           FontSize="20" 
-                           FontAttributes="Bold" 
-                           TextColor="#1A237E"/>
-                    <Label Text="800m away · Open now" 
-                           FontSize="14" 
-                           TextColor="#5F6368"/>
-                </VerticalStackLayout>
-            </Frame>
-        </VerticalStackLayout>
-    </ScrollView>
+           
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center" Spacing="2">
+                <Button Text="⭐"
+                        BackgroundColor="Transparent"
+                        TextColor="#FF6F00"
+                        FontSize="20"
+                        WidthRequest="50"
+                        HeightRequest="36"
+                        Clicked="GoToFavoritePage"/>
+                <Label Text="Favorites" FontSize="10" TextColor="#FF6F00" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
