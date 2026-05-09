@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.HomePage"
              Title="Home"
-             BackgroundColor="{StaticResource SoftWhite}">
+             BackgroundImageSource="a.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="25">
             <Border StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource WineRed}"

@@ -29,8 +29,10 @@ public partial class RecommendPage : ContentPage
             var card = new Border
             {
                 StrokeShape = new Microsoft.Maui.Controls.Shapes.RoundRectangle { CornerRadius = 15 },
-                BackgroundColor = (Color)Application.Current.Resources["PureWhite"],
-                Stroke = Colors.Transparent,
+                // 半透明白色背景（Alpha 值 100，约 39% 不透明度，可按喜好调整）
+                BackgroundColor = Color.FromRgba(255, 255, 255, 100),
+                Stroke = Colors.White,          // 白色边框
+                StrokeThickness = 2,            // 边框线粗细（可按需要调整）
                 Padding = new Thickness(15),
                 ClassId = spot.Name
             };

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.RecommendPage"
              Title="推荐景点"
-             BackgroundColor="{StaticResource SoftWhite}">
+             BackgroundImageSource="b.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="25">
             <Label Text="⭐ 热门推荐" FontSize="26" FontAttributes="Bold"
