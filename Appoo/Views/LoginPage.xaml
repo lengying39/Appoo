@@ -1,0 +1,12 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Appoo.Views.LoginPage"
+             Title="{Binding LoginTitle}" BackgroundColor="{StaticResource SoftWhite}">
+    <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+        <Label Text="{Binding LoginTitle}" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
+        <Entry Placeholder="{Binding UsernamePlaceholder}" Text="{Binding Username}" />
+        <Entry Placeholder="{Binding PasswordPlaceholder}" Text="{Binding Password}" IsPassword="True" />
+        <Button Text="{Binding LoginButton}" Command="{Binding LoginCommand}" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="10"/>
+        <Button Text="{Binding RegisterButton}" Command="{Binding GoToRegisterCommand}" BackgroundColor="Transparent" TextColor="{StaticResource WineRed}"/>
+    </VerticalStackLayout>
+</ContentPage>

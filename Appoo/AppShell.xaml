@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:views="clr-namespace:Appoo.Views"
-       x:Class="Appoo.AppShell"
-       Shell.FlyoutBehavior="Disabled"
-       Shell.BackgroundColor="{StaticResource WineRed}"
-       Shell.ForegroundColor="{StaticResource PureWhite}"
-       Shell.TitleColor="{StaticResource PureWhite}">
+<Shell
+    x:Class="Appoo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Appoo.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="{StaticResource WineRed}"
+    Shell.ForegroundColor="{StaticResource PureWhite}"
+    Shell.TitleColor="{StaticResource PureWhite}"
+    Shell.TabBarBackgroundColor="{StaticResource DarkBlack}"
+    Shell.TabBarForegroundColor="{StaticResource PureWhite}"
+    Shell.TabBarUnselectedColor="{StaticResource GrayText}"
+    Shell.TabBarTitleColor="{StaticResource PureWhite}">
 
     <TabBar>
         <ShellContent Title="首页" Icon="icon_home.png"
@@ -17,7 +22,7 @@
                       ContentTemplate="{DataTemplate views:CameraPage}" />
         <ShellContent Title="推荐" Icon="icon_star.png"
                       ContentTemplate="{DataTemplate views:RecommendPage}" />
-        <ShellContent Title="设置" Icon="icon_settings.png"
-                      ContentTemplate="{DataTemplate views:SettingsPage}" />
+        <ShellContent Title="我的" Icon="icon_profile.png"
+                      ContentTemplate="{DataTemplate views:ProfilePage}" />
     </TabBar>
 </Shell>

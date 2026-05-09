@@ -19,27 +19,25 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<!-- 资源项：图标、启动画面、图片、字体、Raw 目录 -->
+	<!-- 图标、启动画面、图片、字体、Raw 目录 -->
 	<ItemGroup>
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#722F37" />
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#722F37" BaseSize="128,128" />
 		<MauiImage Include="Resources\Images\*" />
 		<MauiFont Include="Resources\Fonts\*" />
-		<!-- Raw 目录下的所有文件作为 MauiAsset 包含，包括 wwwroot 下的 amap.html、loader.js 等 -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<!-- 强制将 AndroidManifest.xml 识别为清单文件 -->
+	<!-- Android 清单文件 -->
 	<ItemGroup>
 		<AndroidManifest Include="Platforms\Android\AndroidManifest.xml" />
 	</ItemGroup>
 
-	<!-- NuGet 依赖：只保留必需的 -->
+	<!-- NuGet 依赖（移除了 Microsoft.Extensions.Localization） -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.7" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-		<!-- 如果不需要图像处理功能，可以删除下面两个 SkiaSharp 包，但保留通常无妨 -->
 		<PackageReference Include="SkiaSharp" Version="3.119.2" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.2" />
 	</ItemGroup>

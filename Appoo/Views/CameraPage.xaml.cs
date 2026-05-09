@@ -1,14 +1,17 @@
 ﻿using Appoo.Services;
 using Microsoft.Maui.Media;
+using Microsoft.Maui.Storage;
+
 namespace Appoo.Views;
 
 public partial class CameraPage : ContentPage
 {
-    private readonly IImageRecognitionService _recognition;
-    public CameraPage(IImageRecognitionService recognition)
+    private readonly IImageRecognitionService _recognitionService;
+
+    public CameraPage(IImageRecognitionService recognitionService)
     {
         InitializeComponent();
-        _recognition = recognition;
+        _recognitionService = recognitionService;
     }
 
     private async void OnTakePhotoClicked(object sender, EventArgs e)
@@ -17,23 +20,22 @@ public partial class CameraPage : ContentPage
         {
             if (!MediaPicker.Default.IsCaptureSupported)
             {
-                await DisplayAlert("错误", "此设备不支持拍照", "OK");
+                await DisplayAlert("提示", "拍照功能不可用", "OK");
                 return;
             }
+
             var photo = await MediaPicker.Default.CapturePhotoAsync();
             if (photo == null) return;
 
-            PreviewFrame.IsVisible = true;
             CapturedImage.Source = ImageSource.FromFile(photo.FullPath);
 
-            ResultFrame.IsVisible = true;
-            ResultLabel.Text = "⏳ 识别中...";
-            var result = await _recognition.RecognizeAsync(photo.FullPath);
-            ResultLabel.Text = $"🏷️ {result}";
+            ResultLabel.Text = "识别中...";
+            string result = await _recognitionService.RecognizeAsync(photo.FullPath);
+            ResultLabel.Text = $"识别结果: {result}";
         }
         catch (PermissionException)
         {
-            await DisplayAlert("权限不足", "请授予相机和存储权限", "OK");
+            await DisplayAlert("权限不足", "请授予相机和存储权限", "确定");
         }
         catch (Exception ex)
         {

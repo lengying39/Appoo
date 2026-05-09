@@ -1,0 +1,37 @@
+﻿using Android.Webkit;
+using Android.App;
+using AndroidX.Core.App;
+using AndroidX.Core.Content;
+using Android.Content.PM;
+
+namespace Appoo.Platforms.Android
+{
+    public class MyWebChromeClient : WebChromeClient
+    {
+        private readonly Activity _activity;
+
+        public MyWebChromeClient(Activity activity)
+        {
+            _activity = activity ?? throw new ArgumentNullException(nameof(activity));
+        }
+
+        public override void OnGeolocationPermissionsShowPrompt(string? origin, GeolocationPermissions.ICallback? callback)
+        {
+            if (origin == null || callback == null)
+                return;
+
+            const string fineLocation = "android.permission.ACCESS_FINE_LOCATION";
+            const string coarseLocation = "android.permission.ACCESS_COARSE_LOCATION";
+
+            if (ContextCompat.CheckSelfPermission(_activity, fineLocation) == Permission.Granted ||
+                ContextCompat.CheckSelfPermission(_activity, coarseLocation) == Permission.Granted)
+            {
+                callback.Invoke(origin, true, false);
+            }
+            else
+            {
+                callback.Invoke(origin, false, false);
+            }
+        }
+    }
+}

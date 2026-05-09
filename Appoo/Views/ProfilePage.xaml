@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Appoo.Views.ProfilePage"
+             Title="My Profile"
+             BackgroundColor="{StaticResource SoftWhite}">
+    <VerticalStackLayout Spacing="15" Padding="30" VerticalOptions="Center">
+        <Label Text="Welcome, User" FontSize="22" FontAttributes="Bold"
+               TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
+        <Button Text="My Favorites" BackgroundColor="{StaticResource WineRed}" TextColor="White"
+                CornerRadius="10" Clicked="OnMyFavoritesClicked"/>
+        <Button Text="Public Facilities" BackgroundColor="{StaticResource WineRed}" TextColor="White"
+                CornerRadius="10" Clicked="OnPublicFacilitiesClicked"/>
+        <Button Text="Search" BackgroundColor="{StaticResource WineRed}" TextColor="White"
+                CornerRadius="10" Clicked="OnSearchClicked"/>
+        <Button Text="Settings" BackgroundColor="{StaticResource WineRed}" TextColor="White"
+                CornerRadius="10" Clicked="OnSettingsClicked"/>
+        <Button Text="Logout" BackgroundColor="Gray" TextColor="White"
+                CornerRadius="10" Clicked="OnLogoutClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
