@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>高德地图</title>
+    <title>🚀 无Loader，纯享版地图</title>
     <style>
         * {
             margin: 0;
@@ -14,39 +14,110 @@
             width: 100%;
             height: 100%;
         }
+
+        #debug {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: red;
+            font-size: 12px;
+            background: white;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body>
     <div id="container"></div>
-    <div id="error" style="color:red; padding:20px; display:none;"></div>
+    <div id="debug"></div>
 
-    <!-- <script src="loader.js"></script> -->
-    <script src="https://webapi.amap.com/loader.js"></script>
     <script>
-        window.onerror = function (message, source, lineno, colno, error) {
-            document.getElementById("error").style.display = "block";
-            document.getElementById("error").innerText = "JS错误：" + message + "\n在：" + source + ":" + lineno;
+        // 超级日志函数，直接显示在手机屏幕上
+        function log(msg) {
+            document.getElementById('debug').innerHTML += '✅ ' + msg + '<br/>';
+        }
+        // 全局JS错误捕获
+        window.onerror = function (msg, url, line) {
+            document.getElementById('debug').innerHTML += '❌ JS错误: ' + msg + ' (行:' + line + ')<br/>';
             return true;
         };
 
-        try {
-            window._AMapSecurityConfig = {
-                securityJsCode: '477b316fb33311856706463b416e3371'   // 替换为真实的安全密钥
-            };
+        log('Step 1: 开始加载...');
+    </script>
 
-            AMap.loader.load({
-                key: '4434777ab901edae0e1a903f99f537bc',             // 替换为真实的 Key
-                version: '2.0',
-                plugins: ['AMap.Geolocation', 'AMap.Scale']
-            }).then(function (AMap) {
-                // ... 原有地图初始化代码 ...
-            }).catch(function (e) {
-                document.getElementById("error").style.display = "block";
-                document.getElementById("error").innerText = "高德加载失败：" + e;
-            });
-        } catch (e) {
-            document.getElementById("error").style.display = "block";
-            document.getElementById("error").innerText = "初始化异常：" + e;
+    <!-- 直接使用高德官方JSAPI Loader，从在线地址加载，完全跳过本地loader.js -->
+    <script type="text/javascript">
+        log('Step 2: 准备加载官方JSAPI Loader。');
+        // 安全密钥配置
+        window._AMapSecurityConfig = {
+            securityJsCode: '477b316fb33311856706463b416e3371', // 
+        };
+
+        // 动态创建script标签加载高德地图核心库
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        // 在这里，我们把你的Key和需要的插件一起拼接到URL中
+        script.src = 'https://webapi.amap.com/maps?v=2.0&key=4434777ab901edae0e1a903f99f537bc&plugin=AMap.Geolocation,AMap.Scale';
+        script.onerror = function () {
+            log('❌ 高德地图JS库从CDN加载失败！');
+        };
+        script.onload = function () {
+            log('Step 3: JS库文件下载完成，开始初始化地图...');
+            initMap();
+        };
+        document.head.appendChild(script);
+
+        // 初始化地图的函数
+        function initMap() {
+            try {
+                log('Step 4: 尝试创建地图实例。');
+                var map = new AMap.Map('container', {
+                    zoom: 12,
+                    center: [108.9427, 34.2583],   // 西安钟楼，你可以改成其他城市的坐标
+                    viewMode: '2D'
+                });
+
+                log('🎉🎉🎉 地图初始化成功！你应该能看到地图了！ 🎉🎉🎉');
+
+                // 添加比例尺控件
+                map.addControl(new AMap.Scale());
+
+                // 以下是你之前的标记点和定位代码，功能照旧，保持不变
+                var spots = [
+                    { name: '大雁塔', lng: 108.9594, lat: 34.2136 },
+                    { name: '钟楼', lng: 108.9427, lat: 34.2583 },
+                    { name: '兵马俑', lng: 109.2731, lat: 34.3849 }
+                ];
+                spots.forEach(function (s) {
+                    var marker = new AMap.Marker({ position: [s.lng, s.lat], title: s.name });
+                    marker.setMap(map);
+                    marker.setLabel({ content: s.name, direction: 'top' });
+                });
+
+                // 定位
+                AMap.plugin('AMap.Geolocation', function () {
+                    var geo = new AMap.Geolocation({ enableHighAccuracy: true, timeout: 10000 });
+                    map.addControl(geo);
+                    geo.getCurrentPosition(function (status, result) {
+                        if (status === 'complete' && result.position) {
+                            var userMarker = new AMap.Marker({
+                                position: [result.position.lng, result.position.lat],
+                                icon: new AMap.Icon({
+                                    size: new AMap.Size(24, 24),
+                                    image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
+                                })
+                            });
+                            userMarker.setMap(map);
+                            map.setCenter([result.position.lng, result.position.lat]);
+                            log('定位成功！');
+                        } else {
+                            log('定位失败: ' + result.message);
+                        }
+                    });
+                });
+
+            } catch (e) {
+                log('❌ 地图初始化时发生JavaScript异常: ' + e.toString());
+            }
         }
     </script>
 </body>

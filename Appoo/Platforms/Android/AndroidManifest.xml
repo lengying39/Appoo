@@ -1,38 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    
-    <!-- 位置权限（首页GPS定位、地图定位用） -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    
-    <!-- 相机权限（拍照功能用） -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    
-    <!-- 存储权限（拍照后保存临时文件用） -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    
-    <!-- 网络权限（高德地图WebView加载必须） -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 允许访问网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
-    <!-- 查询意图：允许调用系统相机应用（Android 11+必须） -->
-    <queries>
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-        </intent>
-    </queries>
-    
-    <application 
-        android:allowBackup="true" 
-        android:icon="@mipmap/appicon" 
-        android:roundIcon="@mipmap/appicon_round" 
-        android:supportsRtl="true"
-        android:usesCleartextTraffic="true">   <!-- 允许HTTP明文流量，高德地图某些资源可能用到 -->
-        
-        <!-- 如果以后还要用 Google 地图，可以把这行密钥换成真实值，不用就保留一个空字符串也没事 -->
-        <!-- <meta-data android:name="com.google.android.geo.API_KEY" android:value="你的Google Maps密钥" /> -->
-        
-    </application>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<queries>
+		<intent>
+			<action android:name="android.media.action.IMAGE_CAPTURE" />
+		</intent>
+	</queries>
+	<application android:allowBackup="true" android:icon="@mipmap/appicon"
+                 android:roundIcon="@mipmap/appicon_round" android:supportsRtl="true"
+                 android:usesCleartextTraffic="true">
+	</application>
 </manifest>

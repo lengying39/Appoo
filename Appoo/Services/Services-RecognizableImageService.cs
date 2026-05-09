@@ -14,31 +14,19 @@ public class RecognizableImageService : IImageRecognitionService
         {
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", SubscriptionKey);
-
             string requestUrl = $"{Endpoint}vision/v3.2/analyze?visualFeatures=Categories,Description&details=Landmarks";
             using var content = new ByteArrayContent(File.ReadAllBytes(imagePath));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-
             var response = await client.PostAsync(requestUrl, content);
             response.EnsureSuccessStatusCode();
-
             var json = JObject.Parse(await response.Content.ReadAsStringAsync());
             var categories = json["categories"];
             if (categories != null)
-            {
                 foreach (var cat in categories)
-                {
-                    var detail = cat["detail"];
-                    if (detail?["landmarks"] is JArray landmarks && landmarks.Count > 0)
+                    if (cat["detail"]?["landmarks"] is JArray landmarks && landmarks.Count > 0)
                         return landmarks[0]["name"]?.ToString() ?? "某著名景点";
-                }
-            }
-            var desc = json["description"]?["captions"]?[0]?["text"]?.ToString();
-            return desc ?? "无法识别该景点";
+            return json["description"]?["captions"]?[0]?["text"]?.ToString() ?? "无法识别";
         }
-        catch
-        {
-            return "识别服务暂时不可用";
-        }
+        catch { return "识别服务暂时不可用"; }
     }
 }

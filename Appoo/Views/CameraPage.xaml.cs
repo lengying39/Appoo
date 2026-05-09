@@ -1,21 +1,14 @@
 ﻿using Appoo.Services;
 using Microsoft.Maui.Media;
-
 namespace Appoo.Views;
 
 public partial class CameraPage : ContentPage
 {
-    private readonly IImageRecognitionService _recognitionService;
-
-    public CameraPage(IImageRecognitionService recognitionService)
+    private readonly IImageRecognitionService _recognition;
+    public CameraPage(IImageRecognitionService recognition)
     {
         InitializeComponent();
-        _recognitionService = recognitionService;
-    }
-
-    private async void OnOpenMapClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync(nameof(GaodeMapPage));
+        _recognition = recognition;
     }
 
     private async void OnTakePhotoClicked(object sender, EventArgs e)
@@ -27,7 +20,6 @@ public partial class CameraPage : ContentPage
                 await DisplayAlert("错误", "此设备不支持拍照", "OK");
                 return;
             }
-
             var photo = await MediaPicker.Default.CapturePhotoAsync();
             if (photo == null) return;
 
@@ -36,12 +28,12 @@ public partial class CameraPage : ContentPage
 
             ResultFrame.IsVisible = true;
             ResultLabel.Text = "⏳ 识别中...";
-            string result = await _recognitionService.RecognizeAsync(photo.FullPath);
+            var result = await _recognition.RecognizeAsync(photo.FullPath);
             ResultLabel.Text = $"🏷️ {result}";
         }
         catch (PermissionException)
         {
-            await DisplayAlert("权限不足", "请授予相机和存储权限", "确定");
+            await DisplayAlert("权限不足", "请授予相机和存储权限", "OK");
         }
         catch (Exception ex)
         {

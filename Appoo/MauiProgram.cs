@@ -1,8 +1,6 @@
 ﻿using Appoo.Services;
 using Appoo.Views;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.Maps;
-
 namespace Appoo;
 
 public static class MauiProgram
@@ -10,30 +8,27 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .UseMauiMaps()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
+        builder.UseMauiApp<App>()
+               .ConfigureFonts(fonts =>
+               {
+                   fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                   fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+               });
 
-        // 注册识别服务：这里用不能识别的版本，体验完整流程后可换成 RecognizableImageService
+        // 识别服务：默认使用无法识别版本，拍照不崩溃
         builder.Services.AddSingleton<IImageRecognitionService, UnrecognizableImageService>();
-        builder.Services.AddTransient<GaodeMapPage>();
 
-        // 注册所有页面
+        // 注册页面
         builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<GaodeMapPage>();
         builder.Services.AddTransient<CameraPage>();
         builder.Services.AddTransient<RecommendPage>();
+        builder.Services.AddTransient<FoodPage>();
         builder.Services.AddTransient<SettingsPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-
         return builder.Build();
     }
 }
