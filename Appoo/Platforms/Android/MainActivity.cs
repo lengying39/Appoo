@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+
 namespace Appoo;
 
 [Activity(Theme = "@style/Maui.SplashTheme", MainLauncher = true,

@@ -17,6 +17,9 @@
 		<ApplicationVersion>1</ApplicationVersion>
 		<WindowsPackageType>None</WindowsPackageType>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+
+		<!-- 这一行是为了避免缺少 al.exe 的错误，不会影响任何功能 -->
+		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 	</PropertyGroup>
 
 	<!-- 图标、启动画面、图片、字体、Raw 目录 -->
@@ -33,13 +36,14 @@
 		<AndroidManifest Include="Platforms\Android\AndroidManifest.xml" />
 	</ItemGroup>
 
-	<!-- NuGet 依赖（移除了 Microsoft.Extensions.Localization） -->
+	<!-- NuGet 依赖（去掉了双语包，因为已经不再支持双语） -->
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.7" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="SkiaSharp" Version="3.119.2" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.2" />
+		<!-- 不再包含 Microsoft.Extensions.Localization，因为已移除双语 -->
 	</ItemGroup>
 
 </Project>

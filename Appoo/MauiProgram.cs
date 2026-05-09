@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Handlers;
 using Appoo.Services;
 using Appoo.Views;
@@ -22,10 +21,11 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        // 数据服务（单例，全局共享用户信息和收藏）
+        // Services
         builder.Services.AddSingleton<IDataService, DataService>();
+        builder.Services.AddSingleton<IImageRecognitionService, UnrecognizableImageService>();
 
-        // 注册所有页面（原有 + 新增）
+        // Pages
         builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<GaodeMapPage>();
         builder.Services.AddTransient<CameraPage>();
@@ -40,14 +40,13 @@ public static class MauiProgram
         builder.Services.AddTransient<PublicFacilitiesPage>();
         builder.Services.AddTransient<SearchPage>();
 
-        // Android 平台：开启 WebView 地理定位
 #if ANDROID
         WebViewHandler.Mapper.AppendToMapping("EnableGeolocation", (handler, view) =>
         {
             handler.PlatformView.Settings.SetGeolocationEnabled(true);
             handler.PlatformView.Settings.JavaScriptEnabled = true;
             handler.PlatformView.SetWebChromeClient(
-                new MyWebChromeClient(handler.PlatformView.Context as Android.App.Activity));
+                new MyWebChromeClient(handler.PlatformView.Context as Android.App.Activity ?? throw new InvalidOperationException("Activity is null")));
         });
 #endif
 

@@ -6,14 +6,18 @@ public partial class SettingsPage : ContentPage
 
     private async void OnSwitchRecog(object sender, EventArgs e)
     {
-        await DisplayAlertAsync("切换识别服务", "请在 MauiProgram.cs 中将 UnrecognizableImageService 替换为 RecognizableImageService，并配置 Azure 密钥。", "确定");
+        await DisplayAlert("Switch Recognition",
+            "In MauiProgram.cs, replace UnrecognizableImageService with RecognizableImageService and configure Azure keys.",
+            "OK");
     }
+
     private async void OnClearCache(object sender, EventArgs e)
     {
-        await DisplayAlertAsync("缓存", "缓存已清除（模拟）。", "OK");
+        await DisplayAlert("Cache", "Cache cleared (simulated).", "OK");
     }
+
     private async void OnAbout(object sender, EventArgs e)
     {
-        await DisplayAlertAsync("关于", "旅行指南 v1.0\n集地图、拍照识景、美食推荐于一体。", "OK");
+        await DisplayAlert("About", "Travel Guide v1.0\nIntegrated map, photo recognition, food recommendation.", "OK");
     }
 }

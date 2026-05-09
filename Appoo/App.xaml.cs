@@ -6,6 +6,7 @@ public partial class App : Application
     {
         InitializeComponent();
     }
+
     protected override Window CreateWindow(IActivationState? activationState)
         => new Window(new AppShell());
 }

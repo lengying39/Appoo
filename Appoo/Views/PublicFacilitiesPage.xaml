@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.PublicFacilitiesPage"
-             Title="Public Facilities"
+             Title="Facilities"
              BackgroundColor="{StaticResource SoftWhite}">
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Public Facilities" FontSize="24" FontAttributes="Bold"
+	<VerticalStackLayout Padding="20" Spacing="10">
+		<Label Text="Public Facilities" FontSize="24" FontAttributes="Bold"
                TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
-        <Label Text="Facilities will be displayed here." HorizontalOptions="Center" TextColor="Gray"/>
-    </VerticalStackLayout>
+		<VerticalStackLayout x:Name="FacilitiesStack" Spacing="5"/>
+	</VerticalStackLayout>
 </ContentPage>

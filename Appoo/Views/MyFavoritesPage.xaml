@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.MyFavoritesPage"
-             Title="My Favorites"
+             Title="Favorites"
              BackgroundColor="{StaticResource SoftWhite}">
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="My Favorites" FontSize="24" FontAttributes="Bold"
+	<VerticalStackLayout Padding="20" Spacing="10">
+		<Label Text="My Favorites" FontSize="24" FontAttributes="Bold"
                TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
-        <Label Text="You have no favorites yet." HorizontalOptions="Center" TextColor="Gray"/>
-    </VerticalStackLayout>
+		<Label x:Name="NoFavsLabel" Text="No favorites yet." HorizontalOptions="Center" TextColor="Gray"/>
+		<VerticalStackLayout x:Name="FavoritesStack" Spacing="5"/>
+		<Button Text="Clear All" BackgroundColor="Gray" TextColor="White" CornerRadius="8" Clicked="OnClearAll"/>
+	</VerticalStackLayout>
 </ContentPage>

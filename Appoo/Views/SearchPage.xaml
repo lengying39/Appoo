@@ -4,10 +4,10 @@
              x:Class="Appoo.Views.SearchPage"
              Title="Search"
              BackgroundColor="{StaticResource SoftWhite}">
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label Text="Search" FontSize="24" FontAttributes="Bold"
+	<VerticalStackLayout Padding="20" Spacing="10">
+		<Label Text="Search" FontSize="24" FontAttributes="Bold"
                TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
-        <Entry Placeholder="Search attractions, food, facilities..." />
-        <Label Text="Results will appear here." HorizontalOptions="Center" TextColor="Gray"/>
-    </VerticalStackLayout>
+		<Entry x:Name="SearchEntry" Placeholder="Search attractions, food, facilities..." TextChanged="OnSearchTextChanged"/>
+		<VerticalStackLayout x:Name="ResultsStack" Spacing="5"/>
+	</VerticalStackLayout>
 </ContentPage>

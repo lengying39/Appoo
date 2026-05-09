@@ -4,34 +4,33 @@ using AndroidX.Core.App;
 using AndroidX.Core.Content;
 using Android.Content.PM;
 
-namespace Appoo.Platforms.Android
+namespace Appoo.Platforms.Android;
+
+public class MyWebChromeClient : WebChromeClient
 {
-    public class MyWebChromeClient : WebChromeClient
+    private readonly Activity _activity;
+
+    public MyWebChromeClient(Activity activity)
     {
-        private readonly Activity _activity;
+        _activity = activity ?? throw new ArgumentNullException(nameof(activity));
+    }
 
-        public MyWebChromeClient(Activity activity)
+    public override void OnGeolocationPermissionsShowPrompt(string? origin, GeolocationPermissions.ICallback? callback)
+    {
+        if (origin == null || callback == null)
+            return;
+
+        const string fine = "android.permission.ACCESS_FINE_LOCATION";
+        const string coarse = "android.permission.ACCESS_COARSE_LOCATION";
+
+        if (ContextCompat.CheckSelfPermission(_activity, fine) == Permission.Granted ||
+            ContextCompat.CheckSelfPermission(_activity, coarse) == Permission.Granted)
         {
-            _activity = activity ?? throw new ArgumentNullException(nameof(activity));
+            callback.Invoke(origin, true, false);
         }
-
-        public override void OnGeolocationPermissionsShowPrompt(string? origin, GeolocationPermissions.ICallback? callback)
+        else
         {
-            if (origin == null || callback == null)
-                return;
-
-            const string fineLocation = "android.permission.ACCESS_FINE_LOCATION";
-            const string coarseLocation = "android.permission.ACCESS_COARSE_LOCATION";
-
-            if (ContextCompat.CheckSelfPermission(_activity, fineLocation) == Permission.Granted ||
-                ContextCompat.CheckSelfPermission(_activity, coarseLocation) == Permission.Granted)
-            {
-                callback.Invoke(origin, true, false);
-            }
-            else
-            {
-                callback.Invoke(origin, false, false);
-            }
+            callback.Invoke(origin, false, false);
         }
     }
 }

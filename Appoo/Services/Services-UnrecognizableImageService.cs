@@ -3,5 +3,5 @@
 public class UnrecognizableImageService : IImageRecognitionService
 {
     public Task<string> RecognizeAsync(string imagePath)
-        => Task.FromResult("无法识别该景点");
+        => Task.FromResult("Sorry, unable to identify this spot.");
 }

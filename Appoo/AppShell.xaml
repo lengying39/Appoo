@@ -14,15 +14,15 @@
     Shell.TabBarTitleColor="{StaticResource PureWhite}">
 
     <TabBar>
-        <ShellContent Title="首页" Icon="icon_home.png"
+        <ShellContent Title="Home" Icon="icon_home.png"
                       ContentTemplate="{DataTemplate views:HomePage}" />
-        <ShellContent Title="地图" Icon="icon_map.png"
+        <ShellContent Title="Map" Icon="icon_map.png"
                       ContentTemplate="{DataTemplate views:GaodeMapPage}" />
-        <ShellContent Title="拍照识景" Icon="icon_camera.png"
+        <ShellContent Title="Camera" Icon="icon_camera.png"
                       ContentTemplate="{DataTemplate views:CameraPage}" />
-        <ShellContent Title="推荐" Icon="icon_star.png"
+        <ShellContent Title="Spots" Icon="icon_star.png"
                       ContentTemplate="{DataTemplate views:RecommendPage}" />
-        <ShellContent Title="我的" Icon="icon_profile.png"
+        <ShellContent Title="Me" Icon="icon_profile.png"
                       ContentTemplate="{DataTemplate views:ProfilePage}" />
     </TabBar>
 </Shell>

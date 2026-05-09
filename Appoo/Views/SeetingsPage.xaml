@@ -2,33 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.SettingsPage"
-             Title="设置"
+             Title="Settings"
              BackgroundColor="{StaticResource SoftWhite}">
-    <VerticalStackLayout Spacing="20" Padding="25">
-        <Border StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource WineRed}"
+	<VerticalStackLayout Spacing="20" Padding="25">
+		<Border StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource WineRed}"
                 Stroke="Transparent" Padding="20">
-            <Border.Shadow>
-                <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.3"/>
-            </Border.Shadow>
-            <Label Text="⚙️ 应用设置" FontSize="22" FontAttributes="Bold"
+			<Border.Shadow>
+				<Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.3"/>
+			</Border.Shadow>
+			<Label Text="⚙️ Settings" FontSize="22" FontAttributes="Bold"
                    TextColor="{StaticResource PureWhite}" HorizontalOptions="Center"/>
-        </Border>
+		</Border>
 
-        <Border StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource PureWhite}"
-                Stroke="Transparent" Padding="20">
-            <Border.Shadow>
-                <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.2"/>
-            </Border.Shadow>
-            <VerticalStackLayout Spacing="10">
-                <Label Text="识别模式" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource DarkBlack}"/>
-                <Label x:Name="RecogLabel" Text="当前：无法识别景点" FontSize="15" TextColor="{StaticResource GrayText}"/>
-                <Button Text="切换到 Azure 识别（需配置）" BackgroundColor="{StaticResource WineRed}"
-                        TextColor="{StaticResource PureWhite}" CornerRadius="8" Clicked="OnSwitchRecog"/>
-            </VerticalStackLayout>
-        </Border>
-
-        <Button Text="🗑️ 清除缓存" BackgroundColor="Gray" TextColor="White" CornerRadius="8" Clicked="OnClearCache"/>
-        <Button Text="ℹ️ 关于" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="8" Clicked="OnAbout"/>
-        <Label Text="旅行指南 v1.0" FontSize="14" TextColor="{StaticResource GrayText}" HorizontalOptions="Center" Margin="0,20,0,0"/>
-    </VerticalStackLayout>
+		<Button Text="Switch to Azure Recognition (Need Config)" BackgroundColor="{StaticResource WineRed}"
+                TextColor="{StaticResource PureWhite}" CornerRadius="8" Clicked="OnSwitchRecog"/>
+		<Button Text="🗑️ Clear Cache" BackgroundColor="Gray" TextColor="White" CornerRadius="8" Clicked="OnClearCache"/>
+		<Button Text="ℹ️ About" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="8" Clicked="OnAbout"/>
+		<Label Text="Travel Guide v1.0" FontSize="14" TextColor="{StaticResource GrayText}" HorizontalOptions="Center" Margin="0,20,0,0"/>
+	</VerticalStackLayout>
 </ContentPage>

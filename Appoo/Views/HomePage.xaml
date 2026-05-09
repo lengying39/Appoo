@@ -2,48 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.HomePage"
-             Title="首页"
+             Title="Home"
              BackgroundColor="{StaticResource SoftWhite}">
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="25">
-            <!-- Welcome Card -->
             <Border StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource WineRed}"
                     Stroke="Transparent" Padding="20">
                 <Border.Shadow>
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.3"/>
                 </Border.Shadow>
                 <VerticalStackLayout Spacing="5">
-                    <Label Text="🌍 旅行指南" FontSize="28" FontAttributes="Bold"
+                    <Label Text="🌍 Travel Guide" FontSize="28" FontAttributes="Bold"
                            TextColor="{StaticResource PureWhite}" HorizontalOptions="Center"/>
-                    <Label Text="发现身边的美好" FontSize="16" TextColor="{StaticResource PureWhite}"
-                           HorizontalOptions="Center" Opacity="0.9"/>
+                    <Label Text="Explore the beauty around you" FontSize="16"
+                           TextColor="{StaticResource PureWhite}" HorizontalOptions="Center" Opacity="0.9"/>
                 </VerticalStackLayout>
             </Border>
 
-            <!-- Location Card -->
             <Border StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource PureWhite}"
                     Stroke="Transparent" Padding="20">
                 <Border.Shadow>
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.2"/>
                 </Border.Shadow>
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="📍 我的位置" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource DarkBlack}"/>
-                    <Label x:Name="LocationLabel" Text="点击按钮获取" FontSize="16" TextColor="{StaticResource GrayText}"/>
-                    <Button Text="获取当前位置" BackgroundColor="{StaticResource WineRed}"
+                    <Label Text="📍 My Location" FontSize="18" FontAttributes="Bold"
+                           TextColor="{StaticResource DarkBlack}"/>
+                    <Label x:Name="LocationLabel" Text="Click button to get" FontSize="16"
+                           TextColor="{StaticResource GrayText}"/>
+                    <Button Text="Get Location" BackgroundColor="{StaticResource WineRed}"
                             TextColor="{StaticResource PureWhite}" CornerRadius="8" FontAttributes="Bold"
                             Clicked="OnGetLocationClicked"/>
                 </VerticalStackLayout>
             </Border>
 
-            <!-- Nearby Spot Card -->
             <Border StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource PureWhite}"
                     Stroke="Transparent" Padding="20">
                 <Border.Shadow>
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.2"/>
                 </Border.Shadow>
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="🏞️ 离你最近" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource DarkBlack}"/>
-                    <Label x:Name="NearbyLabel" Text="计算中..." FontSize="16" TextColor="{StaticResource GrayText}"/>
+                    <Label Text="🏞️ Nearest Spot" FontSize="18" FontAttributes="Bold"
+                           TextColor="{StaticResource DarkBlack}"/>
+                    <Label x:Name="NearbyLabel" Text="Calculating..." FontSize="16"
+                           TextColor="{StaticResource GrayText}"/>
                 </VerticalStackLayout>
             </Border>
         </VerticalStackLayout>
