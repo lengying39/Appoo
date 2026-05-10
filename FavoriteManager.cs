@@ -16,5 +16,16 @@ namespace Assignment
         {
             return new List<string>(_favorites);
         }
+
+        public static void RemoveFavorite(string title)
+        {
+            if (_favorites.Contains(title))
+                _favorites.Remove(title);
+        }
+
+        public static void ClearAllFavorites()
+        {
+            _favorites.Clear();
+        }
     }
 }

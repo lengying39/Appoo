@@ -8,7 +8,8 @@
         <VerticalStackLayout Spacing="15">
 
             <SearchBar Placeholder="Search attractions..."
-                       HorizontalOptions="FillAndExpand"/>
+                       HorizontalOptions="FillAndExpand"
+                       SearchButtonPressed="OnSearch"/>
 
             <Button Text="Emperor Qinshihuang's Mausoleum Site Museum"
                     BackgroundColor="#FF6F00"

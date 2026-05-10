@@ -5,7 +5,24 @@
              Title="My Favorites">
 
     <ScrollView Padding="20">
-        <VerticalStackLayout x:Name="FavoriteContainer" Spacing="15">
+        <VerticalStackLayout>
+
+            <HorizontalStackLayout Margin="0,0,0,15" Spacing="10">
+                <Label Text="My Favorites" 
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="StartAndExpand"/>
+
+                <Button Text="Clear All"
+                        BackgroundColor="#FF6F00"
+                        TextColor="White"
+                        CornerRadius="15"
+                        Padding="10,6"
+                        Clicked="ClearAllFavorites_Clicked"/>
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout x:Name="FavoriteContainer" Spacing="15">
+            </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>
