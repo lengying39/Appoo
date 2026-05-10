@@ -38,7 +38,6 @@ public static class MauiProgram
         builder.Services.AddTransient<AttractionDetailPage>();
         builder.Services.AddTransient<MyFavoritesPage>();
         builder.Services.AddTransient<PublicFacilitiesPage>();
-        builder.Services.AddTransient<SearchPage>();
 
 #if ANDROID
         WebViewHandler.Mapper.AppendToMapping("EnableGeolocation", (handler, view) =>

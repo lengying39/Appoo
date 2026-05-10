@@ -10,9 +10,6 @@ public partial class ProfilePage : ContentPage
     private async void OnPublicFacilitiesClicked(object sender, EventArgs e)
         => await Shell.Current.GoToAsync(nameof(PublicFacilitiesPage));
 
-    private async void OnSearchClicked(object sender, EventArgs e)
-        => await Shell.Current.GoToAsync(nameof(SearchPage));
-
     private async void OnSettingsClicked(object sender, EventArgs e)
         => await Shell.Current.GoToAsync(nameof(SettingsPage));
 

@@ -11,8 +11,6 @@
                 CornerRadius="10" Clicked="OnMyFavoritesClicked"/>
         <Button Text="Public Facilities" BackgroundColor="{StaticResource WineRed}" TextColor="White"
                 CornerRadius="10" Clicked="OnPublicFacilitiesClicked"/>
-        <Button Text="Search" BackgroundColor="{StaticResource WineRed}" TextColor="White"
-                CornerRadius="10" Clicked="OnSearchClicked"/>
         <Button Text="Settings" BackgroundColor="{StaticResource WineRed}" TextColor="White"
                 CornerRadius="10" Clicked="OnSettingsClicked"/>
         <Button Text="Logout" BackgroundColor="Gray" TextColor="White"

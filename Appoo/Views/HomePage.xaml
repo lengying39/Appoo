@@ -6,6 +6,8 @@
              BackgroundImageSource="a.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="25">
+
+            <!-- 欢迎横幅 -->
             <Border StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource WineRed}"
                     Stroke="Transparent" Padding="20">
                 <Border.Shadow>
@@ -19,8 +21,41 @@
                 </VerticalStackLayout>
             </Border>
 
+            <!-- 椭圆半透明搜索栏 -->
+            <Border StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{StaticResource WineRed}"
+                    Stroke="{StaticResource PureWhite}"
+                    StrokeThickness="1.5"
+                    Opacity="0.85"
+                    Padding="12,0">
+                <Entry x:Name="SearchEntry"
+                       Placeholder="Search spots, food..."
+                       PlaceholderColor="{StaticResource GrayText}"
+                       TextColor="{StaticResource PureWhite}"
+                       BackgroundColor="Transparent"
+                       FontSize="16"
+                       ClearButtonVisibility="WhileEditing"
+                       TextChanged="OnSearchTextChanged" />
+            </Border>
+
+            <!-- ★ 搜索结果容器（初始隐藏） -->
+            <Border x:Name="ResultsContainer"
+                    StrokeShape="RoundRectangle 12"
+                    BackgroundColor="{StaticResource PureWhite}"
+                    Stroke="Gray"
+                    StrokeThickness="1"
+                    Padding="10"
+                    IsVisible="False"
+                    Margin="0,-10,0,0">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.2"/>
+                </Border.Shadow>
+                <VerticalStackLayout x:Name="ResultsStack" Spacing="5" />
+            </Border>
+
+            <!-- My Location 卡片（增加上边距） -->
             <Border StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource PureWhite}"
-                    Stroke="Transparent" Padding="20">
+                    Stroke="Transparent" Padding="20" Margin="0,15,0,0">
                 <Border.Shadow>
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.2"/>
                 </Border.Shadow>
@@ -35,8 +70,9 @@
                 </VerticalStackLayout>
             </Border>
 
+            <!-- Nearest Spot 卡片（增加上边距） -->
             <Border StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource PureWhite}"
-                    Stroke="Transparent" Padding="20">
+                    Stroke="Transparent" Padding="20" Margin="0,10,0,0">
                 <Border.Shadow>
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.2"/>
                 </Border.Shadow>
@@ -47,6 +83,7 @@
                            TextColor="{StaticResource GrayText}"/>
                 </VerticalStackLayout>
             </Border>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

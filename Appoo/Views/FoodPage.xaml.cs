@@ -18,7 +18,7 @@ public partial class FoodPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        TitleLabel.Text = $"🍽️ {SpotName} 附近美食";
+        TitleLabel.Text = $"🍽️ {SpotName} Nearby Food";
         if (foodData.TryGetValue(SpotName, out var foods))
             foreach (var f in foods)
                 FoodList.Children.Add(new Label

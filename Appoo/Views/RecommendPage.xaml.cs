@@ -62,7 +62,7 @@ public partial class RecommendPage : ContentPage
             // 附近美食按钮
             var foodBtn = new Button
             {
-                Text = "🍜 附近美食",
+                Text = "🍜 Nearby Food",
                 BackgroundColor = (Color)Application.Current.Resources["WineRed"],
                 TextColor = Colors.White,
                 CornerRadius = 8,
@@ -76,7 +76,7 @@ public partial class RecommendPage : ContentPage
             // 详情按钮
             var detailBtn = new Button
             {
-                Text = "📄 详情",
+                Text = "📄 Deatils",
                 BackgroundColor = (Color)Application.Current.Resources["DarkBlack"],
                 TextColor = Colors.White,
                 CornerRadius = 8,

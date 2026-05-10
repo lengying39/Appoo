@@ -40,7 +40,7 @@ public class DataService : IDataService
             Description = "唐代古塔，大慈恩寺内。",
             OpenTime = "8:00 - 17:30",
             Location = "雁塔区，西安",
-            ImageFile = "dyt.png",          // 你的图片文件名
+            ImageFile = "dyt.png",          
             NearbyFood = new() { "肉夹馍", "凉皮", "羊肉泡馍" },
             Latitude = 34.2136, Longitude = 108.9594
         },
@@ -50,7 +50,7 @@ public class DataService : IDataService
             Description = "西安市中心地标。",
             OpenTime = "8:00 - 22:00",
             Location = "市中心，西安",
-            ImageFile = "zl.jpg",           // 你的图片文件名
+            ImageFile = "zl.jpg",           
             NearbyFood = new() { "德发长饺子", "回民街烤肉", "酸梅汤" },
             Latitude = 34.2583, Longitude = 108.9427
         },
@@ -60,7 +60,7 @@ public class DataService : IDataService
             Description = "世界第八大奇迹。",
             OpenTime = "8:00 - 18:00",
             Location = "临潼区，西安",
-            ImageFile = "bmy.png",          // 你的图片文件名
+            ImageFile = "bmy.png",          
             NearbyFood = new() { "临潼石榴", "柿子饼", "梆梆肉" },
             Latitude = 34.3849, Longitude = 109.2731
         },
@@ -70,7 +70,7 @@ public class DataService : IDataService
             Description = "唐代皇家温泉行宫。",
             OpenTime = "9:00 - 17:30",
             Location = "临潼区，西安",
-            ImageFile = "hqing.jpg",        // 如果有对应的图片，请放好并更新文件名
+            ImageFile = "hqg.jpg",        
             NearbyFood = new() { "温泉蛋", "御膳点心", "石榴汁" },
             Latitude = 34.3812, Longitude = 109.2734
         }

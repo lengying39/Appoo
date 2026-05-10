@@ -1,10 +1,12 @@
 ﻿using Appoo.Models;
+using Appoo.Services;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace Appoo.Views;
 
 public partial class HomePage : ContentPage
 {
+    private readonly IDataService _dataService;
     private List<TouristSpot> spots = new()
     {
         new TouristSpot { Name = "Dayan Pagoda", Latitude = 34.2136, Longitude = 108.9594 },
@@ -12,7 +14,11 @@ public partial class HomePage : ContentPage
         new TouristSpot { Name = "Emperor Qinshihuang's Mausoleum", Latitude = 34.3849, Longitude = 109.2731 }
     };
 
-    public HomePage() => InitializeComponent();
+    public HomePage(IDataService dataService)
+    {
+        InitializeComponent();
+        _dataService = dataService;
+    }
 
     private async void OnGetLocationClicked(object sender, EventArgs e)
     {
@@ -39,5 +45,60 @@ public partial class HomePage : ContentPage
                    Math.Cos(lat1 * Math.PI / 180) * Math.Cos(lat2 * Math.PI / 180) *
                    Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
         return R * 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+    }
+
+    // ★ 实时搜索过滤
+    private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
+    {
+        ResultsStack.Children.Clear();
+        var keyword = e.NewTextValue?.Trim().ToLower() ?? "";
+
+        if (string.IsNullOrWhiteSpace(keyword))
+        {
+            ResultsContainer.IsVisible = false;
+            return;
+        }
+
+        // 搜索景点
+        var matchedSpots = _dataService.GetAllSpots()
+            .Where(s => s.Name.ToLower().Contains(keyword));
+        foreach (var spot in matchedSpots)
+        {
+            ResultsStack.Children.Add(new Label
+            {
+                Text = spot.Name,
+                FontSize = 16,
+                TextColor = (Color)Application.Current.Resources["DarkBlack"]
+            });
+        }
+
+        // 搜索美食
+        var matchedFoods = _dataService.GetAllFoods()
+            .Where(f => f.ToLower().Contains(keyword));
+        foreach (var food in matchedFoods)
+        {
+            ResultsStack.Children.Add(new Label
+            {
+                Text = food,
+                FontSize = 16,
+                TextColor = (Color)Application.Current.Resources["DarkBlack"]
+            });
+        }
+
+        // 搜索设施
+        var matchedFacs = _dataService.GetAllFacilities()
+            .Where(f => f.ToLower().Contains(keyword));
+        foreach (var fac in matchedFacs)
+        {
+            ResultsStack.Children.Add(new Label
+            {
+                Text = fac,
+                FontSize = 16,
+                TextColor = (Color)Application.Current.Resources["DarkBlack"]
+            });
+        }
+
+        // 有结果就显示容器，无结果隐藏
+        ResultsContainer.IsVisible = ResultsStack.Children.Count > 0;
     }
 }
