@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.FoodPage"
-             Title="附近美食"
+             Title="Nearby Food"
              BackgroundColor="{StaticResource SoftWhite}">
     <ScrollView>
         <VerticalStackLayout Spacing="15" Padding="25">
             <Label x:Name="TitleLabel" FontSize="24" FontAttributes="Bold"
-                   TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
+                   TextColor="Black" HorizontalOptions="Center"/>
             <VerticalStackLayout x:Name="FoodList" Spacing="10"/>
         </VerticalStackLayout>
     </ScrollView>
