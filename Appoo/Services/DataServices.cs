@@ -36,55 +36,55 @@ public class DataService : IDataService
     {
         new TouristSpot
         {
-            Name = "Dayan Pagoda",
-            Description = "A famous Buddhist pagoda in Xi'an.",
+            Name = "大雁塔",
+            Description = "唐代古塔，大慈恩寺内。",
             OpenTime = "8:00 - 17:30",
-            Location = "Yanta District, Xi'an",
-            ImageFile = "spot_dayanta.jpg",
-            NearbyFood = new() { "Liangpi", "Yangroupaomo" },
+            Location = "雁塔区，西安",
+            ImageFile = "dyt.png",          // 你的图片文件名
+            NearbyFood = new() { "肉夹馍", "凉皮", "羊肉泡馍" },
             Latitude = 34.2136, Longitude = 108.9594
         },
         new TouristSpot
         {
-            Name = "The Xi'an Circumvallation",
-            Description = "The most complete ancient city wall in China.",
+            Name = "钟楼",
+            Description = "西安市中心地标。",
             OpenTime = "8:00 - 22:00",
-            Location = "Downtown Xi'an",
-            ImageFile = "spot_zhonglou.jpg",
-            NearbyFood = new() { "Defachang Dumplings", "Muslim Street BBQ" },
+            Location = "市中心，西安",
+            ImageFile = "zl.jpg",           // 你的图片文件名
+            NearbyFood = new() { "德发长饺子", "回民街烤肉", "酸梅汤" },
             Latitude = 34.2583, Longitude = 108.9427
         },
         new TouristSpot
         {
-            Name = "Emperor Qinshihuang's Mausoleum",
-            Description = "The Terracotta Army is a collection of terracottas.",
+            Name = "兵马俑",
+            Description = "世界第八大奇迹。",
             OpenTime = "8:00 - 18:00",
-            Location = "Lintong District, Xi'an",
-            ImageFile = "spot_bingmayong.jpg",
-            NearbyFood = new() { "Biängbiäng Noodles", "Roujiamo" },
+            Location = "临潼区，西安",
+            ImageFile = "bmy.png",          // 你的图片文件名
+            NearbyFood = new() { "临潼石榴", "柿子饼", "梆梆肉" },
             Latitude = 34.3849, Longitude = 109.2731
         },
         new TouristSpot
         {
-            Name = "Huaqing Palace",
-            Description = "A royal hot spring palace from Tang Dynasty.",
+            Name = "华清宫",
+            Description = "唐代皇家温泉行宫。",
             OpenTime = "9:00 - 17:30",
-            Location = "Lintong District, Xi'an",
-            ImageFile = "spot_huaqinggong.jpg",
-            NearbyFood = new() { "Hot spring eggs", "Imperial snacks" },
+            Location = "临潼区，西安",
+            ImageFile = "hqing.jpg",        // 如果有对应的图片，请放好并更新文件名
+            NearbyFood = new() { "温泉蛋", "御膳点心", "石榴汁" },
             Latitude = 34.3812, Longitude = 109.2734
         }
     };
 
     public List<string> GetAllFoods() => new()
-    { "Biängbiäng Noodles", "Roujiamo", "Liangpi", "Yangroupaomo", "Defachang Dumplings" };
+    { "肉夹馍", "凉皮", "羊肉泡馍", "德发长饺子", "回民街烤肉", "酸梅汤", "临潼石榴", "柿子饼", "梆梆肉" };
 
     public List<string> GetAllFacilities() => new()
     {
-        "Public Toilet - 50m - Open",
-        "Charging Station - 200m - Available",
-        "Accessible Passage - 100m - Open",
-        "Ticket Vending Machine - 300m - Working",
-        "Water Fountain - 150m - Open"
+        "公共厕所 - 50m - 开放",
+        "充电站 - 200m - 可用",
+        "无障碍通道 - 100m - 开放",
+        "自动售票机 - 300m - 工作中",
+        "饮水处 - 150m - 开放"
     };
 }
