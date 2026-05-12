@@ -13,5 +13,10 @@
                 CornerRadius="10" Clicked="OnLoginClicked"/>
         <Button Text="Register" BackgroundColor="Transparent" TextColor="{StaticResource WineRed}"
                 Clicked="OnRegisterClicked"/>
+
+        <!-- 跳过按钮 -->
+        <Button Text="Skip for now" BackgroundColor="Transparent" TextColor="Gray"
+                FontSize="14" Clicked="OnSkipClicked"/>
+
     </VerticalStackLayout>
 </ContentPage>

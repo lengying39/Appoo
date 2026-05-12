@@ -96,7 +96,7 @@ public partial class RecommendPage : ContentPage
 
             card.Content = stack;
 
-            // 卡片加载动画（已修复为异步方法）
+            // 卡片加载动画
             card.Loaded += async (s, e) =>
             {
                 card.Scale = 0.95;

@@ -3,17 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.ProfilePage"
              Title="Me"
-             BackgroundColor="{StaticResource SoftWhite}">
-    <VerticalStackLayout Spacing="15" Padding="30" VerticalOptions="Center">
-        <Label Text="Welcome, User" FontSize="22" FontAttributes="Bold"
-               TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
-        <Button Text="My Favorites" BackgroundColor="{StaticResource WineRed}" TextColor="White"
-                CornerRadius="10" Clicked="OnMyFavoritesClicked"/>
-        <Button Text="Public Facilities" BackgroundColor="{StaticResource WineRed}" TextColor="White"
-                CornerRadius="10" Clicked="OnPublicFacilitiesClicked"/>
-        <Button Text="Settings" BackgroundColor="{StaticResource WineRed}" TextColor="White"
-                CornerRadius="10" Clicked="OnSettingsClicked"/>
-        <Button Text="Logout" BackgroundColor="Gray" TextColor="White"
-                CornerRadius="10" Clicked="OnLogoutClicked"/>
-    </VerticalStackLayout>
+             BackgroundImageSource="profile_bg.jpg">   <!-- 可先删除此行避免图片缺失 -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="⚙️" Clicked="OnSettingsClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="25" VerticalOptions="Center">
+
+            <!-- 圆形头像区域 -->
+            <Grid HorizontalOptions="Center" Margin="0,0,0,0">
+                <Ellipse WidthRequest="120" HeightRequest="120"
+                         Fill="#E0E0E0"
+                         Stroke="{StaticResource WineRed}"
+                         StrokeThickness="3" />
+                <Image x:Name="ProfileImage"
+                       Source="notlog.jpg"
+                       WidthRequest="100" HeightRequest="100"
+                       Aspect="AspectFill"
+                       HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image.Clip>
+                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                    </Image.Clip>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnAvatarTapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="📷" FontSize="20" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,8,8" />
+            </Grid>
+
+            <!-- 用户名 -->
+            <Label x:Name="UsernameLabel"
+                   Text="Not logged in"
+                   FontSize="22" FontAttributes="Bold"
+                   TextColor="{StaticResource DarkBlack}"
+                   HorizontalOptions="Center" />
+
+            <!-- 中间按钮预留区 -->
+            <Button Text="Coming Soon 1" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
+            <Button Text="Coming Soon 2" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
+            <Button Text="Coming Soon 3" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
+
+            <!-- My Favorites -->
+            <Button Text="My Favorites"
+                    BackgroundColor="{StaticResource WineRed}" TextColor="White"
+                    CornerRadius="10" Clicked="OnMyFavoritesClicked"
+                    FontAttributes="Bold" />
+
+            <!-- Login / Logout -->
+            <Button x:Name="AuthButton"
+                    Text="Login"
+                    BackgroundColor="Gray" TextColor="White"
+                    CornerRadius="10" Clicked="OnAuthButtonClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

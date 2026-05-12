@@ -12,6 +12,11 @@ public class DataService : IDataService
         _users.Add(new User { Username = "test", Password = "123", Nickname = "Tester" });
     }
 
+    public void Logout()
+    {
+        CurrentUser = null;
+    }
+
     public Task<bool> LoginAsync(string username, string password)
     {
         var user = _users.FirstOrDefault(u => u.Username == username && u.Password == password);
@@ -36,55 +41,89 @@ public class DataService : IDataService
     {
         new TouristSpot
         {
-            Name = "大雁塔",
-            Description = "唐代古塔，大慈恩寺内。",
+            Name = "Giant Wild Goose Pagoda",
+            Description = "Tang Dynasty ancient pagoda, inside the Dacien Temple.",
             OpenTime = "8:00 - 17:30",
-            Location = "雁塔区，西安",
+            Location = "Yanta District，Xi'an",
             ImageFile = "dyt.png",          
-            NearbyFood = new() { "肉夹馍", "凉皮", "羊肉泡馍" },
+            NearbyFood = new() { "Rougamo", "LiangPi", "Pita bread soaked in Lamb Soup" },
             Latitude = 34.2136, Longitude = 108.9594
         },
         new TouristSpot
         {
-            Name = "钟楼",
-            Description = "西安市中心地标。",
-            OpenTime = "8:00 - 22:00",
-            Location = "市中心，西安",
+            Name = "Bell Tower",
+            Description = "Xi'an city center landmark.",
+            Location = "City center，Xi'an",
             ImageFile = "zl.jpg",           
-            NearbyFood = new() { "德发长饺子", "回民街烤肉", "酸梅汤" },
+            NearbyFood = new() { "De Fa Long Dumplings", "Hui Min Street Barbecue", "Sour Plum Drink" },
             Latitude = 34.2583, Longitude = 108.9427
         },
         new TouristSpot
         {
-            Name = "兵马俑",
-            Description = "世界第八大奇迹。",
+            Name = "Terra Cotta Warriors",
+            Description = "The eighth wonder of the world.",
             OpenTime = "8:00 - 18:00",
-            Location = "临潼区，西安",
-            ImageFile = "bmy.png",          
-            NearbyFood = new() { "临潼石榴", "柿子饼", "梆梆肉" },
+            Location = "Lintong District，Xi'an",
+            ImageFile = "bmy.jpg",          
+            NearbyFood = new() { "Lintong Pomegranate", "Dried Persimmon", "BangBangRou" },
             Latitude = 34.3849, Longitude = 109.2731
         },
         new TouristSpot
         {
-            Name = "华清宫",
-            Description = "唐代皇家温泉行宫。",
+            Name = "Huaqing Palace",
+            Description = "The Tang Dynasty Royal Hot Spring Palace.",
             OpenTime = "9:00 - 17:30",
-            Location = "临潼区，西安",
+            Location = "Lintong District，Xi'an",
             ImageFile = "hqg.jpg",        
-            NearbyFood = new() { "温泉蛋", "御膳点心", "石榴汁" },
+            NearbyFood = new() { "Chinese Onsen Tamago", "Royal Dim sum", "Pomegranate Juice" },
             Latitude = 34.3812, Longitude = 109.2734
-        }
+        },
+        new TouristSpot
+        {
+            Name = "Shaanxi History Museum",
+            Description = "One of China's most significant comprehensive museums, featuring over 370,000 historical relics.",
+            OpenTime = "9:00 - 17:30 (Tue-Sun, closed Mon)",
+            Location = "Yanta District, Xi'an",
+            ImageFile = "shanbo.jpg",
+            NearbyFood = new() { "Liangpi", "Roujiamo" },
+            Latitude = 34.2152, Longitude = 108.9492
+},
+        new TouristSpot
+        {
+             Name = "Tang Paradise (Datang Furong Garden)",
+             Description = "A large-scale Tang Dynasty style cultural theme park showcasing imperial garden architecture.",
+             OpenTime = "9:00 - 21:00",
+             Location = "Yanta District, Xi'an",
+             ImageFile = "dtfry.jpg",
+             NearbyFood = new() { "Tang-style pastries", "Mutton and Bread Soup" },
+             Latitude = 34.2144, Longitude = 108.9771
+},
     };
 
     public List<string> GetAllFoods() => new()
-    { "肉夹馍", "凉皮", "羊肉泡馍", "德发长饺子", "回民街烤肉", "酸梅汤", "临潼石榴", "柿子饼", "梆梆肉" };
+{ 
+    "Rougamo",
+    "Liangpi",
+    "Pita Bread Soaked in Lamb Soup",
+    "De Fa Long Dumplings",
+    "Hui Min Street Barbecue",
+    "Sour Plum Drink",
+    "Lintong Pomegranate",
+    "Dried Persimmon",
+    "Bang Bang Rou",
+    "Chinese Onsen Tamago",
+    "Royal Dim Sum",
+    "Pomegranate Juice",
+    "Tang-style Pastries",
+    "Mutton and Bread Soup"
+};
 
     public List<string> GetAllFacilities() => new()
-    {
-        "公共厕所 - 50m - 开放",
-        "充电站 - 200m - 可用",
-        "无障碍通道 - 100m - 开放",
-        "自动售票机 - 300m - 工作中",
-        "饮水处 - 150m - 开放"
-    };
+{
+    "Public Toilet - 50m - Open",
+    "Charging Station - 200m - Available",
+    "Accessible Passage - 100m - Open",
+    "Ticket Vending Machine - 300m - Working",
+    "Water Fountain - 150m - Open"
+};
 }
