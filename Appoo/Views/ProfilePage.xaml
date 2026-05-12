@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.ProfilePage"
              Title="Me"
-             BackgroundImageSource="profile_bg.jpg">   <!-- 可先删除此行避免图片缺失 -->
+             BackgroundImageSource="bg5.jpg">   
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="⚙️" Clicked="OnSettingsClicked" />
     </ContentPage.ToolbarItems>

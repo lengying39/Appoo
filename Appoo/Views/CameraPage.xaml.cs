@@ -1,15 +1,21 @@
-﻿using Appoo.Services;
+﻿using System;
+using System.IO;
+using Appoo.Services;
 using Microsoft.Maui.Media;
+using Microsoft.Maui.Storage;
 
 namespace Appoo.Views;
 
 public partial class CameraPage : ContentPage
 {
     private readonly IImageRecognitionService _recognition;
-    public CameraPage(IImageRecognitionService recognition)
+    private readonly IDataService _dataService;
+
+    public CameraPage(IImageRecognitionService recognition, IDataService dataService)
     {
         InitializeComponent();
         _recognition = recognition;
+        _dataService = dataService;
     }
 
     private async void OnTakePhotoClicked(object sender, EventArgs e)
@@ -21,14 +27,11 @@ public partial class CameraPage : ContentPage
                 await DisplayAlert("Error", "Capture not supported", "OK");
                 return;
             }
+
             var photo = await MediaPicker.Default.CapturePhotoAsync();
             if (photo == null) return;
-            PreviewFrame.IsVisible = true;
-            CapturedImage.Source = ImageSource.FromFile(photo.FullPath);
-            ResultFrame.IsVisible = true;
-            ResultLabel.Text = "⏳ Recognizing...";
-            var result = await _recognition.RecognizeAsync(photo.FullPath);
-            ResultLabel.Text = $"🏷️ {result}";
+
+            await ProcessImage(photo.FullPath);
         }
         catch (PermissionException)
         {
@@ -37,6 +40,70 @@ public partial class CameraPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
+
+    private async void OnPickFromAlbumClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            var result = await FilePicker.Default.PickAsync(new PickOptions
+            {
+                PickerTitle = "Select a photo",
+                FileTypes = FilePickerFileType.Images
+            });
+
+            if (result != null)
+            {
+                await ProcessImage(result.FullPath);
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", ex.Message, "OK");
+        }
+    }
+
+    private async Task ProcessImage(string filePath)
+    {
+        // 读取图片字节
+        byte[] imageBytes = await File.ReadAllBytesAsync(filePath);
+        System.Diagnostics.Debug.WriteLine($"[Camera] Image size: {imageBytes.Length} bytes");
+
+        PreviewFrame.IsVisible = true;
+        CapturedImage.Source = ImageSource.FromFile(filePath);
+
+        ResultFrame.IsVisible = true;
+        ResultLabel.Text = "⏳ Recognizing...";
+
+        // 调用识别服务
+        string rawResult = await _recognition.RecognizeAsync(imageBytes);
+
+        if (rawResult.StartsWith("[Error]"))
+        {
+            ResultLabel.Text = rawResult;
+            return;
+        }
+
+        string landmarkName = rawResult;
+
+        // 与本地景点数据库对照
+        var matchedSpot = _dataService.RecognizeAndMatchSpot(landmarkName);
+
+        if (matchedSpot != null)
+        {
+            ResultLabel.Text = $"🏷️ {matchedSpot.Name}\n" +
+                               $"📝 {matchedSpot.Description}\n" +
+                               $"🕒 Open: {matchedSpot.OpenTime}\n" +
+                               $"📍 {matchedSpot.Location}";
+        }
+        else if (!string.IsNullOrWhiteSpace(landmarkName))
+        {
+            ResultLabel.Text = $"🏷️ {landmarkName}\n(Not yet in your local travel guide)";
+        }
+        else
+        {
+            ResultLabel.Text = "Unable to recognize this landmark.";
         }
     }
 }

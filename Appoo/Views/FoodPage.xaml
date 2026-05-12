@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.FoodPage"
              Title="Nearby Food"
-             BackgroundColor="{StaticResource SoftWhite}">
+             BackgroundImageSource="msbg.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="15" Padding="25">
             <Label x:Name="TitleLabel" FontSize="24" FontAttributes="Bold"

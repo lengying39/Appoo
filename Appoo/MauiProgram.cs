@@ -23,7 +23,7 @@ public static class MauiProgram
 
         // Services
         builder.Services.AddSingleton<IDataService, DataService>();
-        builder.Services.AddSingleton<IImageRecognitionService, UnrecognizableImageService>();
+        builder.Services.AddSingleton<IImageRecognitionService, LandmarkRecognitionService>();
 
         // Pages
         builder.Services.AddTransient<HomePage>();
@@ -52,10 +52,9 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
+
         var app = builder.Build();
         App.Services = app.Services;
         return app;
-
-        return builder.Build();
     }
 }

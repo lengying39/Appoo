@@ -1,6 +1,10 @@
-﻿namespace Appoo.Services;
+﻿// Services/IImageRecognitionService.cs
+using System.Threading.Tasks;
 
-public interface IImageRecognitionService
+namespace Appoo.Services
 {
-    Task<string> RecognizeAsync(string imagePath);
+    public interface IImageRecognitionService
+    {
+        Task<string> RecognizeAsync(byte[] imageBytes);
+    }
 }

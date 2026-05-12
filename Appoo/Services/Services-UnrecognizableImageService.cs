@@ -1,7 +1,13 @@
-﻿namespace Appoo.Services;
+﻿using System.Threading.Tasks;
 
-public class UnrecognizableImageService : IImageRecognitionService
+namespace Appoo.Services
 {
-    public Task<string> RecognizeAsync(string imagePath)
-        => Task.FromResult("Sorry, unable to identify this spot.");
+    public class UnrecognizableImageService : IImageRecognitionService
+    {
+        public Task<string> RecognizeAsync(byte[] imageBytes)
+        {
+            // 始终返回“无法识别”，无需处理图片数据
+            return Task.FromResult("Sorry, unable to identify this spot.");
+        }
+    }
 }

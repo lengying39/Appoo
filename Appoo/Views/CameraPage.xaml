@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.CameraPage"
              Title="Camera"
-             BackgroundColor="{StaticResource SoftWhite}">
+             BackgroundImageSource="bg2.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="25">
             <Border StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource WineRed}"
@@ -14,9 +14,22 @@
                 <Label Text="📷 Take Photo" FontSize="22" FontAttributes="Bold"
                        TextColor="{StaticResource PureWhite}" HorizontalOptions="Center"/>
             </Border>
-            <Button Text="Capture" BackgroundColor="{StaticResource WineRed}"
+
+            <!-- 拍照按钮 -->
+            <Button Text="Capture"
+                    BackgroundColor="{StaticResource WineRed}"
                     TextColor="{StaticResource PureWhite}" CornerRadius="12"
-                    FontSize="18" HeightRequest="55" Clicked="OnTakePhotoClicked"/>
+                    FontSize="18" HeightRequest="55"
+                    Clicked="OnTakePhotoClicked"/>
+
+            <!-- 从相册选择按钮 -->
+            <Button Text="Select from Album"
+                    BackgroundColor="{StaticResource DarkBlack}"
+                    TextColor="{StaticResource PureWhite}" CornerRadius="12"
+                    FontSize="18" HeightRequest="55"
+                    Clicked="OnPickFromAlbumClicked"/>
+
+            <!-- 预览图 -->
             <Border StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource PureWhite}"
                     Stroke="Transparent" Padding="10" x:Name="PreviewFrame" IsVisible="False">
                 <Border.Shadow>
@@ -24,13 +37,16 @@
                 </Border.Shadow>
                 <Image x:Name="CapturedImage" Aspect="AspectFill" HeightRequest="250"/>
             </Border>
+
+            <!-- 识别结果 -->
             <Border StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource PureWhite}"
                     Stroke="Transparent" Padding="15" x:Name="ResultFrame" IsVisible="False">
                 <Border.Shadow>
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.2"/>
                 </Border.Shadow>
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="🔍 Result" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource WineRed}"/>
+                    <Label Text="🔍 Result" FontSize="18" FontAttributes="Bold"
+                           TextColor="{StaticResource WineRed}"/>
                     <Label x:Name="ResultLabel" FontSize="16" TextColor="{StaticResource DarkBlack}"/>
                 </VerticalStackLayout>
             </Border>
