@@ -40,7 +40,7 @@
                    HorizontalOptions="Center" />
 
             <!-- 中间按钮预留区 -->
-            <Button Text="Coming Soon 1" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
+            <Button Text="我的评价" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="10" Clicked="OnMyReviewsClicked" />
             <Button Text="Coming Soon 2" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
             <Button Text="Coming Soon 3" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
 

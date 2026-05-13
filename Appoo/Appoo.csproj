@@ -43,7 +43,22 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 		<PackageReference Include="SkiaSharp" Version="3.119.2" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.2" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		<!-- 不再包含 Microsoft.Extensions.Localization，因为已移除双语 -->
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Views\MyReviewsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TestimonialOptionsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ViewReviewsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\WriteReviewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

@@ -23,6 +23,7 @@ public static class MauiProgram
 
         // Services
         builder.Services.AddSingleton<IDataService, DataService>();
+        builder.Services.AddSingleton<DatabaseService>();
         builder.Services.AddSingleton<IImageRecognitionService, LandmarkRecognitionService>();
 
         // Pages
@@ -38,6 +39,10 @@ public static class MauiProgram
         builder.Services.AddTransient<AttractionDetailPage>();
         builder.Services.AddTransient<MyFavoritesPage>();
         builder.Services.AddTransient<PublicFacilitiesPage>();
+        builder.Services.AddTransient<TestimonialOptionsPage>();
+        builder.Services.AddTransient<WriteReviewPage>();
+        builder.Services.AddTransient<ViewReviewsPage>();
+        builder.Services.AddTransient<MyReviewsPage>();
 
 #if ANDROID
         WebViewHandler.Mapper.AppendToMapping("EnableGeolocation", (handler, view) =>

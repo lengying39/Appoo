@@ -64,6 +64,16 @@ public partial class ProfilePage : ContentPage
         }
     }
 
+    private async void OnMyReviewsClicked(object sender, EventArgs e)
+    {
+        if (_dataService.CurrentUser == null)
+        {
+            await DisplayAlert("提示", "请先登录", "OK");
+            return;
+        }
+        await Shell.Current.GoToAsync(nameof(MyReviewsPage));
+    }
+
     private async void OnMyFavoritesClicked(object sender, EventArgs e)
     {
         if (_dataService.CurrentUser == null)

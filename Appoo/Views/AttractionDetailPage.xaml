@@ -9,6 +9,6 @@
         <Label x:Name="DescLabel" FontSize="16" TextColor="White"/>
         <Label x:Name="OpenLabel" FontSize="14" TextColor="{StaticResource GrayText}"/>
         <Label x:Name="LocationLabel" FontSize="14" TextColor="{StaticResource GrayText}"/>
-        <Button x:Name="FavoriteButton" Text="Add to Favorites" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="8"/>
+        <Button x:Name="FavoriteButton" Text="Add to Favorites" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="8" Clicked="OnFavoriteButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -13,98 +13,121 @@ public partial class RecommendPage : ContentPage
         InitializeComponent();
         _dataService = dataService;
         spots = _dataService.GetAllSpots();
-        LoadSpots();
+        _ = LoadSpotsAsync(); // 异步调用，避免阻塞
     }
 
-    private void LoadSpots()
+    private async Task LoadSpotsAsync()
     {
-        foreach (var spot in spots)
+        try
         {
-            // 外层卡片
-            var card = new Border
+            foreach (var spot in spots)
             {
-                StrokeShape = new Microsoft.Maui.Controls.Shapes.RoundRectangle { CornerRadius = 15 },
-                BackgroundColor = Color.FromRgba(255, 255, 255, 100), // 半透明白色
-                Stroke = Colors.White,
-                StrokeThickness = 2,
-                Padding = new Thickness(15),
-                ClassId = spot.Name
-            };
-            card.Shadow = new Shadow { Brush = Colors.Black, Offset = new Point(2, 4), Radius = 6, Opacity = 0.2f };
+                // 外层卡片
+                var card = new Border
+                {
+                    StrokeShape = new Microsoft.Maui.Controls.Shapes.RoundRectangle { CornerRadius = 15 },
+                    BackgroundColor = Color.FromRgba(255, 255, 255, 100), // 半透明白色
+                    Stroke = Colors.White,
+                    StrokeThickness = 2,
+                    Padding = new Thickness(15),
+                    ClassId = spot.Name
+                };
+                card.Shadow = new Shadow { Brush = Colors.Black, Offset = new Point(2, 4), Radius = 6, Opacity = 0.2f };
 
-            var stack = new VerticalStackLayout { Spacing = 10 };
+                var stack = new VerticalStackLayout { Spacing = 10 };
 
-            // 景点图片
-            var image = new Image
-            {
-                Source = spot.ImageFile,
-                Aspect = Aspect.AspectFill,
-                HeightRequest = 180
-            };
+                // 景点图片
+                var image = new Image
+                {
+                    Source = spot.ImageFile,
+                    Aspect = Aspect.AspectFill,
+                    HeightRequest = 180
+                };
 
-            // 名称
-            var nameLabel = new Label
-            {
-                Text = spot.Name,
-                FontSize = 20,
-                FontAttributes = FontAttributes.Bold,
-                TextColor = (Color)Application.Current.Resources["DarkBlack"]
-            };
+                // 名称
+                var nameLabel = new Label
+                {
+                    Text = spot.Name,
+                    FontSize = 20,
+                    FontAttributes = FontAttributes.Bold,
+                    TextColor = (Color)Application.Current.Resources["DarkBlack"]
+                };
 
-            // 描述
-            var descLabel = new Label
-            {
-                Text = spot.Description,
-                FontSize = 14,
-                TextColor = (Color)Application.Current.Resources["GrayText"]
-            };
+                // 描述
+                var descLabel = new Label
+                {
+                    Text = spot.Description,
+                    FontSize = 14,
+                    TextColor = (Color)Application.Current.Resources["GrayText"]
+                };
 
-            // 附近美食按钮
-            var foodBtn = new Button
-            {
-                Text = "🍜 Nearby Food",
-                BackgroundColor = (Color)Application.Current.Resources["WineRed"],
-                TextColor = Colors.White,
-                CornerRadius = 8,
-                FontAttributes = FontAttributes.Bold
-            };
-            foodBtn.Clicked += async (s, e) =>
-            {
-                await Shell.Current.GoToAsync($"{nameof(FoodPage)}?spotName={spot.Name}");
-            };
+                // 附近美食按钮
+                var foodBtn = new Button
+                {
+                    Text = "🍜 Nearby Food",
+                    BackgroundColor = (Color)Application.Current.Resources["WineRed"],
+                    TextColor = Colors.White,
+                    CornerRadius = 8,
+                    FontAttributes = FontAttributes.Bold
+                };
+                foodBtn.Clicked += async (s, e) =>
+                {
+                    await Shell.Current.GoToAsync($"{nameof(FoodPage)}?spotName={spot.Name}");
+                };
 
-            // 详情按钮
-            var detailBtn = new Button
-            {
-                Text = "📄 Deatils",
-                BackgroundColor = (Color)Application.Current.Resources["DarkBlack"],
-                TextColor = Colors.White,
-                CornerRadius = 8,
-                FontAttributes = FontAttributes.Bold
-            };
-            detailBtn.Clicked += async (s, e) =>
-            {
-                await Shell.Current.GoToAsync($"{nameof(AttractionDetailPage)}?spotName={spot.Name}");
-            };
+                // 详情按钮
+                var detailBtn = new Button
+                {
+                    Text = "📄 Details",
+                    BackgroundColor = (Color)Application.Current.Resources["DarkBlack"],
+                    TextColor = Colors.White,
+                    CornerRadius = 8,
+                    FontAttributes = FontAttributes.Bold
+                };
+                detailBtn.Clicked += async (s, e) =>
+                {
+                    await Shell.Current.GoToAsync($"{nameof(AttractionDetailPage)}?spotName={spot.Name}");
+                };
 
-            // 按顺序添加
-            stack.Children.Add(image);
-            stack.Children.Add(nameLabel);
-            stack.Children.Add(descLabel);
-            stack.Children.Add(foodBtn);
-            stack.Children.Add(detailBtn);
+                // 评价按钮
+                var testimonialBtn = new Button
+                {
+                    Text = "📝 评价",
+                    BackgroundColor = Color.FromArgb("#FFA500"),
+                    TextColor = Colors.White,
+                    CornerRadius = 8,
+                    FontAttributes = FontAttributes.Bold
+                };
+                var spotNameForReview = spot.Name;
+                testimonialBtn.Clicked += async (s, e) =>
+                {
+                    await Shell.Current.GoToAsync($"{nameof(TestimonialOptionsPage)}?spotName={spotNameForReview}");
+                };
 
-            card.Content = stack;
+                // 按顺序添加
+                stack.Children.Add(image);
+                stack.Children.Add(nameLabel);
+                stack.Children.Add(descLabel);
+                stack.Children.Add(foodBtn);
+                stack.Children.Add(detailBtn);
+                stack.Children.Add(testimonialBtn);
 
-            // 卡片加载动画
-            card.Loaded += async (s, e) =>
-            {
-                card.Scale = 0.95;
-                await card.TranslateToAsync(0, -10, 500, Easing.CubicOut);
-                await card.ScaleToAsync(1.0, 500, Easing.CubicOut);
-            };
+                card.Content = stack;
 
-            SpotList.Children.Add(card);
+                // 卡片加载动画
+                card.Loaded += async (s, e) =>
+                {
+                    card.Scale = 0.95;
+                    await card.TranslateToAsync(0, -10, 500, Easing.CubicOut);
+                    await card.ScaleToAsync(1.0, 500, Easing.CubicOut);
+                };
+
+                SpotList.Children.Add(card);
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("加载失败", ex.ToString(), "OK");
         }
     }
 }
