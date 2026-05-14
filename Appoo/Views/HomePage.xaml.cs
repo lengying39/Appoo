@@ -59,20 +59,29 @@ public partial class HomePage : ContentPage
             return;
         }
 
-        // 搜索景点
+        // 搜索景点（可点击跳转）
         var matchedSpots = _dataService.GetAllSpots()
             .Where(s => s.Name.ToLower().Contains(keyword));
         foreach (var spot in matchedSpots)
         {
-            ResultsStack.Children.Add(new Label
+            var label = new Label
             {
                 Text = spot.Name,
                 FontSize = 16,
-                TextColor = (Color)Application.Current.Resources["DarkBlack"]
-            });
+                TextColor = (Color)Application.Current.Resources["DarkBlack"],
+                Margin = new Thickness(5, 2)
+            };
+            // 添加点击手势
+            var tapGesture = new TapGestureRecognizer();
+            tapGesture.Tapped += async (s, e) =>
+            {
+                await Shell.Current.GoToAsync($"{nameof(AttractionDetailPage)}?spotName={spot.Name}");
+            };
+            label.GestureRecognizers.Add(tapGesture);
+            ResultsStack.Children.Add(label);
         }
 
-        // 搜索美食
+        // 搜索美食（暂时不可点击，仅展示）
         var matchedFoods = _dataService.GetAllFoods()
             .Where(f => f.ToLower().Contains(keyword));
         foreach (var food in matchedFoods)
@@ -81,11 +90,12 @@ public partial class HomePage : ContentPage
             {
                 Text = food,
                 FontSize = 16,
-                TextColor = (Color)Application.Current.Resources["DarkBlack"]
+                TextColor = (Color)Application.Current.Resources["GrayText"],
+                Margin = new Thickness(5, 2)
             });
         }
 
-        // 搜索设施
+        // 搜索设施（暂时不可点击）
         var matchedFacs = _dataService.GetAllFacilities()
             .Where(f => f.ToLower().Contains(keyword));
         foreach (var fac in matchedFacs)
@@ -94,7 +104,8 @@ public partial class HomePage : ContentPage
             {
                 Text = fac,
                 FontSize = 16,
-                TextColor = (Color)Application.Current.Resources["DarkBlack"]
+                TextColor = (Color)Application.Current.Resources["GrayText"],
+                Margin = new Thickness(5, 2)
             });
         }
 

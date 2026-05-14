@@ -4,13 +4,13 @@
              x:Class="Appoo.Views.RegisterPage"
              Title="Register"
              BackgroundImageSource="bg8.jpg">
-	<VerticalStackLayout VerticalOptions="Center" Spacing="20" Padding="30">
-		<Label Text="Register" FontSize="28" FontAttributes="Bold"
+	<VerticalStackLayout VerticalOptions="Center" Spacing="20" Padding="27">
+		<Label Text="Register" FontSize="36" FontAttributes="Bold"
                TextColor="Black" HorizontalOptions="Center"/>
-		<Entry x:Name="UsernameEntry" Placeholder="Username"/>
-		<Entry x:Name="NicknameEntry" Placeholder="Nickname"/>
-		<Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True"/>
-		<Button Text="Register" BackgroundColor="White"  TextColor="Black"
+		<Entry x:Name="UsernameEntry" Placeholder="Username" FontSize="20"/>
+		<Entry x:Name="NicknameEntry" Placeholder="Nickname" FontSize="20"/>
+		<Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" FontSize="20"/>
+		<Button Text="Register" BackgroundColor="White"  TextColor="Black" FontSize="17"
                 CornerRadius="10" Clicked="OnRegisterClicked"/>
 	</VerticalStackLayout>
 </ContentPage>

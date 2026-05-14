@@ -22,7 +22,7 @@ public partial class WriteReviewPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        SpotNameLabel.Text = $"景点：{SpotName}";
+        SpotNameLabel.Text = $"Spot：{SpotName}";
     }
 
     private async void OnAttachPhoto(object sender, EventArgs e)
@@ -31,7 +31,7 @@ public partial class WriteReviewPage : ContentPage
         {
             var result = await FilePicker.PickAsync(new PickOptions
             {
-                PickerTitle = "选择一张照片",
+                PickerTitle = "Choose one Picture",
                 FileTypes = FilePickerFileType.Images
             });
             if (result != null)
@@ -42,7 +42,7 @@ public partial class WriteReviewPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("错误", "无法选择图片：" + ex.Message, "OK");
+            await DisplayAlert("Wrong", "Unable to select image：" + ex.Message, "OK");
         }
     }
 
@@ -50,14 +50,14 @@ public partial class WriteReviewPage : ContentPage
     {
         if (string.IsNullOrWhiteSpace(ReviewEditor.Text))
         {
-            await DisplayAlert("提示", "请填写评价内容", "OK");
+            await DisplayAlert("Tippp!", "Please fill in the review content", "OK");
             return;
         }
 
         var currentUser = _dataService.CurrentUser;
         if (currentUser == null)
         {
-            await DisplayAlert("提示", "请先登录", "OK");
+            await DisplayAlert("Tippp!", "Please log in first to use this feature", "OK");
             return;
         }
 
@@ -83,7 +83,7 @@ public partial class WriteReviewPage : ContentPage
         };
 
         await _dbService.AddReviewAsync(review);
-        await DisplayAlert("发布成功", "你的评价已提交", "OK");
+        await DisplayAlert("Published successfully🥰", "Your review has been submitted!", "OK");
         await Shell.Current.GoToAsync(".."); // 返回上一页
     }
 }

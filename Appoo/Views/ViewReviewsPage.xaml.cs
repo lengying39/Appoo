@@ -30,7 +30,7 @@ public partial class ViewReviewsPage : ContentPage
         {
             ReviewsStack.Children.Add(new Label
             {
-                Text = "暂无评价，成为第一个评价的人吧～",
+                Text = "No reviews yet; be the first to add one～",
                 FontSize = 16,
                 TextColor = Colors.Gray,
                 HorizontalOptions = LayoutOptions.Center,

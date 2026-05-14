@@ -2,22 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.WriteReviewPage"
-             Title="写评价"
-             BackgroundColor="{StaticResource SoftWhite}">
+             Title="Write Reviews"
+             BackgroundImageSource="note.jpg">
     <ScrollView>
-        <VerticalStackLayout Spacing="15" Padding="20">
-            <Label x:Name="SpotNameLabel" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource WineRed}"/>
-            <Label Text="评价内容" FontAttributes="Bold"/>
-            <Editor x:Name="ReviewEditor" HeightRequest="150" Placeholder="分享你的体验..." AutoSize="TextChanges"/>
+        <VerticalStackLayout Spacing="9" Padding="62">
+            <Label x:Name="SpotNameLabel" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource WineRed}"/>
+            <Label Text="Evaluation content" FontAttributes="Bold"/>
+            <Editor x:Name="ReviewEditor" HeightRequest="150" Placeholder="Share your experience..." AutoSize="TextChanges"/>
 
-            <Label Text="上传图片（可选）" FontAttributes="Bold"/>
-            <Button Text="📷 选择图片" Clicked="OnAttachPhoto" BackgroundColor="Gray" TextColor="White"/>
+            <Label Text="Upload image (optional)" FontAttributes="Bold"/>
+            <Button Text="📷 Select Image" Clicked="OnAttachPhoto" BackgroundColor="Gray" TextColor="White"/>
             <Image x:Name="SelectedImage" HeightRequest="120" Aspect="AspectFill" Margin="0,5,0,0"/>
 
             <Switch x:Name="ImageToggle" IsToggled="True"/>
-            <Label Text="包含图片" />
+            <Label Text="Includes images" />
 
-            <Button Text="✅ 发布评价" Clicked="OnSubmitClicked" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="10"/>
+            <Button Text="🙌🏻 Post Review" Clicked="OnSubmitClicked" BackgroundColor="#8b2323" TextColor="White" CornerRadius="10"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

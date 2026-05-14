@@ -5,18 +5,18 @@
              Title="Me"
              BackgroundImageSource="bg5.jpg">   
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="⚙️" Clicked="OnSettingsClicked" />
+        <ToolbarItem Text="⚙️" Clicked="OnSettingsClicked"  />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="25" VerticalOptions="Center">
+        <VerticalStackLayout Spacing="27" Padding="27" VerticalOptions="Center">
 
             <!-- 圆形头像区域 -->
-            <Grid HorizontalOptions="Center" Margin="0,0,0,0">
+            <Grid HorizontalOptions="Center" Margin="0,-27,0,0">
                 <Ellipse WidthRequest="120" HeightRequest="120"
                          Fill="#E0E0E0"
-                         Stroke="{StaticResource WineRed}"
-                         StrokeThickness="3" />
+                         Stroke="Black"
+                         StrokeThickness="5" />
                 <Image x:Name="ProfileImage"
                        Source="notlog.jpg"
                        WidthRequest="100" HeightRequest="100"
@@ -35,26 +35,30 @@
             <!-- 用户名 -->
             <Label x:Name="UsernameLabel"
                    Text="Not logged in"
-                   FontSize="22" FontAttributes="Bold"
+                   FontSize="22" FontAttributes="Bold" 
                    TextColor="{StaticResource DarkBlack}"
                    HorizontalOptions="Center" />
 
             <!-- 中间按钮预留区 -->
-            <Button Text="我的评价" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="10" Clicked="OnMyReviewsClicked" />
-            <Button Text="Coming Soon 2" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
-            <Button Text="Coming Soon 3" BackgroundColor="Gray" TextColor="White" CornerRadius="10" IsEnabled="False" />
+            <Button Text="My Reviews" 
+                    BackgroundColor="#8B2323" 
+                    TextColor="White" CornerRadius="21" FontSize="17" FontAttributes="Bold"
+                    HeightRequest="50"
+                    Clicked="OnMyReviewsClicked" />
 
             <!-- My Favorites -->
             <Button Text="My Favorites"
-                    BackgroundColor="{StaticResource WineRed}" TextColor="White"
-                    CornerRadius="10" Clicked="OnMyFavoritesClicked"
+                    BackgroundColor="#8B2323" TextColor="White" FontSize="17"
+                    CornerRadius="21" Clicked="OnMyFavoritesClicked"
+                    HeightRequest="50"
                     FontAttributes="Bold" />
 
             <!-- Login / Logout -->
             <Button x:Name="AuthButton"
                     Text="Login"
-                    BackgroundColor="Gray" TextColor="White"
-                    CornerRadius="10" Clicked="OnAuthButtonClicked" />
+                    BackgroundColor="#C0E0F8" TextColor="#3A79C0" FontSize="20" FontAttributes="Bold"
+                    HeightRequest="50"
+                    CornerRadius="21" Clicked="OnAuthButtonClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

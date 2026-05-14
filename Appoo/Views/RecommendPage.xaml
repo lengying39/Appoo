@@ -10,7 +10,7 @@
                    TextColor="Silver" HorizontalOptions="Center"/>
 
             <!-- 卡片列表使用 Bindings 或 静态数据，这里我们直接在 code-behind 中动态生成 -->
-            <VerticalStackLayout x:Name="SpotList" Spacing="15"/>
+            <VerticalStackLayout x:Name="SpotList" Spacing="21"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

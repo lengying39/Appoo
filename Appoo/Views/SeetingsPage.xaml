@@ -10,7 +10,7 @@
 			<Border.Shadow>
 				<Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.3"/>
 			</Border.Shadow>
-			<Label Text="⚙️ Settings" FontSize="22" FontAttributes="Bold"
+			<Label Text="⚙️ Settings" FontSize="25" FontAttributes="Bold"
                    TextColor="{StaticResource PureWhite}" HorizontalOptions="Center"/>
 		</Border>
 

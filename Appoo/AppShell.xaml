@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:Appoo.Views"
     Shell.FlyoutBehavior="Disabled"
-    Shell.BackgroundColor="Black"
+    Shell.BackgroundColor="#1C1C1C"
     Shell.ForegroundColor="{StaticResource PureWhite}"
     Shell.TitleColor="{StaticResource PureWhite}"
     Shell.TabBarBackgroundColor="{StaticResource DarkBlack}"

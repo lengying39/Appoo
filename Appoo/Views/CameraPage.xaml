@@ -6,7 +6,7 @@
              BackgroundImageSource="bg2.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="25">
-            <Border StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource WineRed}"
+            <Border StrokeShape="RoundRectangle 15" BackgroundColor="#79CDCD"
                     Stroke="Transparent" Padding="20">
                 <Border.Shadow>
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.3"/>
@@ -17,14 +17,14 @@
 
             <!-- 拍照按钮 -->
             <Button Text="Capture"
-                    BackgroundColor="{StaticResource WineRed}"
+                    BackgroundColor="#8B0000"
                     TextColor="{StaticResource PureWhite}" CornerRadius="12"
                     FontSize="18" HeightRequest="55"
                     Clicked="OnTakePhotoClicked"/>
 
             <!-- 从相册选择按钮 -->
             <Button Text="Select from Album"
-                    BackgroundColor="{StaticResource DarkBlack}"
+                    BackgroundColor="#363636"
                     TextColor="{StaticResource PureWhite}" CornerRadius="12"
                     FontSize="18" HeightRequest="55"
                     Clicked="OnPickFromAlbumClicked"/>

@@ -26,7 +26,7 @@ public partial class RecommendPage : ContentPage
                 var card = new Border
                 {
                     StrokeShape = new Microsoft.Maui.Controls.Shapes.RoundRectangle { CornerRadius = 15 },
-                    BackgroundColor = Color.FromRgba(255, 255, 255, 100), // 半透明白色
+                    BackgroundColor = Color.FromRgba(255, 255, 255, 180), // 半透明白色
                     Stroke = Colors.White,
                     StrokeThickness = 2,
                     Padding = new Thickness(15),
@@ -57,8 +57,8 @@ public partial class RecommendPage : ContentPage
                 var descLabel = new Label
                 {
                     Text = spot.Description,
-                    FontSize = 14,
-                    TextColor = (Color)Application.Current.Resources["GrayText"]
+                    FontSize = 16,
+                    TextColor = (Color)Application.Current.Resources["DarkBlack"]
                 };
 
                 // 附近美食按钮
@@ -92,8 +92,8 @@ public partial class RecommendPage : ContentPage
                 // 评价按钮
                 var testimonialBtn = new Button
                 {
-                    Text = "📝 评价",
-                    BackgroundColor = Color.FromArgb("#FFA500"),
+                    Text = "📝 Reviews",
+                    BackgroundColor =(Color)Application.Current.Resources["WineRed"],
                     TextColor = Colors.White,
                     CornerRadius = 8,
                     FontAttributes = FontAttributes.Bold
