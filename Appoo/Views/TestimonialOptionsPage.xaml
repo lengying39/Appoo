@@ -5,8 +5,8 @@
              Title="User Review"
              BackgroundImageSource="userreviewbg.jpg">
     <VerticalStackLayout Spacing="30" Padding="30" VerticalOptions="Center">
-        <Label Text="What do you want？" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center"/>
-        <Button Text="✍️ Write My Review" Clicked="OnWriteReviewClicked" BackgroundColor="#00B2EE"  TextColor="White" CornerRadius="15" HeightRequest="60"/>
-        <Button Text="👀 View other people's reviews" Clicked="OnViewReviewsClicked" BackgroundColor="MediumPurple"  TextColor="White" CornerRadius="15" HeightRequest="60"/>
+        <Label Text="What do you want？" TextColor="Black" FontSize="30" FontAttributes="Bold" HorizontalOptions="Center"/>
+        <Button Text="✍️ Write My Review" Clicked="OnWriteReviewClicked" BackgroundColor="#00B2EE"  TextColor="White" CornerRadius="15" HeightRequest="60" FontSize="15"/>
+        <Button Text="👀 View other people's reviews" Clicked="OnViewReviewsClicked" BackgroundColor="MediumPurple"  TextColor="White" CornerRadius="15" HeightRequest="60" FontSize="15"/>
     </VerticalStackLayout>
 </ContentPage>

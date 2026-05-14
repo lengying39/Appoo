@@ -22,7 +22,7 @@ public partial class MyReviewsPage : ContentPage
         var user = _dataService.CurrentUser;
         if (user == null)
         {
-            await DisplayAlert("提示", "请先登录", "OK");
+            await DisplayAlert("Tip", "Please login First!", "OK");
             await Shell.Current.GoToAsync("..");
             return;
         }
@@ -37,7 +37,7 @@ public partial class MyReviewsPage : ContentPage
         {
             ReviewsStack.Children.Add(new Label
             {
-                Text = "你还没有写过评价，去写一条吧～",
+                Text = "You haven't written a review yet, go write one～",
                 FontSize = 16,
                 TextColor = Colors.Gray,
                 HorizontalOptions = LayoutOptions.Center,

@@ -17,6 +17,12 @@
 		<Button Text="Switch to Azure Recognition (Need Config)" BackgroundColor="{StaticResource WineRed}"
                 TextColor="{StaticResource PureWhite}" CornerRadius="8" Clicked="OnSwitchRecog"/>
 		<Button Text="🗑️ Clear Cache" BackgroundColor="Gray" TextColor="White" CornerRadius="8" Clicked="OnClearCache"/>
+        <Button Text="📤 Export Database" 
+        BackgroundColor="{StaticResource WineRed}" 
+        TextColor="White" 
+        CornerRadius="8" 
+        Clicked="OnExportDatabaseClicked"
+        Margin="0,10,0,0"/>
 		<Button Text="ℹ️ About" BackgroundColor="{StaticResource WineRed}" TextColor="White" CornerRadius="8" Clicked="OnAbout"/>
 		<Label Text="Travel Guide v1.0" FontSize="14" TextColor="{StaticResource GrayText}" HorizontalOptions="Center" Margin="0,20,0,0"/>
 	</VerticalStackLayout>

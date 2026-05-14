@@ -6,18 +6,18 @@
              BackgroundImageSource="note.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="9" Padding="62">
-            <Label x:Name="SpotNameLabel" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource WineRed}"/>
+            <Label x:Name="SpotNameLabel" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource WineRed}" />
             <Label Text="Evaluation content" FontAttributes="Bold"/>
             <Editor x:Name="ReviewEditor" HeightRequest="150" Placeholder="Share your experience..." AutoSize="TextChanges"/>
 
-            <Label Text="Upload image (optional)" FontAttributes="Bold"/>
-            <Button Text="📷 Select Image" Clicked="OnAttachPhoto" BackgroundColor="Gray" TextColor="White"/>
+            <Label Text="Upload image (optional)" FontAttributes="Bold" TextColor="#3A79C0"/>
+            <Button Text="📷 Select Image" Clicked="OnAttachPhoto" BackgroundColor="Gray" TextColor="Black"/>
             <Image x:Name="SelectedImage" HeightRequest="120" Aspect="AspectFill" Margin="0,5,0,0"/>
 
             <Switch x:Name="ImageToggle" IsToggled="True"/>
-            <Label Text="Includes images" />
+            <Label Text="Includes images" TextColor="#3A79C0"/>
 
-            <Button Text="🙌🏻 Post Review" Clicked="OnSubmitClicked" BackgroundColor="#8b2323" TextColor="White" CornerRadius="10"/>
+            <Button Text="🙌🏻 Post Review" Clicked="OnSubmitClicked" BackgroundColor="#8b2323" TextColor="White" CornerRadius="10" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

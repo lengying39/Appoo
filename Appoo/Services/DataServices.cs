@@ -65,7 +65,7 @@ public class DataService : IDataService
         CurrentUser = null;
     }
 
-    // 实现 IDataService 要求的同步收藏方法（内部调用异步版本，使用 async void）
+    // 实现 IDataService 同步收藏方法（内部调用异步版本，使用 async void）
     public void AddFavorite(string spotName)
     {
         _ = AddFavoriteInternalAsync(spotName);
@@ -211,9 +211,30 @@ public class DataService : IDataService
     {
         if (string.IsNullOrWhiteSpace(landmarkName))
             return null;
+
+        // 去除括号内容，但保留主要名称（如“大雁塔(大慈恩寺)” → “大雁塔”）
         string cleanName = landmarkName.Split('(')[0].Trim();
         var allSpots = GetAllSpots();
 
-        return null; // 占位
+        // 1. 精确匹配中文名
+        var match = allSpots.FirstOrDefault(s => s.ChineseName == cleanName);
+        if (match != null) return match;
+
+        // 2. 精确匹配英文名（忽略大小写）
+        match = allSpots.FirstOrDefault(s => s.Name.Equals(cleanName, StringComparison.OrdinalIgnoreCase));
+        if (match != null) return match;
+
+        // 3. 模糊匹配：cleanName 包含中文名（例如“大雁塔南广场”包含“大雁塔”）
+        match = allSpots.FirstOrDefault(s => cleanName.Contains(s.ChineseName));
+        if (match != null) return match;
+
+        // 4. 模糊匹配：中文名包含 cleanName
+        match = allSpots.FirstOrDefault(s => s.ChineseName.Contains(cleanName));
+        if (match != null) return match;
+
+        // 5. 最后尝试：英文名包含 cleanName 或 cleanName 包含英文名
+        match = allSpots.FirstOrDefault(s => s.Name.Contains(cleanName, StringComparison.OrdinalIgnoreCase) ||
+                                             cleanName.Contains(s.Name, StringComparison.OrdinalIgnoreCase));
+        return match;
     }
 }

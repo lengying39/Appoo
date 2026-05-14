@@ -14,7 +14,7 @@
                     <Shadow Brush="Black" Offset="2,4" Radius="6" Opacity="0.3"/>
                 </Border.Shadow>
                 <VerticalStackLayout Spacing="5">
-                    <Label Text="🌍 Travel Guide" FontSize="3" FontAttributes="Bold"
+                    <Label Text="🌍 Travel Guide" FontSize="30" FontAttributes="Bold"
                            TextColor="Black" HorizontalOptions="Center"/>
                     <Label Text="Explore the beauty around you" FontSize="20"
                            TextColor="Black"  HorizontalOptions="Center" Opacity="0.9"/>

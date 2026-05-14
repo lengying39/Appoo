@@ -18,7 +18,7 @@
                          Stroke="Black"
                          StrokeThickness="5" />
                 <Image x:Name="ProfileImage"
-                       Source="notlog.jpg"
+                       Source="autohead.jpg"
                        WidthRequest="100" HeightRequest="100"
                        Aspect="AspectFill"
                        HorizontalOptions="Center" VerticalOptions="Center">
@@ -56,7 +56,7 @@
             <!-- Login / Logout -->
             <Button x:Name="AuthButton"
                     Text="Login"
-                    BackgroundColor="#C0E0F8" TextColor="#3A79C0" FontSize="20" FontAttributes="Bold"
+                    BackgroundColor="Gray" TextColor="#C0E0F8" FontSize="20" FontAttributes="Bold"
                     HeightRequest="50"
                     CornerRadius="21" Clicked="OnAuthButtonClicked" />
         </VerticalStackLayout>

@@ -69,7 +69,7 @@ public partial class ProfilePage : ContentPage
     {
         if (_dataService.CurrentUser == null)
         {
-            await DisplayAlert("提示", "请先登录", "OK");
+            await DisplayAlert("Tip", "Please login First!", "OK");
             return;
         }
         await Shell.Current.GoToAsync(nameof(MyReviewsPage));
@@ -94,13 +94,12 @@ public partial class ProfilePage : ContentPage
     {
         if (_dataService.CurrentUser != null)
         {
-            _dataService.Logout();   // 关键修改
+            _dataService.Logout();   
             UpdateUI();
         }
         else
         {
             Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
-        // 注意：在 else 分支中，页面会被替换，不需要再调用 UpdateUI
     }
 }

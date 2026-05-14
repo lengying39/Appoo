@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.ViewReviewsPage"
              Title="Check Views"
-             BackgroundColor="{StaticResource SoftWhite}">
+             BackgroundColor="#9898DC">
     <ScrollView>
         <VerticalStackLayout x:Name="ReviewsStack" Spacing="15" Padding="20"/>
     </ScrollView>
