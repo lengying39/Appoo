@@ -1,5 +1,6 @@
 ﻿using Appoo.Models;
 using Appoo.Services;
+using Microsoft.Maui.Controls.Shapes;
 
 namespace Appoo.Views;
 
@@ -13,20 +14,36 @@ public partial class RecommendPage : ContentPage
         InitializeComponent();
         _dataService = dataService;
         spots = _dataService.GetAllSpots();
-        _ = LoadSpotsAsync(); // 异步调用，避免阻塞
+        _ = LoadSpotsAsync();
     }
 
     private async Task LoadSpotsAsync()
     {
         try
         {
+            // 检查容器是否存在
+            if (SpotList == null)
+            {
+                await DisplayAlert("错误", "SpotList 控件未在 XAML 中定义", "OK");
+                return;
+            }
+
+            // 清空旧内容
+            SpotList.Children.Clear();
+
+            if (spots == null || spots.Count == 0)
+            {
+                await DisplayAlert("提示", "没有景点数据", "OK");
+                return;
+            }
+
             foreach (var spot in spots)
             {
                 // 外层卡片
                 var card = new Border
                 {
-                    StrokeShape = new Microsoft.Maui.Controls.Shapes.RoundRectangle { CornerRadius = 15 },
-                    BackgroundColor = Color.FromRgba(255, 255, 255, 180), // 半透明白色
+                    StrokeShape = new RoundRectangle { CornerRadius = 15 },
+                    BackgroundColor = Color.FromRgba(255, 255, 255, 180),
                     Stroke = Colors.White,
                     StrokeThickness = 2,
                     Padding = new Thickness(15),
@@ -93,7 +110,7 @@ public partial class RecommendPage : ContentPage
                 var testimonialBtn = new Button
                 {
                     Text = "📝 Reviews",
-                    BackgroundColor =(Color)Application.Current.Resources["WineRed"],
+                    BackgroundColor = (Color)Application.Current.Resources["WineRed"],
                     TextColor = Colors.White,
                     CornerRadius = 8,
                     FontAttributes = FontAttributes.Bold

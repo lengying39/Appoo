@@ -15,14 +15,10 @@ public class MyWebChromeClient : WebChromeClient
         _activity = activity ?? throw new ArgumentNullException(nameof(activity));
     }
 
-    public override void OnGeolocationPermissionsShowPrompt(string? origin, GeolocationPermissions.ICallback? callback)
+    public override void OnGeolocationPermissionsShowPrompt(string origin, GeolocationPermissions.ICallback callback)
     {
-        if (origin == null || callback == null)
-            return;
-
         const string fine = "android.permission.ACCESS_FINE_LOCATION";
         const string coarse = "android.permission.ACCESS_COARSE_LOCATION";
-
         if (ContextCompat.CheckSelfPermission(_activity, fine) == Permission.Granted ||
             ContextCompat.CheckSelfPermission(_activity, coarse) == Permission.Granted)
         {

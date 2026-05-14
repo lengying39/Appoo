@@ -7,9 +7,15 @@ namespace Appoo.Views;
 [QueryProperty(nameof(SpotName), "spotName")]
 public partial class AttractionDetailPage : ContentPage
 {
-    public string SpotName { get; set; }
+    private string? _spotName;
+    public string? SpotName
+    {
+        get => _spotName;
+        set { _spotName = value; LoadSpot(); }
+    }
+
     private readonly IDataService _dataService;
-    private TouristSpot _spot;
+    private TouristSpot? _spot;
 
     public AttractionDetailPage()
     {
@@ -17,15 +23,14 @@ public partial class AttractionDetailPage : ContentPage
         _dataService = App.Services.GetRequiredService<IDataService>();
     }
 
-    protected override void OnAppearing()
+    private void LoadSpot()
     {
-        base.OnAppearing();
+        if (string.IsNullOrEmpty(SpotName)) return;
         var allSpots = _dataService.GetAllSpots();
         _spot = allSpots.FirstOrDefault(s => s.Name == SpotName);
         if (_spot != null)
         {
             NameLabel.Text = _spot.Name;
-            // 使用详细描述（单独定义，不修改 spot.Description）
             DescLabel.Text = GetDetailedDescription(_spot.Name);
             OpenLabel.Text = $"Opening Hours: {_spot.OpenTime}";
             LocationLabel.Text = $"Location: {_spot.Location}";
@@ -33,11 +38,14 @@ public partial class AttractionDetailPage : ContentPage
         }
     }
 
+    // 其余方法保持不变（UpdateFavoriteButton, OnFavoriteButtonClicked, GetDetailedDescription）
+
+
     private void UpdateFavoriteButton()
     {
         var favorites = _dataService.GetFavorites();
         bool isFav = favorites.Contains(SpotName);
-        FavoriteButton.Text = isFav ? "❤️ Favorited" : "🤍 Favorite";
+        FavoriteButton.Text = isFav ? "❤️ Favorited" : "💗   Add to MyFavorite";
     }
 
     private async void OnFavoriteButtonClicked(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Appoo.Models;
+using Appoo.Models;   // 只使用 Appoo.Models，不要混用 Appo.Models
 
 namespace Appoo.Services;
 
@@ -16,6 +17,6 @@ public interface IDataService
     List<string> GetAllFoods();
     List<string> GetAllFacilities();
 
-    // ★ 新增：识别结果匹配本地景点
+    // 识别结果匹配本地景点
     TouristSpot? RecognizeAndMatchSpot(string? landmarkName);
 }

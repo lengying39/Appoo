@@ -1,4 +1,5 @@
-﻿using Appoo.Services;
+﻿using Appoo.Models;          // 确保 User 类型引用正确
+using Appoo.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Appoo.Views;
@@ -94,11 +95,12 @@ public partial class ProfilePage : ContentPage
         if (_dataService.CurrentUser != null)
         {
             _dataService.Logout();   // 关键修改
+            UpdateUI();
         }
         else
         {
             Application.Current.MainPage = new NavigationPage(new LoginPage());
         }
-        UpdateUI();
+        // 注意：在 else 分支中，页面会被替换，不需要再调用 UpdateUI
     }
 }

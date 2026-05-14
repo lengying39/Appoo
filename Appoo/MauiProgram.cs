@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Handlers;
-using Appoo.Services;
+﻿using Appoo.Services;
 using Appoo.Views;
+using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
 #if ANDROID
 using Appoo.Platforms.Android;
 #endif
@@ -22,11 +22,11 @@ public static class MauiProgram
             });
 
         // Services
-        builder.Services.AddSingleton<IDataService, DataService>();
-        builder.Services.AddSingleton<DatabaseService>();
-        builder.Services.AddSingleton<IImageRecognitionService, LandmarkRecognitionService>();
+        builder.Services.AddSingleton<DatabaseService>();                    // 数据库服务
+        builder.Services.AddSingleton<IDataService, DataService>();         // 业务数据服务
+        builder.Services.AddSingleton<IImageRecognitionService, LandmarkRecognitionService>(); // 图片识别
 
-        // Pages
+        // Pages (注意：这里应该全部使用 AddTransient，而不是 AddSingleton)
         builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<GaodeMapPage>();
         builder.Services.AddTransient<CameraPage>();

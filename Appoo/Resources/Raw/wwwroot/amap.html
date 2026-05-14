@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>🚀 无Loader，纯享版地图</title>
+    <title>Gaode Map + Real-time Location</title>
     <style>
         * {
             margin: 0;
@@ -17,108 +17,156 @@
 
         #debug {
             position: fixed;
-            top: 10px;
+            bottom: 10px;
             left: 10px;
-            color: red;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: #0f0;
             font-size: 12px;
-            background: white;
+            padding: 8px;
+            border-radius: 8px;
             z-index: 9999;
+            max-height: 120px;
+            overflow-y: auto;
+            font-family: monospace;
+            pointer-events: none;
+        }
+
+        #locate-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            pointer-events: auto;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div id="container"></div>
     <div id="debug"></div>
+    <button id="locate-btn">📍 Locate Me</button>
 
     <script>
-        // 超级日志函数，直接显示在手机屏幕上
         function log(msg) {
-            document.getElementById('debug').innerHTML += '✅ ' + msg + '<br/>';
+            var div = document.getElementById('debug');
+            div.innerHTML += '> ' + msg + '<br/>';
+            div.scrollTop = div.scrollHeight;
+            console.log(msg);
         }
-        // 全局JS错误捕获
         window.onerror = function (msg, url, line) {
-            document.getElementById('debug').innerHTML += '❌ JS错误: ' + msg + ' (行:' + line + ')<br/>';
+            log('❌ JS Error: ' + msg + ' (line:' + line + ')');
             return true;
         };
 
-        log('Step 1: 开始加载...');
-    </script>
+        log('Page loaded, initializing...');
 
-    <!-- 直接使用高德官方JSAPI Loader，从在线地址加载，完全跳过本地loader.js -->
-    <script type="text/javascript">
-        log('Step 2: 准备加载官方JSAPI Loader。');
-        // 安全密钥配置
+        // IMPORTANT Code Key
         window._AMapSecurityConfig = {
-            securityJsCode: '477b316fb33311856706463b416e3371', // 
+            securityJsCode: '477b316fb33311856706463b416e3371'
         };
 
-        // 动态创建script标签加载高德地图核心库
+        var map = null;
+        var geolocation = null;
+
         var script = document.createElement('script');
-        script.type = 'text/javascript';
-        // 在这里，我们把你的Key和需要的插件一起拼接到URL中
         script.src = 'https://webapi.amap.com/maps?v=2.0&key=4434777ab901edae0e1a903f99f537bc&plugin=AMap.Geolocation,AMap.Scale';
-        script.onerror = function () {
-            log('❌ 高德地图JS库从CDN加载失败！');
-        };
         script.onload = function () {
-            log('Step 3: JS库文件下载完成，开始初始化地图...');
+            log('Gaode library loaded, initializing map...');
             initMap();
+        };
+        script.onerror = function () {
+            log('❌ Failed to load Gaode library. Check network or API key.');
         };
         document.head.appendChild(script);
 
-        // 初始化地图的函数
         function initMap() {
             try {
-                log('Step 4: 尝试创建地图实例。');
-                var map = new AMap.Map('container', {
-                    zoom: 12,
-                    center: [108.9427, 34.2583],   // 西安钟楼，你可以改成其他城市的坐标
+                map = new AMap.Map('container', {
+                    zoom: 13,
+                    center: [108.9427, 34.2583],  // Xi'an Bell Tower
                     viewMode: '2D'
                 });
+                log('✅ Map container initialized');
 
-                log('🎉🎉🎉 地图初始化成功！你应该能看到地图了！ 🎉🎉🎉');
-
-                // 添加比例尺控件
                 map.addControl(new AMap.Scale());
 
-                // 以下是你之前的标记点和定位代码，功能照旧，保持不变
                 var spots = [
-                    { name: '大雁塔', lng: 108.9594, lat: 34.2136 },
-                    { name: '钟楼', lng: 108.9427, lat: 34.2583 },
-                    { name: '兵马俑', lng: 109.2731, lat: 34.3849 }
+                    { name: 'Giant Wild Goose Pagoda', lng: 108.9594, lat: 34.2136 },
+                    { name: 'Bell Tower', lng: 108.9427, lat: 34.2583 },
+                    { name: 'Terracotta Warriors', lng: 109.2731, lat: 34.3849 }
                 ];
                 spots.forEach(function (s) {
                     var marker = new AMap.Marker({ position: [s.lng, s.lat], title: s.name });
                     marker.setMap(map);
                     marker.setLabel({ content: s.name, direction: 'top' });
                 });
+                log('✅ Markers added');
 
-                // 定位
                 AMap.plugin('AMap.Geolocation', function () {
-                    var geo = new AMap.Geolocation({ enableHighAccuracy: true, timeout: 10000 });
-                    map.addControl(geo);
-                    geo.getCurrentPosition(function (status, result) {
-                        if (status === 'complete' && result.position) {
-                            var userMarker = new AMap.Marker({
-                                position: [result.position.lng, result.position.lat],
-                                icon: new AMap.Icon({
-                                    size: new AMap.Size(24, 24),
-                                    image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
-                                })
-                            });
-                            userMarker.setMap(map);
-                            map.setCenter([result.position.lng, result.position.lat]);
-                            log('定位成功！');
-                        } else {
-                            log('定位失败: ' + result.message);
-                        }
+                    geolocation = new AMap.Geolocation({
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0,
+                        convert: true,
+                        showButton: false,
+                        showMarker: true,
+                        showCircle: true,
+                        panToLocation: true,
+                        zoomToAccuracy: true
                     });
+                    map.addControl(geolocation);
+                    log('✅ Geolocation plugin ready');
+                    locateUser();
                 });
 
             } catch (e) {
-                log('❌ 地图初始化时发生JavaScript异常: ' + e.toString());
+                log('❌ Map init error: ' + e.message);
             }
         }
+
+        function locateUser() {
+            if (!geolocation) {
+                log('⚠️ Geolocation not ready yet, try again later.');
+                return;
+            }
+            log('Getting current position...');
+            geolocation.getCurrentPosition(function (status, result) {
+                if (status === 'complete' && result && result.position) {
+                    var lng = result.position.lng;
+                    var lat = result.position.lat;
+                    log(`🎉 Location success! Lon:${lng}, Lat:${lat}`);
+                    map.setCenter([lng, lat]);
+                    var userMarker = new AMap.Marker({
+                        position: [lng, lat],
+                        icon: new AMap.Icon({
+                            size: new AMap.Size(24, 24),
+                            image: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
+                        }),
+                        title: 'My location'
+                    });
+                    userMarker.setMap(map);
+                } else {
+                    var errorMsg = result && result.message ? result.message : 'unknown error';
+                    log(`❌ Location failed: ${errorMsg}`);
+                    if (errorMsg.includes('Geolocation permission denied')) {
+                        log('Hint: Allow location permission in app settings.');
+                    }
+                }
+            });
+        }
+
+        document.getElementById('locate-btn').addEventListener('click', function () {
+            locateUser();
+        });
     </script>
 </body>
 </html>
