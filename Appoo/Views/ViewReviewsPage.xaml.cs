@@ -32,7 +32,7 @@ public partial class ViewReviewsPage : ContentPage
             {
                 Text = "No reviews yet; be the first to add one～",
                 FontSize = 16,
-                TextColor = Colors.Gray,
+                TextColor = Colors.Black,
                 HorizontalOptions = LayoutOptions.Center,
                 Margin = new Thickness(0, 50, 0, 0)
             });

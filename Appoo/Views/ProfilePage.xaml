@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.ProfilePage"
              Title="Me"
-             BackgroundImageSource="mebg.jpg">   
+             BackgroundImageSource="mebg22.jpg">   
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="⚙️" Clicked="OnSettingsClicked"  />
     </ContentPage.ToolbarItems>
@@ -41,14 +41,14 @@
 
             <!-- 中间按钮预留区 -->
             <Button Text="My Reviews" 
-                    BackgroundColor="#8B2323" 
+                    BackgroundColor="{StaticResource WineRed}" 
                     TextColor="White" CornerRadius="21" FontSize="17" FontAttributes="Bold"
                     HeightRequest="50"
                     Clicked="OnMyReviewsClicked" />
 
             <!-- My Favorites -->
             <Button Text="My Favorites"
-                    BackgroundColor="#8B2323" TextColor="White" FontSize="17"
+                    BackgroundColor="{StaticResource WineRed}" TextColor="White" FontSize="17"
                     CornerRadius="21" Clicked="OnMyFavoritesClicked"
                     HeightRequest="50"
                     FontAttributes="Bold" />
@@ -56,7 +56,7 @@
             <!-- Login / Logout -->
             <Button x:Name="AuthButton"
                     Text="Login"
-                    BackgroundColor="Gray" TextColor="#C0E0F8" FontSize="20" FontAttributes="Bold"
+                    BackgroundColor="Gray" TextColor="White" FontSize="20" FontAttributes="Bold"
                     HeightRequest="50"
                     CornerRadius="21" Clicked="OnAuthButtonClicked" />
         </VerticalStackLayout>

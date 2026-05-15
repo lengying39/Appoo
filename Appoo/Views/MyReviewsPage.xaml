@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.MyReviewsPage"
              Title="My Reviews"
-             BackgroundColor="#897CD3">
+             BackgroundImageSource="xian.jpg">
     <ScrollView>
         <VerticalStackLayout x:Name="ReviewsStack" Spacing="15" Padding="20"/>
     </ScrollView>

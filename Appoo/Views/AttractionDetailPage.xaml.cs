@@ -38,9 +38,6 @@ public partial class AttractionDetailPage : ContentPage
         }
     }
 
-    // 其余方法保持不变（UpdateFavoriteButton, OnFavoriteButtonClicked, GetDetailedDescription）
-
-
     private void UpdateFavoriteButton()
     {
         var favorites = _dataService.GetFavorites();

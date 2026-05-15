@@ -62,14 +62,16 @@ public partial class MyReviewsPage : ContentPage
             {
                 Text = $"景点：{review.SpotName}",
                 FontSize = 16,
-                FontAttributes = FontAttributes.Bold
+                FontAttributes = FontAttributes.Bold,
+                TextColor= Colors.White,
             });
 
             layout.Children.Add(new Label
             {
                 Text = review.Comment,
                 FontSize = 14,
-                LineBreakMode = LineBreakMode.WordWrap
+                LineBreakMode = LineBreakMode.WordWrap,
+                TextColor=Colors.White
             });
 
             if (!string.IsNullOrEmpty(review.ImagePath) && File.Exists(review.ImagePath))
@@ -87,7 +89,7 @@ public partial class MyReviewsPage : ContentPage
             {
                 Text = review.DatePosted.ToString("yyyy-MM-dd HH:mm"),
                 FontSize = 10,
-                TextColor = Colors.Gray
+                TextColor = Colors.White
             });
 
             frame.Content = layout;

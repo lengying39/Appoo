@@ -1,6 +1,5 @@
 ﻿using Appoo.Models;
-using Appoo.Models;   // 只使用 Appoo.Models，不要混用 Appo.Models
-
+using Appoo.Models;   
 namespace Appoo.Services;
 
 public interface IDataService

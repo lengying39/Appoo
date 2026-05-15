@@ -60,5 +60,64 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\bg\bg1.jpg" />
+	  <MauiImage Include="Resources\Images\bg\bg2.jpg" />
+	  <MauiImage Include="Resources\Images\bg\bg3.jpg" />
+	  <MauiImage Include="Resources\Images\bg\bg5.jpg" />
+	  <MauiImage Include="Resources\Images\bg\bg6.jpg" />
+	  <MauiImage Include="Resources\Images\bg\bg7.jpg" />
+	  <MauiImage Include="Resources\Images\bg\bg8.jpg" />
+	  <MauiImage Include="Resources\Images\bg\detailbg.jpg" />
+	  <MauiImage Include="Resources\Images\bg\mebg.jpg" />
+	  <MauiImage Include="Resources\Images\bg\mebg22.jpg" />
+	  <MauiImage Include="Resources\Images\bg\msbg.jpg" />
+	  <MauiImage Include="Resources\Images\bg\msbg2.jpg" />
+	  <MauiImage Include="Resources\Images\bg\note.jpg" />
+	  <MauiImage Include="Resources\Images\bg\userreviewbg.jpg" />
+	  <MauiImage Include="Resources\Images\bg\xian.jpg" />
+	  <MauiImage Include="Resources\Images\food\bmyimage\bmy1.jpg" />
+	  <MauiImage Include="Resources\Images\food\bmyimage\bmy2.jpg" />
+	  <MauiImage Include="Resources\Images\food\bmyimage\bmy3.jpg" />
+	  <MauiImage Include="Resources\Images\food\bmyimage\bmy4.jpg" />
+	  <MauiImage Include="Resources\Images\food\bmyimage\bmy5.jpg" />
+	  <MauiImage Include="Resources\Images\food\dtfryimage\dtfry1.jpg" />
+	  <MauiImage Include="Resources\Images\food\dtfryimage\dtfry2.jpg" />
+	  <MauiImage Include="Resources\Images\food\dtfryimage\dtfry3.jpg" />
+	  <MauiImage Include="Resources\Images\food\dtfryimage\dtfry4.jpg" />
+	  <MauiImage Include="Resources\Images\food\dtfryimage\dtfry5.jpg" />
+	  <MauiImage Include="Resources\Images\food\dytimage\dyt1.jpg" />
+	  <MauiImage Include="Resources\Images\food\dytimage\dyt2.jpg" />
+	  <MauiImage Include="Resources\Images\food\dytimage\dyt3.jpg" />
+	  <MauiImage Include="Resources\Images\food\dytimage\dyt4.jpg" />
+	  <MauiImage Include="Resources\Images\food\dytimage\dyt5.jpg" />
+	  <MauiImage Include="Resources\Images\food\hqgimage\hqg1.jpg" />
+	  <MauiImage Include="Resources\Images\food\hqgimage\hqg2.jpg" />
+	  <MauiImage Include="Resources\Images\food\hqgimage\hqg3.jpg" />
+	  <MauiImage Include="Resources\Images\food\hqgimage\hqg4.jpg" />
+	  <MauiImage Include="Resources\Images\food\hqgimage\hqg5.jpg" />
+	  <MauiImage Include="Resources\Images\food\shanboimage\shanbo1.jpg" />
+	  <MauiImage Include="Resources\Images\food\shanboimage\shanbo2.jpg" />
+	  <MauiImage Include="Resources\Images\food\shanboimage\shanbo3.jpg" />
+	  <MauiImage Include="Resources\Images\food\shanboimage\shanbo4.jpg" />
+	  <MauiImage Include="Resources\Images\food\shanboimage\shanbo5.jpg" />
+	  <MauiImage Include="Resources\Images\food\zlimage\zl1.jpg" />
+	  <MauiImage Include="Resources\Images\food\zlimage\zl2.jpg" />
+	  <MauiImage Include="Resources\Images\food\zlimage\zl3.jpg" />
+	  <MauiImage Include="Resources\Images\food\zlimage\zl4.jpg" />
+	  <MauiImage Include="Resources\Images\food\zlimage\zl5.jpg" />
+	  <MauiImage Include="Resources\Images\others\a.jpg" />
+	  <MauiImage Include="Resources\Images\others\autohead.jpg" />
+	  <MauiImage Include="Resources\Images\others\b.jpg" />
+	  <MauiImage Include="Resources\Images\others\banner.jpg" />
+	  <MauiImage Include="Resources\Images\others\detail.jpg" />
+	  <MauiImage Include="Resources\Images\others\notlog.jpg" />
+	  <MauiImage Include="Resources\Images\spots\bmy.jpg" />
+	  <MauiImage Include="Resources\Images\spots\dtfry.jpg" />
+	  <MauiImage Include="Resources\Images\spots\dyt.png" />
+	  <MauiImage Include="Resources\Images\spots\hqg.jpg" />
+	  <MauiImage Include="Resources\Images\spots\shanbo.jpg" />
+	  <MauiImage Include="Resources\Images\spots\zl.jpg" />
+	</ItemGroup>
 
 </Project>

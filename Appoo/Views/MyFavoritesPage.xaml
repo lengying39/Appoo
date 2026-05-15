@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.MyFavoritesPage"
              Title="Favorites"
-             BackgroundColor="{StaticResource SoftWhite}">
-	<VerticalStackLayout Padding="20" Spacing="10">
-		<Label Text="My Favorites" FontSize="24" FontAttributes="Bold"
+             BackgroundImageSource="mebg.jpg">
+	<VerticalStackLayout Padding="30" Spacing="30">
+		<Label Text="My Favorites" FontSize="30" FontAttributes="Bold"
                TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
-		<Label x:Name="NoFavsLabel" Text="No favorites yet." HorizontalOptions="Center" TextColor="Gray"/>
-		<VerticalStackLayout x:Name="FavoritesStack" Spacing="5"/>
+		<Label x:Name="NoFavsLabel" Text="No favorites yet." HorizontalOptions="Center" TextColor="#1874CD" FontSize="18"/>
+		<VerticalStackLayout x:Name="FavoritesStack" Spacing="5" BackgroundColor="#BFEFFF" />
 		<Button Text="Clear All" BackgroundColor="Gray" TextColor="White" CornerRadius="8" Clicked="OnClearAll"/>
 	</VerticalStackLayout>
 </ContentPage>

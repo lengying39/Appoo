@@ -17,7 +17,7 @@
             <Switch x:Name="ImageToggle" IsToggled="True"/>
             <Label Text="Includes images" TextColor="#3A79C0"/>
 
-            <Button Text="🙌🏻 Post Review" Clicked="OnSubmitClicked" BackgroundColor="#8b2323" TextColor="White" CornerRadius="10" />
+            <Button Text="🙌🏻    Post Review" FontSize="20" Clicked="OnSubmitClicked" BackgroundColor="#8b2323" TextColor="White" CornerRadius="10" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
