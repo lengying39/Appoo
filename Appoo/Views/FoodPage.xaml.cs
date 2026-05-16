@@ -1,13 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Appoo.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Appoo.Views;
 
 [QueryProperty(nameof(SpotName), "spotName")]
-public partial class FoodPage : ContentPage, INotifyPropertyChanged
+public partial class FoodPage : ContentPage  // 不需要再实现 INotifyPropertyChanged，因为属性变更由 ObservableCollection 处理
 {
     private string _spotName;
     public string SpotName
@@ -23,9 +24,12 @@ public partial class FoodPage : ContentPage, INotifyPropertyChanged
         set { _foodItems = value; OnPropertyChanged(); }
     }
 
+    private readonly IDataService _dataService;
+
     public FoodPage()
     {
         InitializeComponent();
+        _dataService = App.Services.GetRequiredService<IDataService>();
         BindingContext = this;
     }
 
@@ -33,110 +37,143 @@ public partial class FoodPage : ContentPage, INotifyPropertyChanged
     {
         FoodItems.Clear();
 
-        // Get current spot data
         var dataService = App.Services.GetRequiredService<IDataService>();
         var allSpots = dataService.GetAllSpots();
         var currentSpot = allSpots.FirstOrDefault(s => s.Name == SpotName);
-
         if (currentSpot == null) return;
 
-        // Load different food lists per attraction (5 each)
+        // 获取已收藏的美食名称（带 "Food:" 前缀）
+        var favoriteFoods = (_dataService.GetAllFavorites() ?? new List<string>())
+            .Where(f => f.StartsWith("Food:"))
+            .Select(f => f.Substring(5))
+            .ToList();
+
+        void AddItem(string name, string desc, string price, string imageFileName)
+        {
+            var item = new FoodItem
+            {
+                Name = name,
+                Description = desc,
+                Price = price,
+                ImageFileName = imageFileName,
+                IsFavorite = favoriteFoods.Contains(name),
+                ToggleFavoriteCommand = new Command(() => ToggleFavorite(name))
+            };
+            FoodItems.Add(item);
+        }
+
         switch (currentSpot.Name)
         {
-            case "Giant Wild Goose Pagoda": // Dayanta
-                FoodItems.Add(new FoodItem 
-                {
-                    Name = "Qin Sheng Xuan Home Cuisine", 
-                    Description = "Authentic Shaanxi cuisine, highly recommended by locals", 
-                    Price = "¥69/person", Dish = "Old Shaanxi Hulu Chicken",
-                    ImageFileName = "dyt1.jpg"
-                });
-
-                FoodItems.Add(new FoodItem 
-                { 
-                    Name = "Shi San Chao · Dayanta Impression", 
-                    Description = "Best view of the pagoda", 
-                    Price = "¥85/person", 
-                    Dish = "Red Sleeves Laughing",
-                    ImageFileName = "dyt2.jpg"});
-
-                FoodItems.Add(new FoodItem 
-                { 
-                    Name = "Da Cheng Zhi · Shang Shi Fang", 
-                    Description = "Food hub at Tang Paradise", 
-                    Price = "¥50/person",
-                    Dish = "Lamb Pao Mo",
-                    ImageFileName = "dyt3.jpg"});
-
-                FoodItems.Add(new FoodItem 
-                { 
-                    
-                    Name = "Rain Flower Western Restaurant", 
-                    Description = "Western dining with pagoda view", 
-                    Price = "¥121/person", 
-                    Dish = "Steak Buffet",
-                    ImageFileName = "dyt4.jpg"});
-
-                FoodItems.Add(new FoodItem 
-                { 
-                    Name = "Chang'an Grand Brand Stall", 
-                    Description = "Popular Shaanxi restaurant inside Dayue City", 
-                    Price = "¥80/person", 
-                    Dish = "Chang'an Hulu Chicken",
-                    ImageFileName = "dyt5.jpg"});
+            case "Giant Wild Goose Pagoda":
+                AddItem("Qin Sheng Xuan Home Cuisine", "Authentic Shaanxi cuisine, highly recommended by locals", "¥69/person", "dyt1.jpg");
+                AddItem("Shi San Chao · Dayanta Impression", "Best view of the pagoda", "¥85/person", "dyt2.jpg");
+                AddItem("Da Cheng Zhi · Shang Shi Fang", "Food hub at Tang Paradise", "¥50/person", "dyt3.jpg");
+                AddItem("Rain Flower Western Restaurant", "Western dining with pagoda view", "¥121/person", "dyt4.jpg");
+                AddItem("Chang'an Grand Brand Stall", "Popular Shaanxi restaurant inside Dayue City", "¥80/person", "dyt5.jpg");
                 break;
 
             case "Bell Tower":
-                FoodItems.Add(new FoodItem { Name = "Suan La Gu · Shaanxi Style Halal Shabu", Description = "Halal hot pot facing the Drum Tower", Price = "¥99/person", Dish = "Fresh sliced beef & lamb", ImageFileName = "zl1.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Zui Chang'an (Bell Tower Flagship)", Description = "Asia's 100 best Shaanxi restaurant", Price = "¥95/person", Dish = "Intangible Heritage Hulu Chicken", ImageFileName = "zl2.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Tong Sheng Xiang · Intangible Heritage (Bell Tower)", Description = "Century-old time-honored brand", Price = "¥52/person", Dish = "Lamb Pao Mo", ImageFileName = "zl3.jpg" });
-                FoodItems.Add(new FoodItem { Name = "De Fa Chang Dumpling House", Description = "China time-honored dumpling banquet", Price = "¥65/person", Dish = "Dumpling Banquet", ImageFileName = "zl4.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Ben Pa Ba Shaanxi Cuisine", Description = "High value Shaanxi food", Price = "¥60/person", Dish = "Hulu Chicken", ImageFileName = "zl5.jpg" });
+                AddItem("Suan La Gu · Shaanxi Style Halal Shabu", "Halal hot pot facing the Drum Tower", "¥99/person", "zl1.jpg");
+                AddItem("Zui Chang'an (Bell Tower Flagship)", "Asia's 100 best Shaanxi restaurant", "¥95/person", "zl2.jpg");
+                AddItem("Tong Sheng Xiang · Intangible Heritage (Bell Tower)", "Century-old time-honored brand", "¥52/person", "zl3.jpg");
+                AddItem("De Fa Chang Dumpling House", "China time-honored dumpling banquet", "¥65/person", "zl4.jpg");
+                AddItem("Ben Pa Ba Shaanxi Cuisine", "High value Shaanxi food", "¥60/person", "zl5.jpg");
                 break;
 
             case "Terra Cotta Warriors":
-                FoodItems.Add(new FoodItem { Name = "Qin Feng Lao Pu", Description = "Authentic Pao Mo near the Terracotta Army", Price = "¥40/person", Dish = "Handmade Lamb Pao Mo" , ImageFileName = "bmy1.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Wei Jia Liang Pi (Terracotta Army Branch)", Description = "Fast local snack", Price = "¥15/person", Dish = "Secret Liangpi", ImageFileName = "bmy2.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Hou Gong Yuan Lin Restaurant", Description = "Garden style restaurant", Price = "¥70/person", Dish = "Shaanxi Cuisine", ImageFileName = "bmy3.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Cheng Cheng Chong Bin Shui Pen Yang Rou", Description = "Authentic Lintong Shui Pen Lamb", Price = "¥40/person", Dish = "Shui Pen Lamb", ImageFileName = "bmy4.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Tang Wu Da Pan Ji", Description = "Lintong old shop big plate chicken", Price = "¥50/person", Dish = "Xinjiang Big Plate Chicken", ImageFileName = "bmy5.jpg" });
+                AddItem("Qin Feng Lao Pu", "Authentic Pao Mo near the Terracotta Army", "¥40/person", "bmy1.jpg");
+                AddItem("Wei Jia Liang Pi (Terracotta Army Branch)", "Fast local snack", "¥15/person", "bmy2.jpg");
+                AddItem("Hou Gong Yuan Lin Restaurant", "Garden style restaurant", "¥70/person", "bmy3.jpg");
+                AddItem("Cheng Cheng Chong Bin Shui Pen Yang Rou", "Authentic Lintong Shui Pen Lamb", "¥40/person", "bmy4.jpg");
+                AddItem("Tang Wu Da Pan Ji", "Lintong old shop big plate chicken", "¥50/person", "bmy5.jpg");
                 break;
 
             case "Huaqing Palace":
-                FoodItems.Add(new FoodItem { Name = "Yu Shan Yuan", Description = "Palace Shaanxi cuisine inside Huaqing Hot Spring Hotel", Price = "¥200/person", Dish = "Palace Snack Banquet", ImageFileName = "hqg1.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Qin Restaurant", Description = "Immersive Qin Dynasty set meal experience", Price = "¥180/person", Dish = "Qin Theme Set", ImageFileName = "hqg2.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Xi'an Xinjiang Big Plate Chicken (Lintong Branch)", Description = "Years-old Xinjiang cuisine shop", Price = "¥28/person", Dish = "Xinjiang Big Plate Chicken", ImageFileName = "hqg3.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Ke Lai Zhou Dao (Lintong Branch)", Description = "Specialty 'Bubble Oil Cake'", Price = "¥30/person", Dish = "Bubble Oil Cake, Jujube Paste", ImageFileName = "hqg4.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Huaqing Eros Palace Yu Shan Ge", Description = "Chinese restaurant inside hot spring hotel", Price = "¥93/person", Dish = "Signature Spicy Fried Abalone", ImageFileName = "hqg5.jpg" });
+                AddItem("Yu Shan Yuan", "Palace Shaanxi cuisine inside Huaqing Hot Spring Hotel", "¥200/person", "hqg1.jpg");
+                AddItem("Qin Restaurant", "Immersive Qin Dynasty set meal experience", "¥180/person", "hqg2.jpg");
+                AddItem("Xi'an Xinjiang Big Plate Chicken (Lintong Branch)", "Years-old Xinjiang cuisine shop", "¥28/person", "hqg3.jpg");
+                AddItem("Ke Lai Zhou Dao (Lintong Branch)", "Specialty 'Bubble Oil Cake'", "¥30/person", "hqg4.jpg");
+                AddItem("Huaqing Eros Palace Yu Shan Ge", "Chinese restaurant inside hot spring hotel", "¥93/person", "hqg5.jpg");
                 break;
 
             case "Shaanxi History Museum":
-                FoodItems.Add(new FoodItem { Name = "Qing Zhen Gang Gang Roast Meat", Description = "30-year-old 1-yuan BBQ shop", Price = "¥50/person", Dish = "1 yuan skewer", ImageFileName = "shanbo1.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Bai Nian Shou Zhua Yang Rou", Description = "Walkable from the museum", Price = "¥100/person", Dish = "Intangible heritage hand-held lamb", ImageFileName = "shanbo2.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Da Chu Xiao Guan (Xiaozhai Museum Branch)", Description = "Guanzhong folk Shaanxi cuisine", Price = "¥55/person", Dish = "Shaanxi Cuisine", ImageFileName = "shanbo3.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Qin Jiu Wei", Description = "Shaanxi intangible heritage cuisine", Price = "¥40/person", Dish = "Zichang Pancake", ImageFileName = "shanbo4.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Chang'an Grand Brand Stall (Shaanxi History Museum Cultural Restaurant)", Description = "Tang style cultural restaurant", Price = "¥80/person", Dish = "Hulu Chicken", ImageFileName = "shanbo5.jpg" });
+                AddItem("Qing Zhen Gang Gang Roast Meat", "30-year-old 1-yuan BBQ shop", "¥50/person", "shanbo1.jpg");
+                AddItem("Bai Nian Shou Zhua Yang Rou", "Walkable from the museum", "¥100/person", "shanbo2.jpg");
+                AddItem("Da Chu Xiao Guan (Xiaozhai Museum Branch)", "Guanzhong folk Shaanxi cuisine", "¥55/person", "shanbo3.jpg");
+                AddItem("Qin Jiu Wei", "Shaanxi intangible heritage cuisine", "¥40/person", "shanbo4.jpg");
+                AddItem("Chang'an Grand Brand Stall (Shaanxi History Museum Cultural Restaurant)", "Tang style cultural restaurant", "¥80/person", "shanbo5.jpg");
                 break;
 
             case "Tang Paradise (Datang Furong Garden)":
-                FoodItems.Add(new FoodItem { Name = "Yin Tang Chinese Cuisine", Description = "Opposite the main gate of Tang Paradise", Price = "¥120/person", Dish = "Intangible heritage Hulu Head Pao Mo", ImageFileName = "dtfry1.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Ma La Shang Xi", Description = "Garden hot pot inside Yu Yan Palace", Price = "¥111/person", Dish = "Thousand layer tripe, ice jelly", ImageFileName = "dtfry2.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Fu Tao Museum · Tang Yu Yin", Description = "Courtyard restaurant inside a museum", Price = "¥150/person", Dish = "Qin pepper dried beef", ImageFileName = "dtfry3.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Zi Wu Lu Zhang Ji Rou Jia Mo", Description = "West side of Tang Paradise", Price = "¥16/person", Dish = "Rou Jia Mo", ImageFileName = "dtfry4.jpg" });
-                FoodItems.Add(new FoodItem { Name = "Yan Ran Ju", Description = "Near South Gate of Tang Paradise", Price = "¥70/person", Dish = "Shaanxi Cuisine", ImageFileName = "dtfry5.jpg" });
+                AddItem("Yin Tang Chinese Cuisine", "Opposite the main gate of Tang Paradise", "¥120/person", "dtfry1.jpg");
+                AddItem("Ma La Shang Xi", "Garden hot pot inside Yu Yan Palace", "¥111/person", "dtfry2.jpg");
+                AddItem("Fu Tao Museum · Tang Yu Yin", "Courtyard restaurant inside a museum", "¥150/person", "dtfry3.jpg");
+                AddItem("Zi Wu Lu Zhang Ji Rou Jia Mo", "West side of Tang Paradise", "¥16/person", "dtfry4.jpg");
+                AddItem("Yan Ran Ju", "Near South Gate of Tang Paradise", "¥70/person", "dtfry5.jpg");
                 break;
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected void OnPropertyChanged([CallerMemberName] string name = null) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    private async void ToggleFavorite(string foodName)
+    {
+        if (_dataService.CurrentUser == null)
+        {
+            await DisplayAlert("Info", "Please login to add favorites.", "OK");
+            return;
+        }
+
+        var allFavs = _dataService.GetAllFavorites() ?? new List<string>();
+        bool isFav = allFavs.Contains($"Food:{foodName}");
+
+        if (isFav)
+            _dataService.RemoveFavoriteFood(foodName);
+        else
+            _dataService.AddFavoriteFood(foodName);
+
+        var item = FoodItems.FirstOrDefault(i => i.Name == foodName);
+        if (item != null)
+        {
+            item.IsFavorite = !isFav;
+        }
+    }
+
+    // 辅助方法：由于 FoodPage 不再实现 INotifyPropertyChanged，但为了 FoodItems setter 可以通知，我们保留一个简单版本
+    private void OnPropertyChanged([CallerMemberName] string name = null)
+    {
+        // 此方法仅用于 FoodItems setter，但因为 FoodPage 未实现 INotifyPropertyChanged，这里可以不调用任何东西。
+        // 实际上 ObservableCollection 的更新会自动刷新 UI，所以 setter 中不需要通知。
+        // 为了安全，注释掉通知逻辑。
+    }
 }
-public class FoodItem
+
+public class FoodItem : INotifyPropertyChanged
 {
-    public string Name { get; set; }        // 店名
-    public string Description { get; set; } // 一句话描述或招牌菜
-    public string Price { get; set; }       // 人均或特色菜价格
-    public string Dish { get; set; }        // 主推菜品
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public string Price { get; set; }
+    public string Dish { get; set; }
     public string ImageFileName { get; set; }
+
+    private bool _isFavorite;
+    public bool IsFavorite
+    {
+        get => _isFavorite;
+        set
+        {
+            if (_isFavorite != value)
+            {
+                _isFavorite = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public ICommand ToggleFavoriteCommand { get; set; }
+
+    public event PropertyChangedEventHandler? PropertyChanged;  // 可空事件
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

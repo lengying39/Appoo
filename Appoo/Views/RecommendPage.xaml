@@ -6,7 +6,7 @@
              BackgroundImageSource="b.jpg">
     <ScrollView>
         <VerticalStackLayout Spacing="20" Padding="25">
-            <Label Text="⭐ Gewilde besienswaardighede" FontSize="26" FontAttributes="Bold"
+            <Label Text=" ✨  Recommended List" FontSize="26" FontAttributes="Bold"
                    TextColor="Silver" HorizontalOptions="Center"/>
 
             <!-- 卡片列表使用 Bindings 或 静态数据，这里我们直接在 code-behind 中动态生成 -->

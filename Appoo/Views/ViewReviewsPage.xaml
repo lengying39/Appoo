@@ -4,7 +4,14 @@
              x:Class="Appoo.Views.ViewReviewsPage"
              Title="Check Views"
              BackgroundColor="#9898DC">
-    <ScrollView>
-        <VerticalStackLayout x:Name="ReviewsStack" Spacing="15" Padding="20"/>
-    </ScrollView>
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <SearchBar x:Name="SearchBar"
+                   Placeholder="🔍 Search reviews..."
+                   TextChanged="OnSearchTextChanged"
+                   BackgroundColor="White"
+                   CancelButtonColor="Gray"/>
+        <ScrollView>
+            <VerticalStackLayout x:Name="ReviewsStack" Spacing="15" Padding="20,0"/>
+        </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>
