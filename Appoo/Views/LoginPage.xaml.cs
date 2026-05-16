@@ -34,16 +34,4 @@ public partial class LoginPage : ContentPage
     {
         Application.Current.MainPage = new AppShell();
     }
-
-    private void OnTogglePasswordVisibility(object sender, EventArgs e)
-    {
-        // 切换密码可见性
-        PasswordEntry.IsPassword = !PasswordEntry.IsPassword;
-        // 更改按钮图标：密码隐藏时显示睁眼（👁️），显示密码时显示闭眼（🙈）
-        var btn = sender as Button;
-        if (btn != null)
-        {
-            btn.Text = PasswordEntry.IsPassword ? "👀" : "🙈";
-        }
-    }
 }

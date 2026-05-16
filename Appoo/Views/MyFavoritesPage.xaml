@@ -4,23 +4,11 @@
              x:Class="Appoo.Views.MyFavoritesPage"
              Title="Favorites"
              BackgroundImageSource="mebg.jpg">
-    <VerticalStackLayout Padding="20" Spacing="15">
-        <!-- 标题 -->
-        <Label Text="My Favorites" FontSize="30" FontAttributes="Bold"
+	<VerticalStackLayout Padding="30" Spacing="30">
+		<Label Text="My Favorites" FontSize="30" FontAttributes="Bold"
                TextColor="{StaticResource WineRed}" HorizontalOptions="Center"/>
-
-        <!-- 空状态提示（默认隐藏，有数据时显示由后台控制） -->
-        <Label x:Name="NoFavsLabel" Text="No favorites yet." 
-               HorizontalOptions="Center" TextColor="#1874CD" FontSize="18" 
-               IsVisible="False"/>
-
-        <!-- 可滚动的收藏卡片列表 -->
-        <ScrollView>
-            <VerticalStackLayout x:Name="FavoritesStack" Spacing="15" />
-        </ScrollView>
-
-        <!-- 清空按钮 -->
-        <Button Text="Clear All" BackgroundColor="Gray" TextColor="White" FontSize="18" Margin="0,23,0,0"
-                CornerRadius="8" Clicked="OnClearAll"/>
-    </VerticalStackLayout>
+		<Label x:Name="NoFavsLabel" Text="No favorites yet." HorizontalOptions="Center" TextColor="#1874CD" FontSize="18"/>
+		<VerticalStackLayout x:Name="FavoritesStack" Spacing="5" BackgroundColor="#BFEFFF" />
+		<Button Text="Clear All" BackgroundColor="Gray" TextColor="White" CornerRadius="8" Clicked="OnClearAll"/>
+	</VerticalStackLayout>
 </ContentPage>

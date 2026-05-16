@@ -4,24 +4,13 @@
              x:Class="Appoo.Views.RegisterPage"
              Title="Register"
              BackgroundImageSource="bg8.jpg">
-    <VerticalStackLayout VerticalOptions="Center" Spacing="20" Padding="27">
-        <Label Text="Register" FontSize="36" FontAttributes="Bold"
+	<VerticalStackLayout VerticalOptions="Center" Spacing="20" Padding="27">
+		<Label Text="Register" FontSize="36" FontAttributes="Bold"
                TextColor="Black" HorizontalOptions="Center"/>
-
-        <Entry x:Name="UsernameEntry" Placeholder="Username" FontSize="20"/>
-        <Entry x:Name="NicknameEntry" Placeholder="Nickname" FontSize="20"/>
-
-        <!-- 密码行：输入框 + 眼睛按钮 -->
-        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto">
-            <Entry x:Name="PasswordEntry" Grid.Column="0" 
-                   Placeholder="Password" IsPassword="True" FontSize="20"/>
-            <Button x:Name="TogglePasswordButton" Grid.Column="1" 
-                    Text="👀" BackgroundColor="Transparent" 
-                    TextColor="Black" FontSize="20" WidthRequest="50"
-                    Clicked="OnTogglePasswordVisibility"/>
-        </Grid>
-
-        <Button Text="Register" BackgroundColor="White" TextColor="Black" FontSize="17"
+		<Entry x:Name="UsernameEntry" Placeholder="Username" FontSize="20"/>
+		<Entry x:Name="NicknameEntry" Placeholder="Nickname" FontSize="20"/>
+		<Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" FontSize="20"/>
+		<Button Text="Register" BackgroundColor="White"  TextColor="Black" FontSize="17"
                 CornerRadius="10" Clicked="OnRegisterClicked"/>
-    </VerticalStackLayout>
+	</VerticalStackLayout>
 </ContentPage>

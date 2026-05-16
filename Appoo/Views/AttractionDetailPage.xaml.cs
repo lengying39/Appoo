@@ -40,9 +40,9 @@ public partial class AttractionDetailPage : ContentPage
 
     private void UpdateFavoriteButton()
     {
-        var favorites = _dataService.GetFavoriteSpots(); // 注意方法名
+        var favorites = _dataService.GetFavorites();
         bool isFav = favorites.Contains(SpotName);
-        FavoriteButton.Text = isFav ? "💗   Favorited" : "♡  Add to MyFavorites?";
+        FavoriteButton.Text = isFav ? "❤️ Favorited" : "💗   Add to MyFavorite";
     }
 
     private async void OnFavoriteButtonClicked(object sender, EventArgs e)
