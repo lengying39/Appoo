@@ -71,7 +71,7 @@
 
         // 高德安全密钥（必须填写正确）
         window._AMapSecurityConfig = {
-            securityJsCode: '477b316fb33311856706463b416e3371'   // 替换为真实的安全密钥
+            securityJsCode: '477b316fb33311856706463b416e3371'   
         };
 
         var map = null;
@@ -102,7 +102,10 @@
                 var spots = [
                     { name: 'Giant Wild Goose Pagoda', lng: 108.9594, lat: 34.2136 },
                     { name: 'Bell Tower', lng: 108.9427, lat: 34.2583 },
-                    { name: 'Terracotta Warriors', lng: 109.2731, lat: 34.3849 }
+                    { name: 'Terracotta Warriors', lng: 109.2731, lat: 34.3849 },
+                    { name: 'Huaqing Palace', lng: 109.2734, lat: 34.3812 },
+                    { name: 'Shaanxi History Museum', lng: 108.9492, lat: 34.2152 },
+                    { name: 'Tang Paradise (Datang Furong Garden)', lng: 108.9771, lat: 34.2144 }
                 ];
                 spots.forEach(function (s) {
                     var marker = new AMap.Marker({ position: [s.lng, s.lat], title: s.name });
@@ -139,7 +142,7 @@
                         }
                     );
                 } else {
-                    log('⚠️ 浏览器不支持原生定位');
+                    log('⚠️ Browser does not supportbnative positioning!');
                 }
 
             } catch (e) {
