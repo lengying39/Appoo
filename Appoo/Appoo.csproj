@@ -17,7 +17,7 @@
 		<ApplicationVersion>1</ApplicationVersion>
 		<WindowsPackageType>None</WindowsPackageType>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-
+		<JavaSdkDirectory>C:\Program Files\Java\jdk-21.0.10</JavaSdkDirectory>
 		<!-- 这一行是为了避免缺少 al.exe 的错误，不会影响任何功能 -->
 		<GenerateSatelliteAssembliesForCore>false</GenerateSatelliteAssembliesForCore>
 	</PropertyGroup>

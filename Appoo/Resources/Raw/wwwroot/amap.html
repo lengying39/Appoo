@@ -34,7 +34,7 @@
 
         #locate-btn {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
             background: #007aff;
             color: white;
@@ -132,10 +132,10 @@
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(
                         function (pos) {
-                            log('🎉 原生定位成功: ' + pos.coords.latitude + ',' + pos.coords.longitude);
+                            log('🎉 Native positioning successful: ' + pos.coords.latitude + ',' + pos.coords.longitude);
                         },
                         function (err) {
-                            log('❌ 原生定位失败: ' + err.message);
+                            log('❌ Native positioning failed: ' + err.message);
                         }
                     );
                 } else {

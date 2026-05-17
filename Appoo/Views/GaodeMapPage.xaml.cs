@@ -1,5 +1,8 @@
-﻿using Appoo.Platforms.Android;
+﻿#if ANDROID
+using Appoo.Platforms.Android;
+#endif
 using Microsoft.Maui.Handlers;
+using System.Diagnostics;
 
 namespace Appoo.Views;
 
@@ -9,29 +12,20 @@ public partial class GaodeMapPage : ContentPage
     {
         InitializeComponent();
         LoadMapWithBaseUrl();
-        mapView.Loaded += OnWebViewLoaded;
+        mapView.Navigated += OnWebViewNavigated;
     }
 
     private void LoadMapWithBaseUrl()
     {
-        var htmlContent = "";
-        using (var stream = FileSystem.OpenAppPackageFileAsync("wwwroot/amap.html").GetAwaiter().GetResult())
-        using (var reader = new StreamReader(stream))
-        {
-            htmlContent = reader.ReadToEnd();
-        }
-
-        var baseUrl = "wwwroot";
-        var htmlSource = new HtmlWebViewSource
-        {
-            Html = htmlContent,
-            BaseUrl = baseUrl
-        };
-        mapView.Source = htmlSource;
+        // 使用 GitHub Pages 的 HTTPS URL（请替换为你的实际地址）
+        var url = "https://lengying39.github.io/aamap/amap.html";
+        mapView.Source = url;
+        Debug.WriteLine($"Loading map from: {url}");
     }
 
-    private void OnWebViewLoaded(object sender, EventArgs e)
+    private void OnWebViewNavigated(object sender, WebNavigatedEventArgs e)
     {
+        Debug.WriteLine($"WebView navigation completed: {e.Result}");
         ConfigureWebView();
     }
 
@@ -47,6 +41,7 @@ public partial class GaodeMapPage : ContentPage
             if (activity != null)
             {
                 androidWebView.SetWebChromeClient(new MyWebChromeClient(activity));
+                Debug.WriteLine("WebView location configuration applied.");
             }
         }
 #endif
