@@ -69,14 +69,15 @@
 
         log('Page loaded, initializing...');
 
-        // IMPORTANT Code Key
+        // 高德安全密钥（必须填写正确）
         window._AMapSecurityConfig = {
-            securityJsCode: '477b316fb33311856706463b416e3371'
+            securityJsCode: '477b316fb33311856706463b416e3371'   // 替换为真实的安全密钥
         };
 
         var map = null;
         var geolocation = null;
 
+        // 加载高德地图 JS API
         var script = document.createElement('script');
         script.src = 'https://webapi.amap.com/maps?v=2.0&key=4434777ab901edae0e1a903f99f537bc&plugin=AMap.Geolocation,AMap.Scale';
         script.onload = function () {
@@ -96,7 +97,6 @@
                     viewMode: '2D'
                 });
                 log('✅ Map container initialized');
-
                 map.addControl(new AMap.Scale());
 
                 var spots = [
@@ -127,6 +127,20 @@
                     log('✅ Geolocation plugin ready');
                     locateUser();
                 });
+
+                // 测试原生定位（用于诊断）
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function (pos) {
+                            log('🎉 原生定位成功: ' + pos.coords.latitude + ',' + pos.coords.longitude);
+                        },
+                        function (err) {
+                            log('❌ 原生定位失败: ' + err.message);
+                        }
+                    );
+                } else {
+                    log('⚠️ 浏览器不支持原生定位');
+                }
 
             } catch (e) {
                 log('❌ Map init error: ' + e.message);

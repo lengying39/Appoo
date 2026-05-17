@@ -1,6 +1,5 @@
-﻿using Microsoft.Maui.Controls.PlatformConfiguration;
-using System.IO;
-using Android.OS;  // 如果使用 Android.OS.Environment，仅在 Android 平台有效。建议使用跨平台方式。
+﻿using System.IO;
+using Microsoft.Maui.Storage;  // 用于 FileSystem
 
 namespace Appoo.Views;
 
@@ -37,14 +36,21 @@ public partial class SettingsPage : ContentPage
                 return;
             }
 
-            // 目标文件夹：Download（需要 WRITE_EXTERNAL_STORAGE 权限，但 Android 10+ 可以通过 MediaStore 或直接路径尝试）
+            string dest;
+#if ANDROID
+            // Android 平台：导出到 Download 文件夹
             var downloadsPath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads)?.AbsolutePath;
             if (string.IsNullOrEmpty(downloadsPath))
             {
                 await DisplayAlert("错误", "无法获取下载文件夹路径。", "OK");
                 return;
             }
-            var dest = Path.Combine(downloadsPath, "travelapp.db3");
+            dest = Path.Combine(downloadsPath, "travelapp.db3");
+#else
+            // 非 Android 平台：导出到用户的“文档”文件夹
+            var docsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            dest = Path.Combine(docsPath, "travelapp.db3");
+#endif
 
             // 复制文件（覆盖已存在）
             File.Copy(source, dest, true);

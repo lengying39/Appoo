@@ -33,13 +33,102 @@ public class DataService : IDataService
         }
     }
 
-    // 实现 IDataService 的异步登录/注册/登出
+    // ---------- 统一收藏存储（前缀区分）----------
+    private string PrefixSpot(string name) => $"Spot:{name}";
+    private string PrefixFood(string name) => $"Food:{name}";
+    private bool IsSpotItem(string item) => item.StartsWith("Spot:");
+    private bool IsFoodItem(string item) => item.StartsWith("Food:");
+    private string Unwrap(string item) => item.Substring(item.IndexOf(':') + 1);
+
+    private async Task SaveFavoritesAsync(List<string> list)
+    {
+        if (CurrentUser == null) return;
+        CurrentUser.FavoriteSpotNames = list;
+        await _dbService.UpdateUserAsync(CurrentUser);
+    }
+
+    // 景点收藏
+    public async void AddFavoriteSpot(string spotName)
+    {
+        if (CurrentUser == null) return;
+        var list = CurrentUser.FavoriteSpotNames;
+        var prefixed = PrefixSpot(spotName);
+        if (!list.Contains(prefixed))
+        {
+            list.Add(prefixed);
+            await SaveFavoritesAsync(list);
+        }
+    }
+
+    public async void RemoveFavoriteSpot(string spotName)
+    {
+        if (CurrentUser == null) return;
+        var list = CurrentUser.FavoriteSpotNames;
+        var prefixed = PrefixSpot(spotName);
+        if (list.Contains(prefixed))
+        {
+            list.Remove(prefixed);
+            await SaveFavoritesAsync(list);
+        }
+    }
+
+    public List<string> GetFavoriteSpots()
+    {
+        return CurrentUser?.FavoriteSpotNames.Where(IsSpotItem).Select(Unwrap).ToList() ?? new List<string>();
+    }
+
+    // 美食收藏
+    public async void AddFavoriteFood(string foodName)
+    {
+        if (CurrentUser == null) return;
+        var list = CurrentUser.FavoriteSpotNames;
+        var prefixed = PrefixFood(foodName);
+        if (!list.Contains(prefixed))
+        {
+            list.Add(prefixed);
+            await SaveFavoritesAsync(list);
+        }
+    }
+
+    public async void RemoveFavoriteFood(string foodName)
+    {
+        if (CurrentUser == null) return;
+        var list = CurrentUser.FavoriteSpotNames;
+        var prefixed = PrefixFood(foodName);
+        if (list.Contains(prefixed))
+        {
+            list.Remove(prefixed);
+            await SaveFavoritesAsync(list);
+        }
+    }
+
+    // 获取所有收藏（包括景点和美食）
+    public List<string> GetAllFavorites()
+    {
+        return CurrentUser?.FavoriteSpotNames ?? new List<string>();
+    }
+
+    // 兼容旧方法（仅景点）
+    public void AddFavorite(string spotName) => AddFavoriteSpot(spotName);
+    public void RemoveFavorite(string spotName) => RemoveFavoriteSpot(spotName);
+    public List<string> GetFavorites() => GetFavoriteSpots();
+    public async void ClearFavorites()
+    {
+        if (CurrentUser == null) return;
+        CurrentUser.FavoriteSpotNames = new List<string>();
+        await SaveFavoritesAsync(CurrentUser.FavoriteSpotNames);
+    }
+
+    // ---------- 用户登录/注册/登出 ----------
     public async Task<bool> LoginAsync(string username, string password)
     {
         var user = await _dbService.GetUserByCredentialsAsync(username, password);
         if (user != null)
         {
             CurrentUser = user;
+            // 确保 FavoriteSpotNames 不为 null
+            if (CurrentUser.FavoriteSpotNames == null)
+                CurrentUser.FavoriteSpotNames = new List<string>();
             return true;
         }
         return false;
@@ -48,8 +137,7 @@ public class DataService : IDataService
     public async Task<bool> RegisterAsync(User user)
     {
         var existing = await _dbService.GetUserByUsernameAsync(user.Username!);
-        if (existing != null)
-            return false;
+        if (existing != null) return false;
         user.FavoriteSpotNames ??= new List<string>();
         var inserted = await _dbService.InsertUserAsync(user);
         if (inserted > 0)
@@ -60,68 +148,9 @@ public class DataService : IDataService
         return false;
     }
 
-    public void Logout()
-    {
-        CurrentUser = null;
-    }
-
-    // 实现 IDataService 同步收藏方法（内部调用异步版本，使用 async void）
-    public void AddFavorite(string spotName)
-    {
-        _ = AddFavoriteInternalAsync(spotName);
-    }
-
-    public void RemoveFavorite(string spotName)
-    {
-        _ = RemoveFavoriteInternalAsync(spotName);
-    }
-
-    public void ClearFavorites()
-    {
-        _ = ClearFavoritesInternalAsync();
-    }
-
-    // 异步实际实现（修正版：触发序列化）
-    private async Task AddFavoriteInternalAsync(string spotName)
-    {
-        if (CurrentUser == null) return;
-        var list = CurrentUser.FavoriteSpotNames;
-        if (!list.Contains(spotName))
-        {
-            list.Add(spotName);
-            CurrentUser.FavoriteSpotNames = list;  // 触发 setter 序列化
-            await _dbService.UpdateUserAsync(CurrentUser);
-        }
-    }
-
-    private async Task RemoveFavoriteInternalAsync(string spotName)
-    {
-        if (CurrentUser == null) return;
-        var list = CurrentUser.FavoriteSpotNames;
-        if (list.Contains(spotName))
-        {
-            list.Remove(spotName);
-            CurrentUser.FavoriteSpotNames = list;  // 触发 setter 序列化
-            await _dbService.UpdateUserAsync(CurrentUser);
-        }
-    }
-
-    private async Task ClearFavoritesInternalAsync()
-    {
-        if (CurrentUser == null) return;
-        CurrentUser.FavoriteSpotNames = new List<string>();  // 赋新空列表，触发序列化
-        await _dbService.UpdateUserAsync(CurrentUser);
-    }
-
-    public List<string> GetFavorites()
-    {
-        return CurrentUser?.FavoriteSpotNames ?? new List<string>();
-    }
-
-    // 如果需要 GetCurrentUserAsync（接口中可能已有）
+    public void Logout() => CurrentUser = null;
     public Task<User?> GetCurrentUserAsync() => Task.FromResult(CurrentUser);
 
-    // ---------- 以下为固定数据方法，与原代码相同 ----------
     public List<TouristSpot> GetAllSpots() => new()
 {
     new TouristSpot

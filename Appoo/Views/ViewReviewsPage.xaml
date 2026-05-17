@@ -3,8 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Appoo.Views.ViewReviewsPage"
              Title="Check Views"
-             BackgroundColor="#9898DC">
-    <ScrollView>
-        <VerticalStackLayout x:Name="ReviewsStack" Spacing="15" Padding="20"/>
-    </ScrollView>
+             BackgroundImageSource="xian.jpg">
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <SearchBar x:Name="SearchBar"
+                   Placeholder="🔍 Search reviews..."
+                   TextColor="Black"
+                   FontSize="16"
+                   TextChanged="OnSearchTextChanged"
+                   BackgroundColor="White"
+                   CancelButtonColor="Gray"/>
+        <ScrollView>
+            <VerticalStackLayout x:Name="ReviewsStack" Spacing="15" Padding="20,0"/>
+        </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>
