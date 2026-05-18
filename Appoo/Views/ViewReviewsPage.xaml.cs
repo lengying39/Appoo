@@ -33,7 +33,7 @@ public partial class ViewReviewsPage : ContentPage
             {
                 Text = "No reviews yet. Be the first to add one~",
                 FontSize = 20,
-                TextColor = Colors.Black,
+                TextColor = Colors.White,
                 HorizontalOptions = LayoutOptions.Center,
                 Margin = new Thickness(0, 50, 0, 0)
             });
@@ -55,7 +55,7 @@ public partial class ViewReviewsPage : ContentPage
             layout.Children.Add(new Label
             {
                 Text = $"User: {review.Username}",
-                FontSize = 14,
+                FontSize = 16,
                 FontAttributes = FontAttributes.Bold,
                 TextColor = Color.FromArgb("#722F37")
             });
@@ -64,7 +64,8 @@ public partial class ViewReviewsPage : ContentPage
             {
                 Text = review.Comment,
                 FontSize = 14,
-                LineBreakMode = LineBreakMode.WordWrap
+                LineBreakMode = LineBreakMode.WordWrap,
+                TextColor = Colors.White,
             });
 
             if (!string.IsNullOrEmpty(review.ImagePath) && File.Exists(review.ImagePath))
@@ -82,7 +83,7 @@ public partial class ViewReviewsPage : ContentPage
             {
                 Text = review.DatePosted.ToString("yyyy-MM-dd HH:mm"),
                 FontSize = 10,
-                TextColor = Colors.Gray
+                TextColor = Colors.White
             });
 
             frame.Content = layout;
