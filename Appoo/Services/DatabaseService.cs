@@ -1,5 +1,10 @@
 ﻿using SQLite;
-using Appoo.Models;   // 注意：使用 Appoo.Models，不要写成 Appo.Models
+using Appoo.Models;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Appoo.Services;
 
@@ -11,60 +16,31 @@ public class DatabaseService
     {
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "travelapp.db3");
         _database = new SQLiteAsyncConnection(dbPath);
-
+        // 同步创建表，简单可靠
         try
         {
-            // 创建用户表和评价表（如果不存在）
             _database.CreateTableAsync<User>().Wait();
             _database.CreateTableAsync<UserReview>().Wait();
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"创建SQLite表失败: {ex.Message}");
-            throw;  // 如果创建失败，抛出异常以便调试
+            System.Diagnostics.Debug.WriteLine($"创建表失败: {ex.Message}");
+            throw;
         }
     }
 
     // ---------- 用户相关 ----------
-    public Task<int> InsertUserAsync(User user)
-    {
-        return _database.InsertAsync(user);
-    }
-
+    public Task<int> InsertUserAsync(User user) => _database.InsertAsync(user);
     public Task<User?> GetUserByUsernameAsync(string username)
-    {
-        return _database.Table<User>().FirstOrDefaultAsync(u => u.Username == username);
-    }
-
+        => _database.Table<User>().FirstOrDefaultAsync(u => u.Username == username);
     public Task<User?> GetUserByCredentialsAsync(string username, string password)
-    {
-        return _database.Table<User>().FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
-    }
-
-    public Task<int> UpdateUserAsync(User user)
-    {
-        return _database.UpdateAsync(user);
-    }
+        => _database.Table<User>().FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+    public Task<int> UpdateUserAsync(User user) => _database.UpdateAsync(user);
 
     // ---------- 评价相关 ----------
     public Task<List<UserReview>> GetReviewsBySpotNameAsync(string spotName)
-    {
-        return _database.Table<UserReview>()
-                        .Where(r => r.SpotName == spotName)
-                        .OrderByDescending(r => r.DatePosted)
-                        .ToListAsync();
-    }
-
+        => _database.Table<UserReview>().Where(r => r.SpotName == spotName).OrderByDescending(r => r.DatePosted).ToListAsync();
     public Task<List<UserReview>> GetReviewsByUsernameAsync(string username)
-    {
-        return _database.Table<UserReview>()
-                        .Where(r => r.Username == username)
-                        .OrderByDescending(r => r.DatePosted)
-                        .ToListAsync();
-    }
-
-    public Task<int> AddReviewAsync(UserReview review)
-    {
-        return _database.InsertAsync(review);
-    }
+        => _database.Table<UserReview>().Where(r => r.Username == username).OrderByDescending(r => r.DatePosted).ToListAsync();
+    public Task<int> AddReviewAsync(UserReview review) => _database.InsertAsync(review);
 }
