@@ -16,15 +16,17 @@ public class DatabaseService
     {
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "travelapp.db3");
         _database = new SQLiteAsyncConnection(dbPath);
-        // 同步创建表，简单可靠
         try
         {
+            // 创建所有需要的表（如果不存在则创建，已存在则忽略）
             _database.CreateTableAsync<User>().Wait();
             _database.CreateTableAsync<UserReview>().Wait();
+            _database.CreateTableAsync<TouristSpot>().Wait();   // 确保表存在
+            _database.CreateTableAsync<FoodItem>().Wait();      // 确保表存在
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"创建表失败: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"数据库初始化失败: {ex.Message}");
             throw;
         }
     }
@@ -43,4 +45,16 @@ public class DatabaseService
     public Task<List<UserReview>> GetReviewsByUsernameAsync(string username)
         => _database.Table<UserReview>().Where(r => r.Username == username).OrderByDescending(r => r.DatePosted).ToListAsync();
     public Task<int> AddReviewAsync(UserReview review) => _database.InsertAsync(review);
+
+    // ---------- 景点相关 ----------
+    public Task<List<TouristSpot>> GetAllSpotsAsync()
+        => _database.Table<TouristSpot>().ToListAsync();
+
+    // ---------- 美食相关 ----------
+    public Task<List<FoodItem>> GetFoodItemsBySpotNameAsync(string spotName)
+        => _database.Table<FoodItem>().Where(f => f.SpotName == spotName).ToListAsync();
+
+    // 用于收藏页面获取所有美食（可选）
+    public Task<List<FoodItem>> GetAllFoodItemsAsync()
+        => _database.Table<FoodItem>().ToListAsync();
 }
