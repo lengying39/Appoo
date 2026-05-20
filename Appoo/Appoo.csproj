@@ -118,10 +118,5 @@
 	  <MauiImage Include="Resources\Images\spots\shanbo.jpg" />
 	  <MauiImage Include="Resources\Images\spots\zl.jpg" />
 	</ItemGroup>
-	<ItemGroup>
-	  <MauiAsset Update="Resources\Raw\travelapp.db3">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </MauiAsset>
-	</ItemGroup>
 
 </Project>
