@@ -12,7 +12,7 @@
 
             <Label Text="Upload image (optional)" FontAttributes="Bold" TextColor="#3A79C0"/>
             <Button Text="📷 Select Image" Clicked="OnAttachPhoto" BackgroundColor="Gray" TextColor="Black" FontSize="20"/>
-            <Image x:Name="SelectedImage" HeightRequest="120" Aspect="AspectFill" Margin="0,5,0,0"/>
+            <Image x:Name="SelectedImage" HeightRequest="220" Aspect="AspectFill" Margin="0,5,0,0"/>
 
             <Switch x:Name="ImageToggle" IsToggled="True"/>
             <Label Text="Includes images" TextColor="#3A79C0" Margin="0,-36,0,0"/>

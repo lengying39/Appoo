@@ -15,14 +15,25 @@ public class DatabaseService
     public DatabaseService()
     {
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "travelapp.db3");
+
+        // 如果数据库文件不存在（首次运行或卸载重装），则从预置资源复制
+        if (!File.Exists(dbPath))
+        {
+            using (var stream = FileSystem.OpenAppPackageFileAsync("travelapp.db3").GetAwaiter().GetResult())
+            using (var dest = File.Create(dbPath))
+            {
+                stream.CopyTo(dest);
+            }
+        }
+
         _database = new SQLiteAsyncConnection(dbPath);
+
         try
         {
-            // 创建所有需要的表（如果不存在则创建，已存在则忽略）
+            // 确保用户表和评价表存在（如果预置文件中没有，则创建）
             _database.CreateTableAsync<User>().Wait();
             _database.CreateTableAsync<UserReview>().Wait();
-            _database.CreateTableAsync<TouristSpot>().Wait();   // 确保表存在
-            _database.CreateTableAsync<FoodItem>().Wait();      // 确保表存在
+            // 注意：预置文件中已经有 TouristSpots 和 FoodItems 表，无需再创建
         }
         catch (Exception ex)
         {
@@ -54,7 +65,6 @@ public class DatabaseService
     public Task<List<FoodItem>> GetFoodItemsBySpotNameAsync(string spotName)
         => _database.Table<FoodItem>().Where(f => f.SpotName == spotName).ToListAsync();
 
-    // 用于收藏页面获取所有美食（可选）
     public Task<List<FoodItem>> GetAllFoodItemsAsync()
         => _database.Table<FoodItem>().ToListAsync();
 }

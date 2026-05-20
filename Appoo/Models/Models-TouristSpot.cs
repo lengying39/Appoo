@@ -17,7 +17,6 @@ public class TouristSpot
     public string OpenTime { get; set; }
     public string Location { get; set; }
 
-    // 以下属性仅用于内存，不存数据库
     [SQLite.Ignore]
     public List<string> NearbyFood { get; set; } = new();
 

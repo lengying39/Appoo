@@ -1,4 +1,5 @@
-﻿using Appoo.Models;
+﻿using Android.OS;                          // 必须引入，否则 Android.OS.Environment 不可用
+using Appoo.Models;
 using Appoo.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -64,13 +65,23 @@ public partial class WriteReviewPage : ContentPage
         string savedImagePath = null;
         if (ImageToggle.IsToggled && !string.IsNullOrEmpty(_selectedImagePath))
         {
-            // 保存图片到应用本地目录
-            var destDir = Path.Combine(FileSystem.AppDataDirectory, "review_images");
-            if (!Directory.Exists(destDir))
-                Directory.CreateDirectory(destDir);
-            var fileName = $"{Guid.NewGuid()}.jpg";
-            savedImagePath = Path.Combine(destDir, fileName);
-            File.Copy(_selectedImagePath, savedImagePath);
+            try
+            {
+                // 获取公共 Pictures 目录
+                string picturesPath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures).AbsolutePath;
+                string appFolder = Path.Combine(picturesPath, "MyTravelGuide");
+                if (!Directory.Exists(appFolder))
+                    Directory.CreateDirectory(appFolder);
+
+                var fileName = $"{Guid.NewGuid()}.jpg";
+                savedImagePath = Path.Combine(appFolder, fileName);
+                File.Copy(_selectedImagePath, savedImagePath, true);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Save Failed", $"Unable to save image: {ex.Message}", "OK");
+                return;
+            }
         }
 
         var review = new UserReview
@@ -84,6 +95,6 @@ public partial class WriteReviewPage : ContentPage
 
         await _dbService.AddReviewAsync(review);
         await DisplayAlert("Published successfully🥰", "Your review has been submitted!", "OK");
-        await Shell.Current.GoToAsync(".."); // 返回上一页
+        await Shell.Current.GoToAsync("..");
     }
 }
